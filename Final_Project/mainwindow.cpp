@@ -5,7 +5,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //setStyleSheet("background-image: url(../background.jpg);");
     QResizeEvent* evt;
     resizeEvent(evt);
 

@@ -14,109 +14,98 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="convertFormat">
     <property name="geometry">
      <rect>
       <x>40</x>
       <y>20</y>
-      <width>131</width>
+      <width>321</width>
       <height>61</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Convert video and audio formats</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="changeResolution">
     <property name="geometry">
      <rect>
       <x>40</x>
       <y>100</y>
-      <width>131</width>
+      <width>321</width>
       <height>61</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Change video resolution</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="addRemoveAudio">
     <property name="geometry">
      <rect>
       <x>40</x>
       <y>180</y>
-      <width>131</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="pushButton_4">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>250</y>
-      <width>131</width>
+      <width>321</width>
       <height>61</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Add audio to video or remove audio from it</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_5">
+   <widget class="QPushButton" name="connectVideos">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>490</y>
-      <width>131</width>
+      <y>260</y>
+      <width>321</width>
       <height>61</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Connect several video files to each other</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_6">
+   <widget class="QPushButton" name="play">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>410</y>
-      <width>131</width>
+      <y>500</y>
+      <width>321</width>
       <height>61</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Play</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_7">
+   <widget class="QPushButton" name="reduceVolume">
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>330</y>
-      <width>131</width>
+      <y>420</y>
+      <width>321</width>
       <height>61</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Reduce video volume</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="deletePartVideo">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>340</y>
+      <width>321</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Delete parts of the video</string>
     </property>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1500</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

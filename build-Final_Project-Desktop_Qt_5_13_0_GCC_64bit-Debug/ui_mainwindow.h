@@ -12,9 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -23,15 +21,13 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton_3;
-    QPushButton *pushButton_4;
-    QPushButton *pushButton_5;
-    QPushButton *pushButton_6;
-    QPushButton *pushButton_7;
-    QMenuBar *menuBar;
-    QStatusBar *statusBar;
+    QPushButton *convertFormat;
+    QPushButton *changeResolution;
+    QPushButton *addRemoveAudio;
+    QPushButton *connectVideos;
+    QPushButton *play;
+    QPushButton *reduceVolume;
+    QPushButton *deletePartVideo;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -40,35 +36,28 @@ public:
         MainWindow->resize(1500, 1100);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
-        pushButton = new QPushButton(centralWidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(40, 20, 131, 61));
-        pushButton_2 = new QPushButton(centralWidget);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(40, 100, 131, 61));
-        pushButton_3 = new QPushButton(centralWidget);
-        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
-        pushButton_3->setGeometry(QRect(40, 180, 131, 51));
-        pushButton_4 = new QPushButton(centralWidget);
-        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
-        pushButton_4->setGeometry(QRect(40, 250, 131, 61));
-        pushButton_5 = new QPushButton(centralWidget);
-        pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
-        pushButton_5->setGeometry(QRect(40, 490, 131, 61));
-        pushButton_6 = new QPushButton(centralWidget);
-        pushButton_6->setObjectName(QString::fromUtf8("pushButton_6"));
-        pushButton_6->setGeometry(QRect(40, 410, 131, 61));
-        pushButton_7 = new QPushButton(centralWidget);
-        pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
-        pushButton_7->setGeometry(QRect(40, 330, 131, 61));
+        convertFormat = new QPushButton(centralWidget);
+        convertFormat->setObjectName(QString::fromUtf8("convertFormat"));
+        convertFormat->setGeometry(QRect(40, 20, 321, 61));
+        changeResolution = new QPushButton(centralWidget);
+        changeResolution->setObjectName(QString::fromUtf8("changeResolution"));
+        changeResolution->setGeometry(QRect(40, 100, 321, 61));
+        addRemoveAudio = new QPushButton(centralWidget);
+        addRemoveAudio->setObjectName(QString::fromUtf8("addRemoveAudio"));
+        addRemoveAudio->setGeometry(QRect(40, 180, 321, 61));
+        connectVideos = new QPushButton(centralWidget);
+        connectVideos->setObjectName(QString::fromUtf8("connectVideos"));
+        connectVideos->setGeometry(QRect(40, 260, 321, 61));
+        play = new QPushButton(centralWidget);
+        play->setObjectName(QString::fromUtf8("play"));
+        play->setGeometry(QRect(40, 500, 321, 61));
+        reduceVolume = new QPushButton(centralWidget);
+        reduceVolume->setObjectName(QString::fromUtf8("reduceVolume"));
+        reduceVolume->setGeometry(QRect(40, 420, 321, 61));
+        deletePartVideo = new QPushButton(centralWidget);
+        deletePartVideo->setObjectName(QString::fromUtf8("deletePartVideo"));
+        deletePartVideo->setGeometry(QRect(40, 340, 321, 61));
         MainWindow->setCentralWidget(centralWidget);
-        menuBar = new QMenuBar(MainWindow);
-        menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1500, 22));
-        MainWindow->setMenuBar(menuBar);
-        statusBar = new QStatusBar(MainWindow);
-        statusBar->setObjectName(QString::fromUtf8("statusBar"));
-        MainWindow->setStatusBar(statusBar);
 
         retranslateUi(MainWindow);
 
@@ -78,13 +67,13 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
-        pushButton_5->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
-        pushButton_6->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
-        pushButton_7->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        convertFormat->setText(QCoreApplication::translate("MainWindow", "Convert video and audio formats", nullptr));
+        changeResolution->setText(QCoreApplication::translate("MainWindow", "Change video resolution", nullptr));
+        addRemoveAudio->setText(QCoreApplication::translate("MainWindow", "Add audio to video or remove audio from it", nullptr));
+        connectVideos->setText(QCoreApplication::translate("MainWindow", "Connect several video files to each other", nullptr));
+        play->setText(QCoreApplication::translate("MainWindow", "Play", nullptr));
+        reduceVolume->setText(QCoreApplication::translate("MainWindow", "Reduce video volume", nullptr));
+        deletePartVideo->setText(QCoreApplication::translate("MainWindow", "Delete parts of the video", nullptr));
     } // retranslateUi
 
 };
