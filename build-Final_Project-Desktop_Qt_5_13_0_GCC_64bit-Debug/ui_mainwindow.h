@@ -117,8 +117,14 @@ public:
         convertFormat->setPalette(palette);
         QFont font1;
         font1.setBold(true);
+        font1.setItalic(false);
+        font1.setUnderline(false);
         font1.setWeight(75);
+        font1.setStrikeOut(false);
+        font1.setKerning(true);
+        font1.setStyleStrategy(QFont::PreferDefault);
         convertFormat->setFont(font1);
+        convertFormat->setCursor(QCursor(Qt::PointingHandCursor));
         convertFormat->setIconSize(QSize(16, 16));
         convertFormat->setAutoRepeat(false);
         changeResolution = new QPushButton(centralWidget);
@@ -180,7 +186,11 @@ public:
         palette1.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush7);
 #endif
         changeResolution->setPalette(palette1);
-        changeResolution->setFont(font1);
+        QFont font2;
+        font2.setBold(true);
+        font2.setWeight(75);
+        changeResolution->setFont(font2);
+        changeResolution->setCursor(QCursor(Qt::PointingHandCursor));
         addRemoveAudio = new QPushButton(centralWidget);
         addRemoveAudio->setObjectName(QString::fromUtf8("addRemoveAudio"));
         addRemoveAudio->setGeometry(QRect(40, 180, 321, 61));
@@ -240,7 +250,8 @@ public:
         palette2.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush7);
 #endif
         addRemoveAudio->setPalette(palette2);
-        addRemoveAudio->setFont(font1);
+        addRemoveAudio->setFont(font2);
+        addRemoveAudio->setCursor(QCursor(Qt::PointingHandCursor));
         connectVideos = new QPushButton(centralWidget);
         connectVideos->setObjectName(QString::fromUtf8("connectVideos"));
         connectVideos->setGeometry(QRect(40, 260, 321, 61));
@@ -300,7 +311,8 @@ public:
         palette3.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush7);
 #endif
         connectVideos->setPalette(palette3);
-        connectVideos->setFont(font1);
+        connectVideos->setFont(font2);
+        connectVideos->setCursor(QCursor(Qt::PointingHandCursor));
         play = new QPushButton(centralWidget);
         play->setObjectName(QString::fromUtf8("play"));
         play->setGeometry(QRect(40, 500, 321, 61));
@@ -360,7 +372,8 @@ public:
         palette4.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush7);
 #endif
         play->setPalette(palette4);
-        play->setFont(font1);
+        play->setFont(font2);
+        play->setCursor(QCursor(Qt::PointingHandCursor));
         reduceVolume = new QPushButton(centralWidget);
         reduceVolume->setObjectName(QString::fromUtf8("reduceVolume"));
         reduceVolume->setGeometry(QRect(40, 420, 321, 61));
@@ -420,7 +433,8 @@ public:
         palette5.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush7);
 #endif
         reduceVolume->setPalette(palette5);
-        reduceVolume->setFont(font1);
+        reduceVolume->setFont(font2);
+        reduceVolume->setCursor(QCursor(Qt::PointingHandCursor));
         deletePartVideo = new QPushButton(centralWidget);
         deletePartVideo->setObjectName(QString::fromUtf8("deletePartVideo"));
         deletePartVideo->setGeometry(QRect(40, 340, 321, 61));
@@ -480,7 +494,8 @@ public:
         palette6.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush7);
 #endif
         deletePartVideo->setPalette(palette6);
-        deletePartVideo->setFont(font1);
+        deletePartVideo->setFont(font2);
+        deletePartVideo->setCursor(QCursor(Qt::PointingHandCursor));
         MainWindow->setCentralWidget(centralWidget);
         changeResolution->raise();
         addRemoveAudio->raise();

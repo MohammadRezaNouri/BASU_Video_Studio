@@ -480,8 +480,16 @@
     <property name="font">
      <font>
       <weight>75</weight>
+      <italic>false</italic>
       <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+      <stylestrategy>PreferDefault</stylestrategy>
+      <kerning>true</kerning>
      </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="toolTip">
      <string/>
@@ -956,6 +964,9 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="text">
      <string>Change video resolution</string>
     </property>
@@ -1416,6 +1427,9 @@
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="text">
      <string>Add audio to video or remove audio from it</string>
@@ -1878,6 +1892,9 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="text">
      <string>Connect several video files to each other</string>
     </property>
@@ -2338,6 +2355,9 @@
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="text">
      <string>Play</string>
@@ -2800,6 +2820,9 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="text">
      <string>Reduce video volume</string>
     </property>
@@ -3260,6 +3283,9 @@
       <weight>75</weight>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="text">
      <string>Delete parts of the video</string>
