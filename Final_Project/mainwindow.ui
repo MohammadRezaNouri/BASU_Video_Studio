@@ -30,7 +30,10 @@
     <normaloff>../70-704221_png-file-svg-video-edit-icon-png-clipart.jpeg</normaloff>../70-704221_png-file-svg-video-edit-icon-png-clipart.jpeg</iconset>
   </property>
   <property name="toolTip">
-   <string/>
+   <string>Hi :)</string>
+  </property>
+  <property name="toolTipDuration">
+   <number>1000</number>
   </property>
   <property name="statusTip">
    <string/>

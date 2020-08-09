@@ -43,6 +43,7 @@ public:
         QIcon icon;
         icon.addFile(QString::fromUtf8("../70-704221_png-file-svg-video-edit-icon-png-clipart.jpeg"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
+        MainWindow->setToolTipDuration(1000);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         convertFormat = new QPushButton(centralWidget);
@@ -537,7 +538,7 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
 #if QT_CONFIG(tooltip)
-        MainWindow->setToolTip(QString());
+        MainWindow->setToolTip(QCoreApplication::translate("MainWindow", "Hi :)", nullptr));
 #endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(statustip)
         MainWindow->setStatusTip(QString());
