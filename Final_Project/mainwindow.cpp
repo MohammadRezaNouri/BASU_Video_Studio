@@ -10,6 +10,9 @@
 #include <iostream>
 #include <string>
 #include "qstring.h"
+
+#include <QShortcut>
+
 using namespace  std;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -52,15 +55,26 @@ void MainWindow::on_convertFormat_clicked()
     {
         return;
     }
-    QPushButton * input, * output, * ok;
+    QPushButton * input = new QPushButton(), * output = new QPushButton(), * ok = new QPushButton(), * Cancel = new QPushButton();
+    ok = not_found->addButton((tr("Ok")), QMessageBox::ActionRole);
+    ok->setShortcut(Qt::CTRL + Qt::Key_K);
+    ok->setToolTip("Ctrl+K");
     QString fileName, outputFolder;
     if (formats.contains(format) == true)
     {
         msg->setIcon(QMessageBox::Icon::Information);
         input = msg->addButton((tr("Input file")), QMessageBox::ActionRole);
+        input->setShortcut(Qt::CTRL + Qt::Key_O);
+        input->setToolTip("Ctrl+O");
         output = msg->addButton((tr("Output folder")), QMessageBox::ActionRole);
+        output->setShortcut(Qt::CTRL + Qt::Key_F);
+        output->setToolTip("Ctrl+F");
         ok = msg->addButton((tr("Ok")), QMessageBox::ActionRole);
-        msg->setStandardButtons(QMessageBox::Cancel);
+        ok->setShortcut(Qt::CTRL + Qt::Key_K);
+        ok->setToolTip("Ctrl+K");
+        Cancel = msg->addButton((tr("Cancel")), QMessageBox::ActionRole);
+        Cancel->setShortcut(Qt::CTRL + Qt::Key_Q);
+        Cancel->setToolTip("Ctrl+Q");
         msg->setText("Please select the file and its storage location.");
         click:
         msg->exec();
@@ -106,6 +120,9 @@ void MainWindow::on_convertFormat_clicked()
     }
     else
     {
+        ok = msg->addButton((tr("Ok")), QMessageBox::ActionRole);
+        ok->setShortcut(Qt::CTRL + Qt::Key_K);
+        ok->setToolTip("Ctrl+K");
         msg->setText("The format entered is incorrect.");
         msg->setIcon(QMessageBox::Icon::Critical);
         msg->exec();
