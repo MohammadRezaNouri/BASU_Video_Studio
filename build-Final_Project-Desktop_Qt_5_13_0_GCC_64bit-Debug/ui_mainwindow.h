@@ -131,7 +131,11 @@ public:
         convertFormat->setAcceptDrops(false);
         convertFormat->setLayoutDirection(Qt::LeftToRight);
         convertFormat->setIconSize(QSize(16, 16));
+        convertFormat->setCheckable(false);
+        convertFormat->setChecked(false);
         convertFormat->setAutoRepeat(false);
+        convertFormat->setAutoDefault(false);
+        convertFormat->setFlat(false);
         changeResolution = new QPushButton(centralWidget);
         changeResolution->setObjectName(QString::fromUtf8("changeResolution"));
         changeResolution->setGeometry(QRect(40, 100, 321, 61));
@@ -196,6 +200,8 @@ public:
         font2.setWeight(75);
         changeResolution->setFont(font2);
         changeResolution->setCursor(QCursor(Qt::PointingHandCursor));
+        changeResolution->setAutoRepeat(false);
+        changeResolution->setAutoExclusive(false);
         addRemoveAudio = new QPushButton(centralWidget);
         addRemoveAudio->setObjectName(QString::fromUtf8("addRemoveAudio"));
         addRemoveAudio->setGeometry(QRect(40, 180, 321, 61));
@@ -380,6 +386,7 @@ public:
         play->setFont(font2);
         play->setCursor(QCursor(Qt::PointingHandCursor));
         play->setToolTipDuration(-1);
+        play->setAutoDefault(false);
         reduceVolume = new QPushButton(centralWidget);
         reduceVolume->setObjectName(QString::fromUtf8("reduceVolume"));
         reduceVolume->setGeometry(QRect(40, 420, 321, 61));
@@ -512,6 +519,11 @@ public:
         convertFormat->raise();
 
         retranslateUi(MainWindow);
+
+        convertFormat->setDefault(false);
+        changeResolution->setDefault(false);
+        play->setDefault(false);
+
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi

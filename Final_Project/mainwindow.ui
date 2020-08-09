@@ -527,7 +527,22 @@
     <property name="shortcut">
      <string>Ctrl+1</string>
     </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
     <property name="autoRepeat">
+     <bool>false</bool>
+    </property>
+    <property name="autoDefault">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
      <bool>false</bool>
     </property>
    </widget>
@@ -999,6 +1014,15 @@
     </property>
     <property name="shortcut">
      <string>Ctrl+2</string>
+    </property>
+    <property name="autoRepeat">
+     <bool>false</bool>
+    </property>
+    <property name="autoExclusive">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="addRemoveAudio">
@@ -2415,6 +2439,12 @@
     </property>
     <property name="shortcut">
      <string>Ctrl+7</string>
+    </property>
+    <property name="autoDefault">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="reduceVolume">
