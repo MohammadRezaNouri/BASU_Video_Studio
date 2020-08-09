@@ -37,9 +37,15 @@ void MainWindow::resizeEvent(QResizeEvent* evt)
 
 void MainWindow::on_convertFormat_clicked()
 {
+    QFont font;
+    font.setBold(true);
+    font.setPointSize(15);
     QString formats = "*.mp4 *.m4a *.f4v *.f4a *.m4b *.m4r *.f4b *.mov *.3gp *.3gp2 *.3g2 *.3gpp *.3gpp2 *.ogg *.oga *.ogv *.ogx *.wmv *.wma *.asf *.webm *.flv *.mkv *.vob *.drc *.gif *.gifv *.mng *.avi *.MTS *.M2TS *.TS *.qt *.yuv *.tm *.rmvb *.viv *.amv *.m4p *.m4v *.mpg *.mpeg *.mp2 *.mpe *.mpv *.m2v *.svi *.mxf *.roq *.nsv *.f4p *.flac *.mp3 *.wav *.aac *.aa *.aax *.act *.aiff *.alac *.amr *.ape *.au *.awb *.dct *.dss *.dvf *.gsm *.iklax *.ivs *.mmf *.mpc *.msv *.nmf *.mogg *.opus *.ra *.rm *.raw *.rf64 *.sln *.tta *.voc *.vox *.wv *.8svx *.cda)";
     QMessageBox * msg = new QMessageBox();
     QMessageBox * not_found = new QMessageBox();
+    msg->setFont(font);
+    not_found->setIcon(QMessageBox::Icon::Critical);
+    not_found->setFont(font);
     bool fOk;
     QString format = QInputDialog::getText(this, tr("Output format"), tr("Format : "), QLineEdit::Normal, "Example: mp3", &fOk);
     if (!fOk)
@@ -50,12 +56,12 @@ void MainWindow::on_convertFormat_clicked()
     QString fileName, outputFolder;
     if (formats.contains(format) == true)
     {
+        msg->setIcon(QMessageBox::Icon::Information);
         input = msg->addButton((tr("Input file")), QMessageBox::ActionRole);
         output = msg->addButton((tr("Output folder")), QMessageBox::ActionRole);
         ok = msg->addButton((tr("Ok")), QMessageBox::ActionRole);
         msg->setStandardButtons(QMessageBox::Cancel);
-        msg->setInformativeText("Please select the file and its storage location.");
-        msg->setStyleSheet("QLabel{min-width:500 px; font-size: 24px;} QPushButton{ width:250px; font-size: 18px; }");
+        msg->setText("Please select the file and its storage location.");
         click:
         msg->exec();
         if(msg->clickedButton() == input)
@@ -73,19 +79,16 @@ void MainWindow::on_convertFormat_clicked()
             if(fileName.size() == 0 && outputFolder.size() == 0)
             {
                 not_found->setText("File and path not selected.");
-                not_found->setStyleSheet("QLabel{min-width:500 px; font-size: 24px;} QPushButton{ width:250px; font-size: 18px; }");
                 not_found->exec();
             }
             else if(outputFolder.size() == 0)
             {
                 not_found->setText("No route selected.");
-                not_found->setStyleSheet("QLabel{min-width:500 px; font-size: 24px;} QPushButton{ width:250px; font-size: 18px; }");
                 not_found->exec();
             }
             else if(fileName.size() == 0)
             {
                 not_found->setText("No file selected.");
-                not_found->setStyleSheet("QLabel{min-width:500 px; font-size: 24px;} QPushButton{ width:250px; font-size: 18px; }");
                 not_found->exec();
             }
             else
@@ -104,7 +107,7 @@ void MainWindow::on_convertFormat_clicked()
     else
     {
         msg->setText("The format entered is incorrect.");
-        msg->setStyleSheet("QLabel{min-width:500 px; font-size: 24px;} QPushButton{ width:250px; font-size: 18px; }");
+        msg->setIcon(QMessageBox::Icon::Critical);
         msg->exec();
     }
 }
