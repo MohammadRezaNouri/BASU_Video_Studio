@@ -129,6 +129,7 @@ public:
         convertFormat->setFocusPolicy(Qt::StrongFocus);
         convertFormat->setContextMenuPolicy(Qt::DefaultContextMenu);
         convertFormat->setAcceptDrops(false);
+        convertFormat->setLayoutDirection(Qt::LeftToRight);
         convertFormat->setIconSize(QSize(16, 16));
         convertFormat->setAutoRepeat(false);
         changeResolution = new QPushButton(centralWidget);
@@ -527,19 +528,37 @@ public:
 #if QT_CONFIG(tooltip)
         convertFormat->setToolTip(QCoreApplication::translate("MainWindow", "Ctrl+1", nullptr));
 #endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(whatsthis)
+        convertFormat->setWhatsThis(QString());
+#endif // QT_CONFIG(whatsthis)
+#if QT_CONFIG(accessibility)
+        convertFormat->setAccessibleName(QString());
+#endif // QT_CONFIG(accessibility)
         convertFormat->setText(QCoreApplication::translate("MainWindow", "Convert video and audio formats", nullptr));
+#if QT_CONFIG(shortcut)
+        convertFormat->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+1", nullptr));
+#endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
         changeResolution->setToolTip(QCoreApplication::translate("MainWindow", "Ctrl+2", nullptr));
 #endif // QT_CONFIG(tooltip)
         changeResolution->setText(QCoreApplication::translate("MainWindow", "Change video resolution", nullptr));
+#if QT_CONFIG(shortcut)
+        changeResolution->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+2", nullptr));
+#endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
         addRemoveAudio->setToolTip(QCoreApplication::translate("MainWindow", "Ctrl+3", nullptr));
 #endif // QT_CONFIG(tooltip)
         addRemoveAudio->setText(QCoreApplication::translate("MainWindow", "Add audio to video or remove audio from it", nullptr));
+#if QT_CONFIG(shortcut)
+        addRemoveAudio->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+3", nullptr));
+#endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
         connectVideos->setToolTip(QCoreApplication::translate("MainWindow", "Ctrl+4", nullptr));
 #endif // QT_CONFIG(tooltip)
         connectVideos->setText(QCoreApplication::translate("MainWindow", "Connect several video files to each other", nullptr));
+#if QT_CONFIG(shortcut)
+        connectVideos->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+4", nullptr));
+#endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
         play->setToolTip(QCoreApplication::translate("MainWindow", "Ctrl+7", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -547,14 +566,23 @@ public:
         play->setStatusTip(QString());
 #endif // QT_CONFIG(statustip)
         play->setText(QCoreApplication::translate("MainWindow", "Play", nullptr));
+#if QT_CONFIG(shortcut)
+        play->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+7", nullptr));
+#endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
         reduceVolume->setToolTip(QCoreApplication::translate("MainWindow", "Ctrl+6", nullptr));
 #endif // QT_CONFIG(tooltip)
         reduceVolume->setText(QCoreApplication::translate("MainWindow", "Reduce video volume", nullptr));
+#if QT_CONFIG(shortcut)
+        reduceVolume->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+6", nullptr));
+#endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
         deletePartVideo->setToolTip(QCoreApplication::translate("MainWindow", "Ctrl+5", nullptr));
 #endif // QT_CONFIG(tooltip)
         deletePartVideo->setText(QCoreApplication::translate("MainWindow", "Delete parts of the video", nullptr));
+#if QT_CONFIG(shortcut)
+        deletePartVideo->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+5", nullptr));
+#endif // QT_CONFIG(shortcut)
     } // retranslateUi
 
 };

@@ -506,6 +506,15 @@
     <property name="toolTip">
      <string>Ctrl+1</string>
     </property>
+    <property name="whatsThis">
+     <string/>
+    </property>
+    <property name="accessibleName">
+     <string/>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
     <property name="text">
      <string>Convert video and audio formats</string>
     </property>
@@ -514,6 +523,9 @@
       <width>16</width>
       <height>16</height>
      </size>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+1</string>
     </property>
     <property name="autoRepeat">
      <bool>false</bool>
@@ -985,6 +997,9 @@
     <property name="text">
      <string>Change video resolution</string>
     </property>
+    <property name="shortcut">
+     <string>Ctrl+2</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="addRemoveAudio">
     <property name="geometry">
@@ -1452,6 +1467,9 @@
     <property name="text">
      <string>Add audio to video or remove audio from it</string>
     </property>
+    <property name="shortcut">
+     <string>Ctrl+3</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="connectVideos">
     <property name="geometry">
@@ -1918,6 +1936,9 @@
     </property>
     <property name="text">
      <string>Connect several video files to each other</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+4</string>
     </property>
    </widget>
    <widget class="QPushButton" name="play">
@@ -2392,6 +2413,9 @@
     <property name="text">
      <string>Play</string>
     </property>
+    <property name="shortcut">
+     <string>Ctrl+7</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="reduceVolume">
     <property name="geometry">
@@ -2859,6 +2883,9 @@
     <property name="text">
      <string>Reduce video volume</string>
     </property>
+    <property name="shortcut">
+     <string>Ctrl+6</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="deletePartVideo">
     <property name="geometry">
@@ -3325,6 +3352,9 @@
     </property>
     <property name="text">
      <string>Delete parts of the video</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+5</string>
     </property>
    </widget>
    <zorder>changeResolution</zorder>
