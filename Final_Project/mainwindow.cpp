@@ -1,19 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
 #include "QFileDialog"
-
 #include "qmessagebox.h"
-#include  <QLineEdit>
-#include  <QLayout>
 #include <QInputDialog>
-#include <iostream>
-#include <string>
-#include "qstring.h"
 
-#include <QShortcut>
-
-using namespace  std;
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -114,7 +104,6 @@ void MainWindow::on_convertFormat_clicked()
                 temp += fileName + " -c:v libx264 -preset ultrafast " + outputFolder + "/" + name +"_Convert_format_is_Basu_Video_Studio." + format;
                 QByteArray temp2 = temp.toLocal8Bit();
                 const char * t2 = temp2.data();
-                cout << t2 << endl;
                 system(t2);
             }
         }
