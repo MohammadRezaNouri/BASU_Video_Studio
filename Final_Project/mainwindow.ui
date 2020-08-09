@@ -491,8 +491,20 @@
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::StrongFocus</enum>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::DefaultContextMenu</enum>
+    </property>
+    <property name="acceptDrops">
+     <bool>false</bool>
+    </property>
     <property name="toolTip">
-     <string/>
+     <string>Ctrl+1</string>
     </property>
     <property name="text">
      <string>Convert video and audio formats</string>
@@ -967,6 +979,9 @@
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
+    <property name="toolTip">
+     <string>Ctrl+2</string>
+    </property>
     <property name="text">
      <string>Change video resolution</string>
     </property>
@@ -1430,6 +1445,9 @@
     </property>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Ctrl+3</string>
     </property>
     <property name="text">
      <string>Add audio to video or remove audio from it</string>
@@ -1895,6 +1913,9 @@
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
+    <property name="toolTip">
+     <string>Ctrl+4</string>
+    </property>
     <property name="text">
      <string>Connect several video files to each other</string>
     </property>
@@ -2358,6 +2379,9 @@
     </property>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Ctrl+7</string>
     </property>
     <property name="text">
      <string>Play</string>
@@ -2823,6 +2847,9 @@
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
+    <property name="toolTip">
+     <string>Ctrl+6</string>
+    </property>
     <property name="text">
      <string>Reduce video volume</string>
     </property>
@@ -3286,6 +3313,9 @@
     </property>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string>Ctrl+5</string>
     </property>
     <property name="text">
      <string>Delete parts of the video</string>
