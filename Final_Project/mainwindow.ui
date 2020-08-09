@@ -10,6 +10,12 @@
     <height>1100</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <weight>50</weight>
+    <bold>false</bold>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -473,8 +479,8 @@
     </property>
     <property name="font">
      <font>
-      <weight>50</weight>
-      <bold>false</bold>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="toolTip">
@@ -944,6 +950,12 @@
       </disabled>
      </palette>
     </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="text">
      <string>Change video resolution</string>
     </property>
@@ -1398,6 +1410,12 @@
        </colorrole>
       </disabled>
      </palette>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Add audio to video or remove audio from it</string>
@@ -1854,6 +1872,12 @@
       </disabled>
      </palette>
     </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="text">
      <string>Connect several video files to each other</string>
     </property>
@@ -2308,6 +2332,12 @@
        </colorrole>
       </disabled>
      </palette>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Play</string>
@@ -2764,6 +2794,12 @@
       </disabled>
      </palette>
     </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="text">
      <string>Reduce video volume</string>
     </property>
@@ -3218,6 +3254,12 @@
        </colorrole>
       </disabled>
      </palette>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Delete parts of the video</string>
