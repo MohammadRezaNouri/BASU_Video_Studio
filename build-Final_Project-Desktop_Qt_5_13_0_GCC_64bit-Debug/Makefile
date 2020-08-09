@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../Final_Project -I. -I../../../Qt5.13.0/5.13.0/gcc_64/include -I../../../Qt5.13.0/5.13.0/gcc_64/include/QtMultimediaWidgets -I../../../Qt5.13.0/5.13.0/gcc_64/include/QtMultimedia -I../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets -I../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui -I../../../Qt5.13.0/5.13.0/gcc_64/include/QtNetwork -I../../../Qt5.13.0/5.13.0/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I../../../Qt5.13.0/5.13.0/gcc_64/mkspecs/linux-g++
+INCPATH       = -I../Final_Project -I. -I../../../Qt5.13.0/5.13.0/gcc_64/include -I../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets -I../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui -I../../../Qt5.13.0/5.13.0/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I../../../Qt5.13.0/5.13.0/gcc_64/mkspecs/linux-g++
 QMAKE         = /home/mohammad/Qt5.13.0/5.13.0/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -39,8 +39,8 @@ COMPRESS      = gzip -9f
 DISTNAME      = Final_Project1.0.0
 DISTDIR = /home/mohammad/Desktop/FP/build-Final_Project-Desktop_Qt_5_13_0_GCC_64bit-Debug/.tmp/Final_Project1.0.0
 LINK          = g++
-LFLAGS        = -Wl,-rpath,/home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib -Wl,-rpath-link,/home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib
-LIBS          = $(SUBLIBS) /home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib/libQt5MultimediaWidgets.so /home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib/libQt5Multimedia.so /home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib/libQt5Widgets.so /home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib/libQt5Gui.so /home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib/libQt5Network.so /home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib/libQt5Core.so -lGL -lpthread   
+LFLAGS        = -Wl,-rpath,/home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib
+LIBS          = $(SUBLIBS) /home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib/libQt5Widgets.so /home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib/libQt5Gui.so /home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib/libQt5Core.so -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -822,7 +822,7 @@ moc_mainwindow.cpp: ../Final_Project/mainwindow.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qicon.h \
 		moc_predefs.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/bin/moc
-	/home/mohammad/Qt5.13.0/5.13.0/gcc_64/bin/moc $(DEFINES) --include /home/mohammad/Desktop/FP/build-Final_Project-Desktop_Qt_5_13_0_GCC_64bit-Debug/moc_predefs.h -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/mkspecs/linux-g++ -I/home/mohammad/Desktop/FP/Final_Project -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include/QtMultimediaWidgets -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include/QtMultimedia -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include/QtWidgets -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include/QtGui -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include/QtNetwork -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Final_Project/mainwindow.h -o moc_mainwindow.cpp
+	/home/mohammad/Qt5.13.0/5.13.0/gcc_64/bin/moc $(DEFINES) --include /home/mohammad/Desktop/FP/build-Final_Project-Desktop_Qt_5_13_0_GCC_64bit-Debug/moc_predefs.h -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/mkspecs/linux-g++ -I/home/mohammad/Desktop/FP/Final_Project -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include/QtWidgets -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include/QtGui -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Final_Project/mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1095,9 +1095,7 @@ mainwindow.o: ../Final_Project/mainwindow.cpp ../Final_Project/mainwindow.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qtextcursor.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qtextformat.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qpen.h \
-		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qtextoption.h \
-		../../../Qt5.13.0/5.13.0/gcc_64/include/QtCore/QProcess \
-		../../../Qt5.13.0/5.13.0/gcc_64/include/QtCore/qprocess.h
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qtextoption.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Final_Project/mainwindow.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 

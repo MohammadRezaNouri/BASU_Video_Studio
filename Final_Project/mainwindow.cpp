@@ -4,13 +4,11 @@
 #include "qmessagebox.h"
 #include <QInputDialog>
 
- #include <QProcess>
-#include <iostream>
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     setWindowTitle("BASU Video Studio");
-    QResizeEvent* evt;
+    QResizeEvent * evt;
     resizeEvent(evt);
 }
 
@@ -26,7 +24,7 @@ void MainWindow::resizeEvent(QResizeEvent* evt)
     QPalette palette;
     palette.setBrush(QPalette::Background, bkgnd);
     this->setPalette(palette);
-    QMainWindow::resizeEvent(evt); // call inherited implementation
+    QMainWindow::resizeEvent(evt);
 }
 
 void MainWindow::on_convertFormat_clicked()
@@ -46,6 +44,8 @@ void MainWindow::on_convertFormat_clicked()
     QString format = QInputDialog::getText(this, tr("Output format"), tr("Format : "), QLineEdit::Normal, "Example: mp3", &fOk);
     if (!fOk)
     {
+        delete msg;
+        delete not_found;
         return;
     }
     QPushButton * input = new QPushButton(), * output = new QPushButton(), * ok = new QPushButton(), * Cancel = new QPushButton();
@@ -105,17 +105,24 @@ void MainWindow::on_convertFormat_clicked()
                 {
                     QFileInfo nameTemp(fileName);
                     name = nameTemp.fileName();
-                    temp += fileName + " -vf scale=500:-1 -t 10 -r 60 " + outputFolder + "/" + name +"_Convert_format_is_Basu_Video_Studio." + format;
+                    temp += fileName + " -vf scale=500:-1 -t 10 -r 10 " + outputFolder + "/" + name +"_Convert_format_is_Basu_Video_Studio." + format;
                     QByteArray temp2 = temp.toLocal8Bit();
                     const char * t2 = temp2.data();
                     system(t2);
+                    not_found->setText("Done.");
+                    not_found->exec();
                 }
-                QFileInfo nameTemp(fileName);
-                name = nameTemp.fileName();
-                temp += fileName + " -c:v libx264 -preset ultrafast " + outputFolder + "/" + name +"_Convert_format_is_Basu_Video_Studio." + format;
-                QByteArray temp2 = temp.toLocal8Bit();
-                const char * t2 = temp2.data();
-                system(t2);
+                else
+                {
+                    QFileInfo nameTemp(fileName);
+                    name = nameTemp.fileName();
+                    temp += fileName + " -c:v libx264 -preset ultrafast " + outputFolder + "/" + name +"_Convert_format_is_Basu_Video_Studio." + format;
+                    QByteArray temp2 = temp.toLocal8Bit();
+                    const char * t2 = temp2.data();
+                    system(t2);
+                    not_found->setText("Done.");
+                    not_found->exec();
+                }
             }
         }
     }
@@ -128,10 +135,17 @@ void MainWindow::on_convertFormat_clicked()
         msg->setIcon(QMessageBox::Icon::Critical);
         msg->exec();
     }
+    delete msg;
+    delete not_found;
+    delete input;
+    delete output;
+    delete ok;
+    delete Cancel;
 }
 
 
 void MainWindow::on_changeResolution_clicked()
 {
-
+    QString format = QInputDialog::getText(this, tr("Output format"), tr("Format : "), QLineEdit::Normal, "Example: mp3");
+    QString formats = QInputDialog::getText(this, tr("Output format"), tr("Format : "), QLineEdit::Normal, "Example: mp3");
 }
