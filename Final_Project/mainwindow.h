@@ -16,6 +16,8 @@ public:
     ~MainWindow();
 protected:
     void resizeEvent(QResizeEvent* evt) override;
+private slots:
+    void on_convertFormat_clicked();
 
 private:
     Ui::MainWindow *ui;

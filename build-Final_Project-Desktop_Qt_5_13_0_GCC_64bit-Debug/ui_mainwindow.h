@@ -39,6 +39,11 @@ public:
         convertFormat = new QPushButton(centralWidget);
         convertFormat->setObjectName(QString::fromUtf8("convertFormat"));
         convertFormat->setGeometry(QRect(40, 20, 321, 61));
+        QFont font;
+        font.setBold(false);
+        font.setWeight(50);
+        convertFormat->setFont(font);
+        convertFormat->setIconSize(QSize(16, 16));
         changeResolution = new QPushButton(centralWidget);
         changeResolution->setObjectName(QString::fromUtf8("changeResolution"));
         changeResolution->setGeometry(QRect(40, 100, 321, 61));
@@ -58,6 +63,13 @@ public:
         deletePartVideo->setObjectName(QString::fromUtf8("deletePartVideo"));
         deletePartVideo->setGeometry(QRect(40, 340, 321, 61));
         MainWindow->setCentralWidget(centralWidget);
+        changeResolution->raise();
+        addRemoveAudio->raise();
+        connectVideos->raise();
+        play->raise();
+        reduceVolume->raise();
+        deletePartVideo->raise();
+        convertFormat->raise();
 
         retranslateUi(MainWindow);
 
@@ -67,6 +79,15 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+#if QT_CONFIG(tooltip)
+        MainWindow->setToolTip(QString());
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        MainWindow->setStatusTip(QString());
+#endif // QT_CONFIG(statustip)
+#if QT_CONFIG(tooltip)
+        convertFormat->setToolTip(QString());
+#endif // QT_CONFIG(tooltip)
         convertFormat->setText(QCoreApplication::translate("MainWindow", "Convert video and audio formats", nullptr));
         changeResolution->setText(QCoreApplication::translate("MainWindow", "Change video resolution", nullptr));
         addRemoveAudio->setText(QCoreApplication::translate("MainWindow", "Add audio to video or remove audio from it", nullptr));
