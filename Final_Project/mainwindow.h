@@ -19,6 +19,8 @@ protected:
 private slots:
     void on_convertFormat_clicked();
 
+    void on_changeResolution_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

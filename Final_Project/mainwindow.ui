@@ -33,10 +33,13 @@
    <string>Hi :)</string>
   </property>
   <property name="toolTipDuration">
-   <number>1000</number>
+   <number>-1</number>
   </property>
   <property name="statusTip">
    <string/>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonIconOnly</enum>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="convertFormat">
@@ -567,6 +570,12 @@
       <width>321</width>
       <height>61</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>321</width>
+      <height>0</height>
+     </size>
     </property>
     <property name="palette">
      <palette>

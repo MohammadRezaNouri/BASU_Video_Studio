@@ -43,7 +43,8 @@ public:
         QIcon icon;
         icon.addFile(QString::fromUtf8("../70-704221_png-file-svg-video-edit-icon-png-clipart.jpeg"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
-        MainWindow->setToolTipDuration(1000);
+        MainWindow->setToolTipDuration(-1);
+        MainWindow->setToolButtonStyle(Qt::ToolButtonIconOnly);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         convertFormat = new QPushButton(centralWidget);
@@ -145,6 +146,7 @@ public:
         changeResolution = new QPushButton(centralWidget);
         changeResolution->setObjectName(QString::fromUtf8("changeResolution"));
         changeResolution->setGeometry(QRect(40, 100, 321, 61));
+        changeResolution->setMinimumSize(QSize(321, 0));
         QPalette palette1;
         palette1.setBrush(QPalette::Active, QPalette::WindowText, brush);
         palette1.setBrush(QPalette::Active, QPalette::Button, brush1);

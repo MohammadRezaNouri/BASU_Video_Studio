@@ -4,6 +4,8 @@
 #include "qmessagebox.h"
 #include <QInputDialog>
 
+ #include <QProcess>
+#include <iostream>
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -99,6 +101,15 @@ void MainWindow::on_convertFormat_clicked()
             else
             {
                 QString temp = "ffmpeg -i ", name;
+                if(format == "gif")
+                {
+                    QFileInfo nameTemp(fileName);
+                    name = nameTemp.fileName();
+                    temp += fileName + " -vf scale=500:-1 -t 10 -r 60 " + outputFolder + "/" + name +"_Convert_format_is_Basu_Video_Studio." + format;
+                    QByteArray temp2 = temp.toLocal8Bit();
+                    const char * t2 = temp2.data();
+                    system(t2);
+                }
                 QFileInfo nameTemp(fileName);
                 name = nameTemp.fileName();
                 temp += fileName + " -c:v libx264 -preset ultrafast " + outputFolder + "/" + name +"_Convert_format_is_Basu_Video_Studio." + format;
@@ -119,3 +130,8 @@ void MainWindow::on_convertFormat_clicked()
     }
 }
 
+
+void MainWindow::on_changeResolution_clicked()
+{
+
+}
