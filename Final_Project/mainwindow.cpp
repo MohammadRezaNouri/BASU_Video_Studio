@@ -135,7 +135,6 @@ void MainWindow::on_convertFormat_clicked()
         msg->setIcon(QMessageBox::Icon::Critical);
         msg->exec();
     }
-    delete msg;
     delete not_found;
     delete input;
     delete output;
@@ -143,9 +142,17 @@ void MainWindow::on_convertFormat_clicked()
     delete Cancel;
 }
 
-
 void MainWindow::on_changeResolution_clicked()
 {
-    QString format = QInputDialog::getText(this, tr("Output format"), tr("Format : "), QLineEdit::Normal, "Example: mp3");
-    QString formats = QInputDialog::getText(this, tr("Output format"), tr("Format : "), QLineEdit::Normal, "Example: mp3");
+    bool fOk;
+    int width = QInputDialog::getInt(this, tr("Output width"), tr("Width : "), QLineEdit::Normal, 1, 2147483647, 50, &fOk);
+    if (!fOk)
+    {
+        return;
+    }
+    int height = QInputDialog::getInt(this, tr("Output height"), tr("Height : "), QLineEdit::Normal, 1, 2147483647, 50, &fOk);
+    if (!fOk)
+    {
+        return;
+    }
 }
