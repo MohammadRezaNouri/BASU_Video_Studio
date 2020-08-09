@@ -2383,6 +2383,12 @@
     <property name="toolTip">
      <string>Ctrl+7</string>
     </property>
+    <property name="toolTipDuration">
+     <number>-1</number>
+    </property>
+    <property name="statusTip">
+     <string/>
+    </property>
     <property name="text">
      <string>Play</string>
     </property>

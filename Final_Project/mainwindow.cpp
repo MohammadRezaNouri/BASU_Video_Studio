@@ -47,6 +47,7 @@ void MainWindow::on_convertFormat_clicked()
     QMessageBox * msg = new QMessageBox();
     msg->setWindowTitle("Convert video and audio formats");
     QMessageBox * not_found = new QMessageBox();
+    not_found->setWindowTitle("Convert video and audio formats");
     msg->setFont(font);
     not_found->setIcon(QMessageBox::Icon::Critical);
     not_found->setFont(font);

@@ -378,6 +378,7 @@ public:
         play->setPalette(palette4);
         play->setFont(font2);
         play->setCursor(QCursor(Qt::PointingHandCursor));
+        play->setToolTipDuration(-1);
         reduceVolume = new QPushButton(centralWidget);
         reduceVolume->setObjectName(QString::fromUtf8("reduceVolume"));
         reduceVolume->setGeometry(QRect(40, 420, 321, 61));
@@ -542,6 +543,9 @@ public:
 #if QT_CONFIG(tooltip)
         play->setToolTip(QCoreApplication::translate("MainWindow", "Ctrl+7", nullptr));
 #endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(statustip)
+        play->setStatusTip(QString());
+#endif // QT_CONFIG(statustip)
         play->setText(QCoreApplication::translate("MainWindow", "Play", nullptr));
 #if QT_CONFIG(tooltip)
         reduceVolume->setToolTip(QCoreApplication::translate("MainWindow", "Ctrl+6", nullptr));
