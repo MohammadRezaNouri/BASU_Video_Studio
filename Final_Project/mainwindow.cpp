@@ -228,3 +228,8 @@ void MainWindow::on_changeResolution_clicked()
     delete ok;
     delete Cancel;
 }
+
+void MainWindow::on_addRemoveAudio_clicked()
+{
+
+}
