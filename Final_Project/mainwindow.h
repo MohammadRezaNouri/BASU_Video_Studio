@@ -21,6 +21,8 @@ private slots:
 
     void on_changeResolution_clicked();
 
+    void on_addRemoveAudio_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
