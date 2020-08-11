@@ -105,7 +105,7 @@ void MainWindow::on_convertFormat_clicked()
                 {
                     QFileInfo nameTemp(fileName);
                     name = nameTemp.fileName();
-                    temp += fileName + " -vf scale=500:-1 -t 10 -r 10 " + outputFolder + "/" + name +"_Convert_format_is_Basu_Video_Studio." + format;
+                    temp += fileName + " -y -vf scale=500:-1 -t 10 -r 10 " + outputFolder + "/" + name +"_Convert_format_is_Basu_Video_Studio." + format;
                     QByteArray temp2 = temp.toLocal8Bit();
                     const char * t2 = temp2.data();
                     system(t2);
@@ -116,7 +116,7 @@ void MainWindow::on_convertFormat_clicked()
                 {
                     QFileInfo nameTemp(fileName);
                     name = nameTemp.fileName();
-                    temp += fileName + " -c:v libx264 -preset ultrafast " + outputFolder + "/" + name +"_Convert_format_is_Basu_Video_Studio." + format;
+                    temp += fileName + " -y -c:v libx264 -preset ultrafast " + outputFolder + "/" + name +"_Convert_format_is_Basu_Video_Studio." + format;
                     QByteArray temp2 = temp.toLocal8Bit();
                     const char * t2 = temp2.data();
                     system(t2);
@@ -216,7 +216,7 @@ void MainWindow::on_changeResolution_clicked()
             QString temp = "ffmpeg -i ", name;
             QFileInfo nameTemp(fileName);
             name = nameTemp.fileName();
-            temp += fileName + " -s " + QString::number(width) + "x" + QString::number(height) + " -c:a copy " + outputFolder + "/Change_resolution_is_Basu_Video_Studio_" + name;
+            temp += fileName + " -y -s " + QString::number(width) + "x" + QString::number(height) + " -c:a copy " + outputFolder + "/Change_resolution_is_Basu_Video_Studio_" + name;
             QByteArray temp2 = temp.toLocal8Bit();
             const char * t2 = temp2.data();
             system(t2);
@@ -231,5 +231,21 @@ void MainWindow::on_changeResolution_clicked()
 
 void MainWindow::on_addRemoveAudio_clicked()
 {
+    QFont font;
+    font.setBold(true);
+    font.setPointSize(15);
+    QMessageBox * one = new QMessageBox();
+    one->setWindowTitle("Add audio to video or remove audio from it");
+    QPushButton * addAudio = new QPushButton(), * rmAudio = new QPushButton();
+    addAudio = one->addButton((tr("Add audio in video")), QMessageBox::ActionRole);
+    addAudio->setShortcut(Qt::CTRL + Qt::Key_A);
+    addAudio->setToolTip("Ctrl+A");
+    rmAudio = one->addButton((tr("Remove audio in video")), QMessageBox::ActionRole);
+    rmAudio->setShortcut(Qt::CTRL + Qt::Key_R);
+    rmAudio->setToolTip("Ctrl+R");
+    one->setFont(font);
+    one->setIcon(QMessageBox::Icon::Information);
+    one->setText("Please select : ");
+    one->exec();
 
 }
