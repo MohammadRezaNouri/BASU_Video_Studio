@@ -247,5 +247,19 @@ void MainWindow::on_addRemoveAudio_clicked()
     one->setIcon(QMessageBox::Icon::Information);
     one->setText("Please select : ");
     one->exec();
+    if (one->clickedButton() == addAudio)
+    {
+        bool fOk;
+        QString sTime = QInputDialog::getText(this, tr("Start time to add"), tr("Start time : "), QLineEdit::Normal, "Example : 00:00:00",  &fOk);
+        if (!fOk)
+        {
+            return;
+        }
+        QString eTime = QInputDialog::getText(this, tr("End time to add"), tr("End time : "), QLineEdit::Normal, "Example : 00:00:00", &fOk);
+        if (!fOk)
+        {
+            return;
+        }
+    }
 
 }
