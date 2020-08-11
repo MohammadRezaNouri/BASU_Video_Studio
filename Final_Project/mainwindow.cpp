@@ -240,15 +240,16 @@ void MainWindow::on_addRemoveAudio_clicked()
     addAudio = one->addButton((tr("Add audio in video")), QMessageBox::ActionRole);
     addAudio->setShortcut(Qt::CTRL + Qt::Key_A);
     addAudio->setToolTip("Ctrl+A");
-    Cancel = one->addButton((tr("Cancel")), QMessageBox::ActionRole);
-    Cancel->setShortcut(Qt::CTRL + Qt::Key_Q);
-    Cancel->setToolTip("Ctrl+Q");
     rmAudio = one->addButton((tr("Remove audio in video")), QMessageBox::ActionRole);
     rmAudio->setShortcut(Qt::CTRL + Qt::Key_R);
     rmAudio->setToolTip("Ctrl+R");
+    Cancel = one->addButton((tr("Cancel")), QMessageBox::ActionRole);
+    Cancel->setShortcut(Qt::CTRL + Qt::Key_Q);
+    Cancel->setToolTip("Ctrl+Q");
     one->setFont(font);
     one->setIcon(QMessageBox::Icon::Information);
     one->setText("Please select : ");
+    temp->setFont(font);
     one->exec();
     if (one->clickedButton() == addAudio)
     {
@@ -260,11 +261,27 @@ void MainWindow::on_addRemoveAudio_clicked()
         }
         if (sTime[0] == '-')
         {
-
+            temp->setText("Start time is not negative.");
+            temp->setIcon(QMessageBox::Icon::Critical);
+            ok = temp->addButton((tr("Ok")), QMessageBox::ActionRole);
+            ok->setShortcut(Qt::CTRL + Qt::Key_K);
+            ok->setToolTip("Ctrl+K");
+            temp->exec();
+            return;
         }
         QString eTime = QInputDialog::getText(this, tr("End time to add"), tr("End time : "), QLineEdit::Normal, "Example : 00:00:00", &fOk);
         if (!fOk)
         {
+            return;
+        }
+        if (eTime[0] == '-')
+        {
+            temp->setText("End time is not negative.");
+            temp->setIcon(QMessageBox::Icon::Critical);
+            ok = temp->addButton((tr("Ok")), QMessageBox::ActionRole);
+            ok->setShortcut(Qt::CTRL + Qt::Key_K);
+            ok->setToolTip("Ctrl+K");
+            temp->exec();
             return;
         }
     }
