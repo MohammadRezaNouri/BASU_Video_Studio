@@ -234,12 +234,15 @@ void MainWindow::on_addRemoveAudio_clicked()
     QFont font;
     font.setBold(true);
     font.setPointSize(15);
-    QMessageBox * one = new QMessageBox();
+    QMessageBox * one = new QMessageBox(), * temp = new QMessageBox();
     one->setWindowTitle("Add audio to video or remove audio from it");
-    QPushButton * addAudio = new QPushButton(), * rmAudio = new QPushButton();
+    QPushButton * addAudio = new QPushButton(), * rmAudio = new QPushButton(), * ok = new QPushButton(), * Cancel = new QPushButton();
     addAudio = one->addButton((tr("Add audio in video")), QMessageBox::ActionRole);
     addAudio->setShortcut(Qt::CTRL + Qt::Key_A);
     addAudio->setToolTip("Ctrl+A");
+    Cancel = one->addButton((tr("Cancel")), QMessageBox::ActionRole);
+    Cancel->setShortcut(Qt::CTRL + Qt::Key_Q);
+    Cancel->setToolTip("Ctrl+Q");
     rmAudio = one->addButton((tr("Remove audio in video")), QMessageBox::ActionRole);
     rmAudio->setShortcut(Qt::CTRL + Qt::Key_R);
     rmAudio->setToolTip("Ctrl+R");
@@ -254,6 +257,10 @@ void MainWindow::on_addRemoveAudio_clicked()
         if (!fOk)
         {
             return;
+        }
+        if (sTime[0] == '-')
+        {
+
         }
         QString eTime = QInputDialog::getText(this, tr("End time to add"), tr("End time : "), QLineEdit::Normal, "Example : 00:00:00", &fOk);
         if (!fOk)
