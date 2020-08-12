@@ -4,6 +4,10 @@
 #include "qmessagebox.h"
 #include <QInputDialog>
 #include <iostream>
+#include <string>
+
+using namespace std;
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -350,11 +354,25 @@ void MainWindow::on_addRemoveAudio_clicked()
             QString temp = "ffprobe -i ", name;
             QFileInfo nameTemp(video);
             name = nameTemp.fileName();
-            temp += video + " -show_entries format=duration -v quiet -of csv=""p=0""";
+            temp += video + " -show_entries format=duration -v quiet -of csv=""p=0""" + " 2>&1";
+
             QByteArray temp2 = temp.toLocal8Bit();
             const char * t2 = temp2.data();
             //std::cout << t2 << std::endl;
-            system(t2);
+            string data;
+            FILE * stream;
+            const int max_buffer = 256;
+            char buffer[max_buffer];
+
+            stream = popen(t2, "r");
+            if (stream)
+            {
+                while (!feof(stream))
+                    if (fgets(buffer, max_buffer, stream) != NULL) data.append(buffer);
+                pclose(stream);
+            }
+            //cout << data << endl;
+            //system(t2);
         }
     }
 
