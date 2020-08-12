@@ -250,6 +250,7 @@ void MainWindow::on_addRemoveAudio_clicked()
     one->setIcon(QMessageBox::Icon::Information);
     one->setText("Please select : ");
     temp->setFont(font);
+    temp->setWindowTitle("Add audio to video or remove audio from it");
     one->exec();
     if (one->clickedButton() == addAudio)
     {
@@ -261,8 +262,7 @@ void MainWindow::on_addRemoveAudio_clicked()
         }
         if (sTime[0] == '-')
         {
-            temp->setWindowTitle("");
-            temp->setText("Start time is not negative.");
+            
             temp->setIcon(QMessageBox::Icon::Critical);
             ok = temp->addButton((tr("Ok")), QMessageBox::ActionRole);
             ok->setShortcut(Qt::CTRL + Qt::Key_K);
@@ -287,5 +287,8 @@ void MainWindow::on_addRemoveAudio_clicked()
         }
     }
     two->setFont(font);
+    two->setIcon(QMessageBox::Icon::Information);
+    two->setWindowTitle("Add audio to video or remove audio from it");
+    
 
 }
