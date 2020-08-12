@@ -236,7 +236,7 @@ void MainWindow::on_addRemoveAudio_clicked()
     font.setPointSize(15);
     QMessageBox * one = new QMessageBox(), * temp = new QMessageBox(), * two = new QMessageBox();
     one->setWindowTitle("Add audio to video or remove audio from it");
-    QPushButton * addAudio = new QPushButton(), * rmAudio = new QPushButton(), * ok = new QPushButton(), * Cancel = new QPushButton();
+    QPushButton * addAudio = new QPushButton(), * rmAudio = new QPushButton(), * ok = new QPushButton(), * Cancel = new QPushButton(),* input = new QPushButton(), * output = new QPushButton();
     addAudio = one->addButton((tr("Add audio in video")), QMessageBox::ActionRole);
     addAudio->setShortcut(Qt::CTRL + Qt::Key_A);
     addAudio->setToolTip("Ctrl+A");
@@ -250,6 +250,7 @@ void MainWindow::on_addRemoveAudio_clicked()
     one->setIcon(QMessageBox::Icon::Information);
     one->setText("Please select : ");
     temp->setFont(font);
+    temp->setWindowTitle("Add audio to video or remove audio from it");
     one->exec();
     if (one->clickedButton() == addAudio)
     {
@@ -261,8 +262,7 @@ void MainWindow::on_addRemoveAudio_clicked()
         }
         if (sTime[0] == '-')
         {
-            temp->setWindowTitle("");
-            temp->setText("Start time is not negative.");
+
             temp->setIcon(QMessageBox::Icon::Critical);
             ok = temp->addButton((tr("Ok")), QMessageBox::ActionRole);
             ok->setShortcut(Qt::CTRL + Qt::Key_K);
@@ -287,5 +287,22 @@ void MainWindow::on_addRemoveAudio_clicked()
         }
     }
     two->setFont(font);
+    two->setIcon(QMessageBox::Icon::Information);
+    two->setWindowTitle("Add audio to video or remove audio from it");
+    input = two->addButton((tr("Input file")), QMessageBox::ActionRole);
+    input->setShortcut(Qt::CTRL + Qt::Key_O);
+    input->setToolTip("Ctrl+O");
+    output = two->addButton((tr("Output folder")), QMessageBox::ActionRole);
+    output->setShortcut(Qt::CTRL + Qt::Key_F);
+    output->setToolTip("Ctrl+F");
+    Cancel = two->addButton((tr("Cancel")), QMessageBox::ActionRole);
+    Cancel->setShortcut(Qt::CTRL + Qt::Key_Q);
+    Cancel->setToolTip("Ctrl+Q");
+    ok = two->addButton((tr("Ok")), QMessageBox::ActionRole);
+    ok->setShortcut(Qt::CTRL + Qt::Key_K);
+    ok->setToolTip("Ctrl+K");
+    two->setText("Please select the file and its storage location.");
+
+    two->exec();
 
 }
