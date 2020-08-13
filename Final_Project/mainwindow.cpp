@@ -572,12 +572,11 @@ void MainWindow::on_addRemoveAudio_clicked()
                 temp2 = tem.toLocal8Bit();
                 t2 = temp2.data();
                 system(t2);
+                tem = "touch " + outputFolder + "/file.txt";
+                temp2 = tem.toLocal8Bit();
+                t2 = temp2.data();
+                system(t2);
             }
-            else
-            {
-
-            }
-
         }
     }
 
