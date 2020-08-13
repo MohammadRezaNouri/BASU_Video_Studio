@@ -580,6 +580,10 @@ void MainWindow::on_addRemoveAudio_clicked()
                 temp2 = tem.toLocal8Bit();
                 t2 = temp2.data();
                 system(t2);
+                tem = "ffmpeg -i " + video + " -i 4.mp3 -map 0:0 -map 1:0 -c:v copy -preset ultrafast -async 1 " + outputFolder + "/4.mp3";
+                temp2 = tem.toLocal8Bit();
+                t2 = temp2.data();
+                system(t2);
             }
         }
     }
