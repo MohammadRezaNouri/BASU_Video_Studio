@@ -511,10 +511,20 @@ void MainWindow::on_addRemoveAudio_clicked()
                 delete inputA;
                 return;
             }
-            tem = "cd " + outputFolder;
-            temp2 = tem.toLocal8Bit();
-            t2 = temp2.data();
-            system(t2);
+            int rTimeH = stoi(strVS.substr(0, 2)); // Reduce time hour
+            int rTimeM = stoi(strVS.substr(3, 2)); // Reduce time minute
+            int rTimeS = stoi(strVS.substr(6, 2)); // Reduce time minute
+            if (strVS != "00:00:00")
+            {
+                tem = "ffmpeg -itsoffset 00:00:00 -t " + sTime + " -i " + video + " -vn " + outputFolder + "/1.mp3";
+                temp2 = tem.toLocal8Bit();
+                t2 = temp2.data();
+                system(t2);
+            }
+            else
+            {
+
+            }
 
         }
     }
