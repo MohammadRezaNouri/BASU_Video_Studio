@@ -256,10 +256,11 @@ void MainWindow::on_addRemoveAudio_clicked()
     temp->setFont(font);
     temp->setWindowTitle("Add audio to video or remove audio from it");
     one->exec();
+    QString sTime, eTime;
     if (one->clickedButton() == addAudio)
     {
         bool fOk;
-        QString sTime = QInputDialog::getText(this, tr("Start time to add"), tr("Start time : "), QLineEdit::Normal, "Example : 00:00:00",  &fOk);
+        sTime = QInputDialog::getText(this, tr("Start time to add"), tr("Start time : "), QLineEdit::Normal, "Example : 00:00:00",  &fOk);
         if (!fOk)
         {
             return;
@@ -274,7 +275,7 @@ void MainWindow::on_addRemoveAudio_clicked()
             temp->exec();
             return;
         }
-        QString eTime = QInputDialog::getText(this, tr("End time to add"), tr("End time : "), QLineEdit::Normal, "Example : 00:00:00", &fOk);
+        eTime = QInputDialog::getText(this, tr("End time to add"), tr("End time : "), QLineEdit::Normal, "Example : 00:00:00", &fOk);
         if (!fOk)
         {
             return;
@@ -351,14 +352,13 @@ void MainWindow::on_addRemoveAudio_clicked()
         }
         else
         {
-            QString temp = "ffprobe -i ", name;
+            QString tem = "ffprobe -i ", name;
             QFileInfo nameTemp(video);
             name = nameTemp.fileName();
-            temp += video + " -show_entries format=duration -v quiet -of csv=""p=0""" + " 2>&1";
+            tem += video + " -show_entries format=duration -v quiet -of csv=""p=0""" + " 2>&1";
 
-            QByteArray temp2 = temp.toLocal8Bit();
+            QByteArray temp2 = tem.toLocal8Bit();
             const char * t2 = temp2.data();
-            //std::cout << t2 << std::endl;
             string data;
             FILE * stream;
             const int max_buffer = 256;
@@ -368,11 +368,35 @@ void MainWindow::on_addRemoveAudio_clicked()
             if (stream)
             {
                 while (!feof(stream))
-                    if (fgets(buffer, max_buffer, stream) != NULL) data.append(buffer);
+                    if (fgets(buffer, max_buffer, stream) != nullptr) data.append(buffer);
                 pclose(stream);
             }
-            //cout << data << endl;
-            //system(t2);
+            string strVS; //string video start
+            strVS = sTime.toStdString();
+            int intVS;
+            try
+            {
+                intVS = stoi(strVS.substr(0, 2)) * 3600 + stoi(strVS.substr(3, 2)) * 60 + stoi(strVS.substr(6, 2));
+            }
+            catch(...)
+            {
+                temp->setText("You entered the start date incorrectly.");
+                temp->exec();
+            }
+            string strVE; //string video end
+            strVE = eTime.toStdString();
+            int intVE;
+            try
+            {
+                intVE = stoi(strVS.substr(0, 2)) * 3600 + stoi(strVS.substr(3, 2)) * 60 + stoi(strVS.substr(6, 2));
+            }
+            catch(...)
+            {
+                temp->setText("You entered the end date incorrectly.");
+                temp->exec();
+            }
+            cout << intVS << endl;
+            //if (stoi(data) < QString::number())
         }
     }
 
