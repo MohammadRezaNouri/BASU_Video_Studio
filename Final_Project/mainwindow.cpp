@@ -238,12 +238,13 @@ void MainWindow::on_addRemoveAudio_clicked()
     QFont font;
     font.setBold(true);
     font.setPointSize(15);
-    QMessageBox * one = new QMessageBox(), * temp = new QMessageBox(), * two = new QMessageBox();
+    QMessageBox * one = new QMessageBox();
     one->setWindowTitle("Add audio to video or remove audio from it");
-    QPushButton * addAudio = new QPushButton(), * rmAudio = new QPushButton(), * ok = new QPushButton(), * Cancel = new QPushButton(),* inputV = new QPushButton(), * output = new QPushButton(), * inputA = new QPushButton();
+    QPushButton * addAudio = new QPushButton(), * rmAudio, * ok = new QPushButton(), * Cancel = new QPushButton();
     addAudio = one->addButton((tr("Add audio in video")), QMessageBox::ActionRole);
     addAudio->setShortcut(Qt::CTRL + Qt::Key_A);
     addAudio->setToolTip("Ctrl+A");
+    rmAudio = new QPushButton();
     rmAudio = one->addButton((tr("Remove audio in video")), QMessageBox::ActionRole);
     rmAudio->setShortcut(Qt::CTRL + Qt::Key_R);
     rmAudio->setToolTip("Ctrl+R");
@@ -253,47 +254,62 @@ void MainWindow::on_addRemoveAudio_clicked()
     one->setFont(font);
     one->setIcon(QMessageBox::Icon::Information);
     one->setText("Please select : ");
-    temp->setFont(font);
-    temp->setWindowTitle("Add audio to video or remove audio from it");
     one->exec();
     QString sTime, eTime;
+    QMessageBox * temp = new QMessageBox();
     if (one->clickedButton() == addAudio)
     {
+        temp->setFont(font);
+        temp->setWindowTitle("Add audio to video or remove audio from it");
+        temp->setIcon(QMessageBox::Icon::Critical);
+        ok = temp->addButton((tr("Ok")), QMessageBox::ActionRole);
+        ok->setShortcut(Qt::CTRL + Qt::Key_K);
+        ok->setToolTip("Ctrl+K");
         bool fOk;
         sTime = QInputDialog::getText(this, tr("Start time to add"), tr("Start time : "), QLineEdit::Normal, "Example : 00:00:00",  &fOk);
         if (!fOk)
         {
+            delete addAudio;
+            delete rmAudio;
+            delete ok;
+            delete Cancel;
             return;
         }
         if (sTime[0] == '-')
         {
-
-            temp->setIcon(QMessageBox::Icon::Critical);
-            ok = temp->addButton((tr("Ok")), QMessageBox::ActionRole);
-            ok->setShortcut(Qt::CTRL + Qt::Key_K);
-            ok->setToolTip("Ctrl+K");
+            temp->setText("Start time is not negative.");
             temp->exec();
+            delete addAudio;
+            delete rmAudio;
+            delete ok;
+            delete Cancel;
             return;
         }
         eTime = QInputDialog::getText(this, tr("End time to add"), tr("End time : "), QLineEdit::Normal, "Example : 00:00:00", &fOk);
         if (!fOk)
         {
+            delete addAudio;
+            delete rmAudio;
+            delete ok;
+            delete Cancel;
             return;
         }
         if (eTime[0] == '-')
         {
             temp->setText("End time is not negative.");
-            temp->setIcon(QMessageBox::Icon::Critical);
-            ok = temp->addButton((tr("Ok")), QMessageBox::ActionRole);
-            ok->setShortcut(Qt::CTRL + Qt::Key_K);
-            ok->setToolTip("Ctrl+K");
             temp->exec();
+            delete addAudio;
+            delete rmAudio;
+            delete ok;
+            delete Cancel;
             return;
         }
     }
+    QMessageBox * two = new QMessageBox();
     two->setFont(font);
     two->setIcon(QMessageBox::Icon::Information);
     two->setWindowTitle("Add audio to video or remove audio from it");
+    QPushButton * inputV = new QPushButton(), * output = new QPushButton(), * inputA = new QPushButton();
     inputV = two->addButton((tr("Input video")), QMessageBox::ActionRole);
     inputV->setShortcut(Qt::CTRL + Qt::Key_V);
     inputV->setToolTip("Ctrl+V");
@@ -334,21 +350,57 @@ void MainWindow::on_addRemoveAudio_clicked()
         {
             temp->setText("Files and path not selected.");
             temp->exec();
+            delete temp;
+            delete addAudio;
+            delete rmAudio;
+            delete ok;
+            delete Cancel;
+            delete inputV;
+            delete output;
+            delete inputA;
+            return;
         }
         else if(outputFolder.size() == 0)
         {
             temp->setText("No route selected.");
             temp->exec();
+            delete temp;
+            delete addAudio;
+            delete rmAudio;
+            delete ok;
+            delete Cancel;
+            delete inputV;
+            delete output;
+            delete inputA;
+            return;
         }
         else if(video.size() == 0)
         {
             temp->setText("No video selected.");
             temp->exec();
+            delete temp;
+            delete addAudio;
+            delete rmAudio;
+            delete ok;
+            delete Cancel;
+            delete inputV;
+            delete output;
+            delete inputA;
+            return;
         }
         else if(audio.size() == 0)
         {
             temp->setText("No audio selected.");
             temp->exec();
+            delete temp;
+            delete addAudio;
+            delete rmAudio;
+            delete ok;
+            delete Cancel;
+            delete inputV;
+            delete output;
+            delete inputA;
+            return;
         }
         else
         {
@@ -356,14 +408,12 @@ void MainWindow::on_addRemoveAudio_clicked()
             QFileInfo nameTemp(video);
             name = nameTemp.fileName();
             tem += video + " -show_entries format=duration -v quiet -of csv=""p=0""" + " 2>&1";
-
             QByteArray temp2 = tem.toLocal8Bit();
             const char * t2 = temp2.data();
             string data;
             FILE * stream;
             const int max_buffer = 256;
             char buffer[max_buffer];
-
             stream = popen(t2, "r");
             if (stream)
             {
@@ -382,6 +432,15 @@ void MainWindow::on_addRemoveAudio_clicked()
             {
                 temp->setText("You entered the start date incorrectly.");
                 temp->exec();
+                delete temp;
+                delete addAudio;
+                delete rmAudio;
+                delete ok;
+                delete Cancel;
+                delete inputV;
+                delete output;
+                delete inputA;
+                return;
             }
             string strVE; //string video end
             strVE = eTime.toStdString();
@@ -394,17 +453,45 @@ void MainWindow::on_addRemoveAudio_clicked()
             {
                 temp->setText("You entered the end date incorrectly.");
                 temp->exec();
+                delete temp;
+                delete addAudio;
+                delete rmAudio;
+                delete ok;
+                delete Cancel;
+                delete inputV;
+                delete output;
+                delete inputA;
+                return;
             }
             if (intVS > stoi(data))
             {
                 temp->setText("The initial time is longer than the total time.");
                 temp->exec();
+                delete temp;
+                delete addAudio;
+                delete rmAudio;
+                delete ok;
+                delete Cancel;
+                delete inputV;
+                delete output;
+                delete inputA;
+                return;
             }
             if (intVE > stoi(data))
             {
                 temp->setText("The end time is longer than the total time.");
                 temp->exec();
+                delete temp;
+                delete addAudio;
+                delete rmAudio;
+                delete ok;
+                delete Cancel;
+                delete inputV;
+                delete output;
+                delete inputA;
+                return;
             }
+
             //cout << intVS << endl;
             //if (stoi(data) < QString::number())
         }
