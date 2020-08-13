@@ -285,6 +285,16 @@ void MainWindow::on_addRemoveAudio_clicked()
             delete Cancel;
             return;
         }
+        if (sTime.size() > 8)
+        {
+            temp->setText("Input is incorrect.");
+            temp->exec();
+            delete addAudio;
+            delete rmAudio;
+            delete ok;
+            delete Cancel;
+            return;
+        }
         eTime = QInputDialog::getText(this, tr("End time to add"), tr("End time : "), QLineEdit::Normal, "Example : 00:00:00", &fOk);
         if (!fOk)
         {
@@ -297,6 +307,16 @@ void MainWindow::on_addRemoveAudio_clicked()
         if (eTime[0] == '-')
         {
             temp->setText("End time is not negative.");
+            temp->exec();
+            delete addAudio;
+            delete rmAudio;
+            delete ok;
+            delete Cancel;
+            return;
+        }
+        if (eTime.size() > 8)
+        {
+            temp->setText("Input is incorrect.");
             temp->exec();
             delete addAudio;
             delete rmAudio;
