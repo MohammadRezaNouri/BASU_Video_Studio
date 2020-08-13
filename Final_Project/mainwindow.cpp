@@ -568,6 +568,10 @@ void MainWindow::on_addRemoveAudio_clicked()
                 temp2 = tem.toLocal8Bit();
                 t2 = temp2.data();
                 system(t2);
+                tem = "ffmpeg -ss " + eTime + " -i " + video + " -vn " + outputFolder + "/3.mp3";
+                temp2 = tem.toLocal8Bit();
+                t2 = temp2.data();
+                system(t2);
             }
             else
             {
