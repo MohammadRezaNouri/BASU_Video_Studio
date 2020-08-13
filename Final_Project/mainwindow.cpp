@@ -576,6 +576,10 @@ void MainWindow::on_addRemoveAudio_clicked()
                 temp2 = tem.toLocal8Bit();
                 t2 = temp2.data();
                 system(t2);
+                tem = "ffmpeg -f concat -safe 0 -i file.txt -c copy " + outputFolder + "/4.mp3";
+                temp2 = tem.toLocal8Bit();
+                t2 = temp2.data();
+                system(t2);
             }
         }
     }
