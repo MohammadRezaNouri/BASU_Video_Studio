@@ -511,9 +511,11 @@ void MainWindow::on_addRemoveAudio_clicked()
                 delete inputA;
                 return;
             }
+            tem = "cd " + outputFolder;
+            temp2 = tem.toLocal8Bit();
+            t2 = temp2.data();
+            system(t2);
 
-            //cout << intVS << endl;
-            //if (stoi(data) < QString::number())
         }
     }
 
