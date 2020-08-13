@@ -257,6 +257,8 @@ void MainWindow::on_addRemoveAudio_clicked()
     one->exec();
     QString sTime, eTime;
     QMessageBox * temp = new QMessageBox();
+    string strVS, strVE; //string video start & end
+    int intVS,intVE; // int video start & end (Seconds)
     if (one->clickedButton() == addAudio)
     {
         temp->setFont(font);
@@ -295,6 +297,41 @@ void MainWindow::on_addRemoveAudio_clicked()
             delete Cancel;
             return;
         }
+        strVS = sTime.toStdString();
+        try
+        {
+            intVS = stoi(strVS.substr(0, 2)) * 3600 + stoi(strVS.substr(3, 2)) * 60 + stoi(strVS.substr(6, 2));
+        }
+        catch(...)
+        {
+            temp->setText("You entered the start date incorrectly.");
+            temp->exec();
+            delete addAudio;
+            delete rmAudio;
+            delete ok;
+            delete Cancel;
+            return;
+        }
+        if (stoi(strVS.substr(3, 2)) > 59)
+        {
+            temp->setText("Wrong input format. (minute > 59)");
+            temp->exec();
+            delete addAudio;
+            delete rmAudio;
+            delete ok;
+            delete Cancel;
+            return;
+        }
+        if (stoi(strVS.substr(6, 2)) > 59)
+        {
+            temp->setText("Wrong input format. (seconds > 59)");
+            temp->exec();
+            delete addAudio;
+            delete rmAudio;
+            delete ok;
+            delete Cancel;
+            return;
+        }
         eTime = QInputDialog::getText(this, tr("End time to add"), tr("End time : "), QLineEdit::Normal, "Example : 00:00:00", &fOk);
         if (!fOk)
         {
@@ -317,6 +354,51 @@ void MainWindow::on_addRemoveAudio_clicked()
         if (eTime.size() > 8)
         {
             temp->setText("Input is incorrect.");
+            temp->exec();
+            delete addAudio;
+            delete rmAudio;
+            delete ok;
+            delete Cancel;
+            return;
+        }
+        strVE = eTime.toStdString();
+        try
+        {
+            intVE = stoi(strVS.substr(0, 2)) * 3600 + stoi(strVS.substr(3, 2)) * 60 + stoi(strVS.substr(6, 2));
+        }
+        catch(...)
+        {
+            temp->setText("You entered the end date incorrectly.");
+            temp->exec();
+            delete addAudio;
+            delete rmAudio;
+            delete ok;
+            delete Cancel;
+            return;
+        }
+        if (stoi(strVE.substr(3, 2)) > 59)
+        {
+            temp->setText("Wrong input format. (minute > 59)");
+            temp->exec();
+            delete addAudio;
+            delete rmAudio;
+            delete ok;
+            delete Cancel;
+            return;
+        }
+        if (stoi(strVE.substr(6, 2)) > 59)
+        {
+            temp->setText("Wrong input format. (seconds > 59)");
+            temp->exec();
+            delete addAudio;
+            delete rmAudio;
+            delete ok;
+            delete Cancel;
+            return;
+        }
+        if (intVS > intVE)
+        {
+            temp->setText("The end time must be greater than the end time.");
             temp->exec();
             delete addAudio;
             delete rmAudio;
@@ -441,48 +523,7 @@ void MainWindow::on_addRemoveAudio_clicked()
                     if (fgets(buffer, max_buffer, stream) != nullptr) data.append(buffer);
                 pclose(stream);
             }
-            string strVS; //string video start
-            strVS = sTime.toStdString();
-            int intVS;
-            try
-            {
-                intVS = stoi(strVS.substr(0, 2)) * 3600 + stoi(strVS.substr(3, 2)) * 60 + stoi(strVS.substr(6, 2));
-            }
-            catch(...)
-            {
-                temp->setText("You entered the start date incorrectly.");
-                temp->exec();
-                delete temp;
-                delete addAudio;
-                delete rmAudio;
-                delete ok;
-                delete Cancel;
-                delete inputV;
-                delete output;
-                delete inputA;
-                return;
-            }
-            string strVE; //string video end
-            strVE = eTime.toStdString();
-            int intVE;
-            try
-            {
-                intVE = stoi(strVS.substr(0, 2)) * 3600 + stoi(strVS.substr(3, 2)) * 60 + stoi(strVS.substr(6, 2));
-            }
-            catch(...)
-            {
-                temp->setText("You entered the end date incorrectly.");
-                temp->exec();
-                delete temp;
-                delete addAudio;
-                delete rmAudio;
-                delete ok;
-                delete Cancel;
-                delete inputV;
-                delete output;
-                delete inputA;
-                return;
-            }
+
             if (intVS > stoi(data))
             {
                 temp->setText("The initial time is longer than the total time.");
@@ -511,12 +552,19 @@ void MainWindow::on_addRemoveAudio_clicked()
                 delete inputA;
                 return;
             }
-            int rTimeH = stoi(strVS.substr(0, 2)); // Reduce time hour
-            int rTimeM = stoi(strVS.substr(3, 2)); // Reduce time minute
-            int rTimeS = stoi(strVS.substr(6, 2)); // Reduce time minute
             if (strVS != "00:00:00")
             {
                 tem = "ffmpeg -itsoffset 00:00:00 -t " + sTime + " -i " + video + " -vn " + outputFolder + "/1.mp3";
+                temp2 = tem.toLocal8Bit();
+                t2 = temp2.data();
+                system(t2);
+                int rSTimeH = stoi(strVS.substr(0, 2)); // Reduce start time hour
+                int rSTimeM = stoi(strVS.substr(3, 2)); // Reduce start time minute
+                int rSTimeS = stoi(strVS.substr(6, 2)); // Reduce start time Seconds
+                int rETimeH = stoi(strVE.substr(0, 2)); // Reduce end time hour
+                int rETimeM = stoi(strVE.substr(3, 2)); // Reduce end time minute
+                int rETimeS = stoi(strVE.substr(6, 2)); // Reduce end time Seconds
+                tem = "ffmpeg -ss 00:00:00 -t " + QString::number(rETimeH - rSTimeH) + ":" + QString::number(rETimeM - rSTimeM) + ":" +QString::number(rETimeS - rSTimeS) + " -i " + audio + outputFolder + "/2.mp3";
                 temp2 = tem.toLocal8Bit();
                 t2 = temp2.data();
                 system(t2);
