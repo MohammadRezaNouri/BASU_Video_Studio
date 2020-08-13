@@ -395,7 +395,17 @@ void MainWindow::on_addRemoveAudio_clicked()
                 temp->setText("You entered the end date incorrectly.");
                 temp->exec();
             }
-            cout << intVS << endl;
+            if (intVS > stoi(data))
+            {
+                temp->setText("The initial time is longer than the total time.");
+                temp->exec();
+            }
+            if (intVE > stoi(data))
+            {
+                temp->setText("The end time is longer than the total time.");
+                temp->exec();
+            }
+            //cout << intVS << endl;
             //if (stoi(data) < QString::number())
         }
     }
