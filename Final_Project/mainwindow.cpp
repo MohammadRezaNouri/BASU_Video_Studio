@@ -380,12 +380,10 @@ void MainWindow::on_addRemoveAudio_clicked()
         strVE = eTime.toStdString();
         try
         {
-            cout << "HI" << endl;
             intVE = stoi(strVE.substr(0, 2)) * 3600 + stoi(strVE.substr(3, 2)) * 60 + stoi(strVE.substr(6, 2));
         }
         catch(...)
         {
-            cout << "HI" << endl;
             temp->setText("You entered the end date incorrectly.");
             temp->exec();
             delete addAudio;
@@ -416,7 +414,7 @@ void MainWindow::on_addRemoveAudio_clicked()
         }
         if (intVS > intVE)
         {
-            temp->setText("The end time must be greater than the end time.");
+            temp->setText("The end time must be greater than the start time.");
             temp->exec();
             delete addAudio;
             delete rmAudio;
