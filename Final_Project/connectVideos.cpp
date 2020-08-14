@@ -60,6 +60,32 @@ connectVideos::connectVideos()
     }
     else
     {
-
+        if(ls.size() == 0 && outputFolder.size() == 0)
+        {
+            temp->setText("Videos and path not selected.");
+            temp->exec();
+            delete ok;
+            delete inputV;
+            delete output;
+            return;
+        }
+        if(ls.size() == 0)
+        {
+            temp->setText("Videos not selected.");
+            temp->exec();
+            delete ok;
+            delete inputV;
+            delete output;
+            return;
+        }
+        if(outputFolder.size() == 0)
+        {
+            temp->setText("No route selected.");
+            temp->exec();
+            delete ok;
+            delete inputV;
+            delete output;
+            return;
+        }
     }
 }
