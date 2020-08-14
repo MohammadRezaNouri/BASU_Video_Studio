@@ -4,6 +4,7 @@
 #include "qmessagebox.h"
 #include <iostream>
 #include <string>
+#include <QFileDialog>
 
 using namespace std;
 
@@ -30,5 +31,28 @@ connectVideos::connectVideos()
     ok = msg->addButton("Ok", QMessageBox::ActionRole);
     ok->setShortcut(Qt::CTRL + Qt::Key_K);
     ok->setToolTip("Ctrl+K");
+    QString outputFolder;
+    click:
     msg->exec();
+    if (msg->clickedButton() == inputV)
+    {
+        QStringList ls = QFileDialog::getOpenFileNames(nullptr, "Select videos", "/", ("Video Files(*.mp4 *.m4a *.f4v *.f4a *.m4b *.m4r *.f4b *.mov *.3gp *.3gp2 *.3g2 *.3gpp *.3gpp2 *.ogg *.oga *.ogv *.ogx *.wmv *.wma *.asf *.webm *.flv *.mkv *.vob *.drc *.gif *.gifv *.mng *.avi *.MTS *.M2TS *.TS *.qt *.yuv *.tm *.rmvb *.viv *.amv *.m4p *.m4v *.mpg *.mpeg *.mp2 *.mpe *.mpv *.m2v *.svi *.mxf *.roq *.nsv *.f4p)"));
+        goto click;
+    }
+    else if (msg->clickedButton() == output)
+    {
+        outputFolder = QFileDialog::getExistingDirectory(nullptr, ("Select Output Folder"), QDir::currentPath());
+        goto click;
+    }
+    else if (msg->clickedButton() == cancel)
+    {
+        delete inputV;
+        delete output;
+        delete cancel;
+        delete ok;
+    }
+    else
+    {
+
+    }
 }
