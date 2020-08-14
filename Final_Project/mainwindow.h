@@ -23,6 +23,8 @@ private slots:
 
     void on_addRemoveAudio_clicked();
 
+    void on_connectVideos_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

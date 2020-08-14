@@ -938,3 +938,11 @@ void MainWindow::on_addRemoveAudio_clicked()
         }
     }
 }
+
+void MainWindow::on_connectVideos_clicked()
+{
+    QString t;
+    t = "*.txt";
+    QStringList ls = QFileDialog::getOpenFileNames(this, "1", "/", "*.mp4", &t);
+    cout << ls.size() << endl;
+}
