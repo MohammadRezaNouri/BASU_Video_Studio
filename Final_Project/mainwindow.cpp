@@ -257,11 +257,14 @@ void MainWindow::on_addRemoveAudio_clicked()
     one->setText("Please select : ");
     one->exec();
     QString sTime, eTime;
-    QMessageBox * temp = new QMessageBox();
-    string strVS, strVE; //string video start & end
-    int intVS,intVE; // int video start & end (Seconds)
+    QMessageBox * temp = new QMessageBox(), * two = new QMessageBox();
+    two->setFont(font);
+    two->setIcon(QMessageBox::Icon::Information);
+    two->setWindowTitle("Add audio to video or remove audio from it");
     if (one->clickedButton() == addAudio)
     {
+        string strVS, strVE; //string video start & end
+        int intVS,intVE; // int video start & end (Seconds)
         temp->setFont(font);
         temp->setWindowTitle("Add audio to video or remove audio from it");
         temp->setIcon(QMessageBox::Icon::Critical);
@@ -407,10 +410,6 @@ void MainWindow::on_addRemoveAudio_clicked()
             delete Cancel;
             return;
         }
-        QMessageBox * two = new QMessageBox();
-        two->setFont(font);
-        two->setIcon(QMessageBox::Icon::Information);
-        two->setWindowTitle("Add audio to video or remove audio from it");
         QPushButton * inputV = new QPushButton(), * output = new QPushButton(), * inputA = new QPushButton();
         inputV = two->addButton((tr("Input video")), QMessageBox::ActionRole);
         inputV->setShortcut(Qt::CTRL + Qt::Key_V);
@@ -670,5 +669,8 @@ void MainWindow::on_addRemoveAudio_clicked()
             return;
         }
     }
+    else if (one->clickedButton() == rmAudio)
+    {
 
+    }
 }
