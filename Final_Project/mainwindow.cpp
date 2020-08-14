@@ -407,127 +407,50 @@ void MainWindow::on_addRemoveAudio_clicked()
             delete Cancel;
             return;
         }
-    }
-    QMessageBox * two = new QMessageBox();
-    two->setFont(font);
-    two->setIcon(QMessageBox::Icon::Information);
-    two->setWindowTitle("Add audio to video or remove audio from it");
-    QPushButton * inputV = new QPushButton(), * output = new QPushButton(), * inputA = new QPushButton();
-    inputV = two->addButton((tr("Input video")), QMessageBox::ActionRole);
-    inputV->setShortcut(Qt::CTRL + Qt::Key_V);
-    inputV->setToolTip("Ctrl+V");
-    inputA = two->addButton((tr("Input audio")), QMessageBox::ActionRole);
-    inputA->setShortcut(Qt::CTRL + Qt::Key_M);
-    inputA->setToolTip("Ctrl+M");
-    output = two->addButton((tr("Output folder")), QMessageBox::ActionRole);
-    output->setShortcut(Qt::CTRL + Qt::Key_F);
-    output->setToolTip("Ctrl+F");
-    Cancel = two->addButton((tr("Cancel")), QMessageBox::ActionRole);
-    Cancel->setShortcut(Qt::CTRL + Qt::Key_Q);
-    Cancel->setToolTip("Ctrl+Q");
-    ok = two->addButton((tr("Ok")), QMessageBox::ActionRole);
-    ok->setShortcut(Qt::CTRL + Qt::Key_K);
-    ok->setToolTip("Ctrl+K");
-    two->setText("Please select the file and its storage location.");
-    QString video, outputFolder, audio;
-    click:
-    two->exec();
-    if(two->clickedButton() == inputV)
-    {
-        video = QFileDialog::getOpenFileName(this, tr("Open Video"), "", tr("Video Files(*.mp4 *.m4a *.f4v *.f4a *.m4b *.m4r *.f4b *.mov *.3gp *.3gp2 *.3g2 *.3gpp *.3gpp2 *.ogg *.oga *.ogv *.ogx *.wmv *.wma *.asf *.webm *.flv *.mkv *.vob *.drc *.gif *.gifv *.mng *.avi *.MTS *.M2TS *.TS *.qt *.yuv *.tm *.rmvb *.viv *.amv *.m4p *.m4v *.mpg *.mpeg *.mp2 *.mpe *.mpv *.m2v *.svi *.mxf *.roq *.nsv *.f4p)"));
-        goto click;
-    }
-    else if(two->clickedButton() == inputA)
-    {
-        audio = QFileDialog::getOpenFileName(this, tr("Open Music"), "", tr("Music Files(*.3gp *.mp4 *.m4a *.flac *.mp3 *.wav *.aac *.aa *.aax *.act *.aiff *.alac *.amr *.ape *.au *.awb *.dct *.dss *.dvf *.gsm *.iklax *.ivs *.m4b *.m4p *.ogg *.oga *.mmf *.mpc *.msv *.nmf *.mogg *.opus *.ra *.rm *.raw *.rf64 *.sln *.tta *.voc *.vox *.wav *.wma *.webm *.wv *.8svx *.cda)"));
-        goto click;
-    }
-    else if(two->clickedButton() == output)
-    {
-        outputFolder = QFileDialog::getExistingDirectory(this, ("Select Output Folder"), QDir::currentPath());
-        goto click;
-    }
-    else if(two->clickedButton() == ok)
-    {
-        if(video.size() == 0 && outputFolder.size() == 0 && audio.size() == 0)
+        QMessageBox * two = new QMessageBox();
+        two->setFont(font);
+        two->setIcon(QMessageBox::Icon::Information);
+        two->setWindowTitle("Add audio to video or remove audio from it");
+        QPushButton * inputV = new QPushButton(), * output = new QPushButton(), * inputA = new QPushButton();
+        inputV = two->addButton((tr("Input video")), QMessageBox::ActionRole);
+        inputV->setShortcut(Qt::CTRL + Qt::Key_V);
+        inputV->setToolTip("Ctrl+V");
+        inputA = two->addButton((tr("Input audio")), QMessageBox::ActionRole);
+        inputA->setShortcut(Qt::CTRL + Qt::Key_M);
+        inputA->setToolTip("Ctrl+M");
+        output = two->addButton((tr("Output folder")), QMessageBox::ActionRole);
+        output->setShortcut(Qt::CTRL + Qt::Key_F);
+        output->setToolTip("Ctrl+F");
+        Cancel = two->addButton((tr("Cancel")), QMessageBox::ActionRole);
+        Cancel->setShortcut(Qt::CTRL + Qt::Key_Q);
+        Cancel->setToolTip("Ctrl+Q");
+        ok = two->addButton((tr("Ok")), QMessageBox::ActionRole);
+        ok->setShortcut(Qt::CTRL + Qt::Key_K);
+        ok->setToolTip("Ctrl+K");
+        two->setText("Please select the file and its storage location.");
+        QString video, outputFolder, audio;
+        click:
+        two->exec();
+        if(two->clickedButton() == inputV)
         {
-            temp->setText("Files and path not selected.");
-            temp->exec();
-            delete temp;
-            delete addAudio;
-            delete rmAudio;
-            delete ok;
-            delete Cancel;
-            delete inputV;
-            delete output;
-            delete inputA;
-            return;
+            video = QFileDialog::getOpenFileName(this, tr("Open Video"), "", tr("Video Files(*.mp4 *.m4a *.f4v *.f4a *.m4b *.m4r *.f4b *.mov *.3gp *.3gp2 *.3g2 *.3gpp *.3gpp2 *.ogg *.oga *.ogv *.ogx *.wmv *.wma *.asf *.webm *.flv *.mkv *.vob *.drc *.gif *.gifv *.mng *.avi *.MTS *.M2TS *.TS *.qt *.yuv *.tm *.rmvb *.viv *.amv *.m4p *.m4v *.mpg *.mpeg *.mp2 *.mpe *.mpv *.m2v *.svi *.mxf *.roq *.nsv *.f4p)"));
+            goto click;
         }
-        else if(outputFolder.size() == 0)
+        else if(two->clickedButton() == inputA)
         {
-            temp->setText("No route selected.");
-            temp->exec();
-            delete temp;
-            delete addAudio;
-            delete rmAudio;
-            delete ok;
-            delete Cancel;
-            delete inputV;
-            delete output;
-            delete inputA;
-            return;
+            audio = QFileDialog::getOpenFileName(this, tr("Open Music"), "", tr("Music Files(*.3gp *.mp4 *.m4a *.flac *.mp3 *.wav *.aac *.aa *.aax *.act *.aiff *.alac *.amr *.ape *.au *.awb *.dct *.dss *.dvf *.gsm *.iklax *.ivs *.m4b *.m4p *.ogg *.oga *.mmf *.mpc *.msv *.nmf *.mogg *.opus *.ra *.rm *.raw *.rf64 *.sln *.tta *.voc *.vox *.wav *.wma *.webm *.wv *.8svx *.cda)"));
+            goto click;
         }
-        else if(video.size() == 0)
+        else if(two->clickedButton() == output)
         {
-            temp->setText("No video selected.");
-            temp->exec();
-            delete temp;
-            delete addAudio;
-            delete rmAudio;
-            delete ok;
-            delete Cancel;
-            delete inputV;
-            delete output;
-            delete inputA;
-            return;
+            outputFolder = QFileDialog::getExistingDirectory(this, ("Select Output Folder"), QDir::currentPath());
+            goto click;
         }
-        else if(audio.size() == 0)
+        else if(two->clickedButton() == ok)
         {
-            temp->setText("No audio selected.");
-            temp->exec();
-            delete temp;
-            delete addAudio;
-            delete rmAudio;
-            delete ok;
-            delete Cancel;
-            delete inputV;
-            delete output;
-            delete inputA;
-            return;
-        }
-        else
-        {
-            QString tem = "ffprobe -i ", name;
-            QFileInfo nameTemp(video);
-            name = nameTemp.fileName();
-            tem += video + " -show_entries format=duration -v quiet -of csv=""p=0""" + " 2>&1";
-            QByteArray temp2 = tem.toLocal8Bit();
-            const char * t2 = temp2.data();
-            string data;
-            FILE * stream;
-            const int max_buffer = 256;
-            char buffer[max_buffer];
-            stream = popen(t2, "r");
-            if (stream)
+            if(video.size() == 0 && outputFolder.size() == 0 && audio.size() == 0)
             {
-                while (!feof(stream))
-                    if (fgets(buffer, max_buffer, stream) != nullptr) data.append(buffer);
-                pclose(stream);
-            }
-
-            if (intVS > stoi(data))
-            {
-                temp->setText("The initial time is longer than the total time.");
+                temp->setText("Files and path not selected.");
                 temp->exec();
                 delete temp;
                 delete addAudio;
@@ -539,9 +462,9 @@ void MainWindow::on_addRemoveAudio_clicked()
                 delete inputA;
                 return;
             }
-            if (intVE > stoi(data))
+            else if(outputFolder.size() == 0)
             {
-                temp->setText("The end time is longer than the total time.");
+                temp->setText("No route selected.");
                 temp->exec();
                 delete temp;
                 delete addAudio;
@@ -553,91 +476,173 @@ void MainWindow::on_addRemoveAudio_clicked()
                 delete inputA;
                 return;
             }
-            int rSTimeH = stoi(strVS.substr(0, 2)); // Reduce start time hour
-            int rSTimeM = stoi(strVS.substr(3, 2)); // Reduce start time minute
-            int rSTimeS = stoi(strVS.substr(6, 2)); // Reduce start time Seconds
-            int rETimeH = stoi(strVE.substr(0, 2)); // Reduce end time hour
-            int rETimeM = stoi(strVE.substr(3, 2)); // Reduce end time minute
-            int rETimeS = stoi(strVE.substr(6, 2)); // Reduce end time Seconds
-            if (strVS != "00:00:00")
+            else if(video.size() == 0)
             {
-                tem = "ffmpeg -itsoffset 00:00:00 -t " + sTime + " -i " + video + " -vn " + outputFolder + "/1.mp3";
-                temp2 = tem.toLocal8Bit();
-                t2 = temp2.data();
-                system(t2);
-                tem = "ffmpeg -ss 00:00:00 -t " + QString::number(rETimeH - rSTimeH) + ":" + QString::number(rETimeM - rSTimeM) + ":" +QString::number(rETimeS - rSTimeS) + " -i " + audio + outputFolder + "/2.mp3";
-                temp2 = tem.toLocal8Bit();
-                t2 = temp2.data();
-                system(t2);
-                tem = "ffmpeg -ss " + eTime + " -i " + video + " -vn " + outputFolder + "/3.mp3";
-                temp2 = tem.toLocal8Bit();
-                t2 = temp2.data();
-                system(t2);
-                tem = "touch " + outputFolder + "/file.txt";
-                temp2 = tem.toLocal8Bit();
-                t2 = temp2.data();
-                system(t2);
-                ofstream file("file.txt", ios::out);
-                if(!file)
-                {
-                    temp->setText("There was a problem executing this and we were unable to generate the file needed to do so.");
-                    temp->exec();
-                }
-                file << "file '1.mp3'\nfile '2.mp3'\nfile '3.mp3'";
-                file.close();
-                tem = "ffmpeg -f concat -safe 0 -i file.txt -c copy " + outputFolder + "/4.mp3";
-                temp2 = tem.toLocal8Bit();
-                t2 = temp2.data();
-                system(t2);
-                QFileInfo nameTemp(video);
-                name = nameTemp.fileName();
-                tem = "ffmpeg -i " + video + " -i 4.mp3 -map 0:0 -map 1:0 -c:v copy -preset ultrafast -async 1 " + outputFolder + "/Add_or_remove_audio_" + name;
-                temp2 = tem.toLocal8Bit();
-                t2 = temp2.data();
-                system(t2);
-                tem = "rm " + outputFolder + "/1.mp3 " + outputFolder + "/2.mp3 " + outputFolder + "/3.mp3 " + outputFolder + "/4.mp3 " + outputFolder + "/file.txt";
-                temp2 = tem.toLocal8Bit();
-                t2 = temp2.data();
-                system(t2);
+                temp->setText("No video selected.");
+                temp->exec();
+                delete temp;
+                delete addAudio;
+                delete rmAudio;
+                delete ok;
+                delete Cancel;
+                delete inputV;
+                delete output;
+                delete inputA;
+                return;
+            }
+            else if(audio.size() == 0)
+            {
+                temp->setText("No audio selected.");
+                temp->exec();
+                delete temp;
+                delete addAudio;
+                delete rmAudio;
+                delete ok;
+                delete Cancel;
+                delete inputV;
+                delete output;
+                delete inputA;
+                return;
             }
             else
             {
-                tem = "ffmpeg -ss 00:00:00 -t " + eTime + " -i " + audio + outputFolder + "/1.mp3";
-                temp2 = tem.toLocal8Bit();
-                t2 = temp2.data();
-                system(t2);
-
-                tem = "ffmpeg -ss " + eTime + " -i " + video + " -vn " + outputFolder + "/2.mp3";
-                temp2 = tem.toLocal8Bit();
-                t2 = temp2.data();
-                system(t2);
-                tem = "touch " + outputFolder + "/file.txt";
-                temp2 = tem.toLocal8Bit();
-                t2 = temp2.data();
-                system(t2);
-                ofstream file("file.txt", ios::out);
-                if(!file)
-                {
-                    temp->setText("There was a problem executing this and we were unable to generate the file needed to do so.");
-                    temp->exec();
-                }
-                file << "file '1.mp3'\nfile '2.mp3'";
-                file.close();
-                tem = "ffmpeg -f concat -safe 0 -i file.txt -c copy " + outputFolder + "/3.mp3";
-                temp2 = tem.toLocal8Bit();
-                t2 = temp2.data();
-                system(t2);
+                QString tem = "ffprobe -i ", name;
                 QFileInfo nameTemp(video);
                 name = nameTemp.fileName();
-                tem = "ffmpeg -i " + video + " -i 3.mp3 -map 0:0 -map 1:0 -c:v copy -preset ultrafast -async 1 " + outputFolder + "/Add_or_remove_audio_" + name;
-                temp2 = tem.toLocal8Bit();
-                t2 = temp2.data();
-                system(t2);
-                tem = "rm " + outputFolder + "/1.mp3 " + outputFolder + "/2.mp3 " + outputFolder + "/3.mp3 " + outputFolder + "/file.txt";
-                temp2 = tem.toLocal8Bit();
-                t2 = temp2.data();
-                system(t2);
+                tem += video + " -show_entries format=duration -v quiet -of csv=""p=0""" + " 2>&1";
+                QByteArray temp2 = tem.toLocal8Bit();
+                const char * t2 = temp2.data();
+                string data;
+                FILE * stream;
+                const int max_buffer = 256;
+                char buffer[max_buffer];
+                stream = popen(t2, "r");
+                if (stream)
+                {
+                    while (!feof(stream))
+                        if (fgets(buffer, max_buffer, stream) != nullptr) data.append(buffer);
+                    pclose(stream);
+                }
+
+                if (intVS > stoi(data))
+                {
+                    temp->setText("The initial time is longer than the total time.");
+                    temp->exec();
+                    delete temp;
+                    delete addAudio;
+                    delete rmAudio;
+                    delete ok;
+                    delete Cancel;
+                    delete inputV;
+                    delete output;
+                    delete inputA;
+                    return;
+                }
+                if (intVE > stoi(data))
+                {
+                    temp->setText("The end time is longer than the total time.");
+                    temp->exec();
+                    delete temp;
+                    delete addAudio;
+                    delete rmAudio;
+                    delete ok;
+                    delete Cancel;
+                    delete inputV;
+                    delete output;
+                    delete inputA;
+                    return;
+                }
+                if (strVS != "00:00:00")
+                {
+                    tem = "ffmpeg -itsoffset 00:00:00 -t " + sTime + " -i " + video + " -vn " + outputFolder + "/1.mp3";
+                    temp2 = tem.toLocal8Bit();
+                    t2 = temp2.data();
+                    system(t2);
+                    int rSTimeH = stoi(strVS.substr(0, 2)); // Reduce start time hour
+                    int rSTimeM = stoi(strVS.substr(3, 2)); // Reduce start time minute
+                    int rSTimeS = stoi(strVS.substr(6, 2)); // Reduce start time Seconds
+                    int rETimeH = stoi(strVE.substr(0, 2)); // Reduce end time hour
+                    int rETimeM = stoi(strVE.substr(3, 2)); // Reduce end time minute
+                    int rETimeS = stoi(strVE.substr(6, 2)); // Reduce end time Seconds
+                    tem = "ffmpeg -ss 00:00:00 -t " + QString::number(rETimeH - rSTimeH) + ":" + QString::number(rETimeM - rSTimeM) + ":" +QString::number(rETimeS - rSTimeS) + " -i " + audio + outputFolder + "/2.mp3";
+                    temp2 = tem.toLocal8Bit();
+                    t2 = temp2.data();
+                    system(t2);
+                    tem = "ffmpeg -ss " + eTime + " -i " + video + " -vn " + outputFolder + "/3.mp3";
+                    temp2 = tem.toLocal8Bit();
+                    t2 = temp2.data();
+                    system(t2);
+                    tem = "touch " + outputFolder + "/file.txt";
+                    temp2 = tem.toLocal8Bit();
+                    t2 = temp2.data();
+                    system(t2);
+                    ofstream file("file.txt", ios::out);
+                    if(!file)
+                    {
+                        temp->setText("There was a problem executing this and we were unable to generate the file needed to do so.");
+                        temp->exec();
+                    }
+                    file << "file '1.mp3'\nfile '2.mp3'\nfile '3.mp3'";
+                    file.close();
+                    tem = "ffmpeg -f concat -safe 0 -i file.txt -c copy " + outputFolder + "/4.mp3";
+                    temp2 = tem.toLocal8Bit();
+                    t2 = temp2.data();
+                    system(t2);
+                    QFileInfo nameTemp(video);
+                    name = nameTemp.fileName();
+                    tem = "ffmpeg -i " + video + " -i 4.mp3 -map 0:0 -map 1:0 -c:v copy -preset ultrafast -async 1 " + outputFolder + "/Add_or_remove_audio_" + name;
+                    temp2 = tem.toLocal8Bit();
+                    t2 = temp2.data();
+                    system(t2);
+                    tem = "rm " + outputFolder + "/1.mp3 " + outputFolder + "/2.mp3 " + outputFolder + "/3.mp3 " + outputFolder + "/4.mp3 " + outputFolder + "/file.txt";
+                    temp2 = tem.toLocal8Bit();
+                    t2 = temp2.data();
+                    system(t2);
+                }
+                else
+                {
+                    tem = "ffmpeg -ss 00:00:00 -t " + eTime + " -i " + audio + outputFolder + "/1.mp3";
+                    temp2 = tem.toLocal8Bit();
+                    t2 = temp2.data();
+                    system(t2);
+
+                    tem = "ffmpeg -ss " + eTime + " -i " + video + " -vn " + outputFolder + "/2.mp3";
+                    temp2 = tem.toLocal8Bit();
+                    t2 = temp2.data();
+                    system(t2);
+                    tem = "touch " + outputFolder + "/file.txt";
+                    temp2 = tem.toLocal8Bit();
+                    t2 = temp2.data();
+                    system(t2);
+                    ofstream file("file.txt", ios::out);
+                    if(!file)
+                    {
+                        temp->setText("There was a problem executing this and we were unable to generate the file needed to do so.");
+                        temp->exec();
+                    }
+                    file << "file '1.mp3'\nfile '2.mp3'";
+                    file.close();
+                    tem = "ffmpeg -f concat -safe 0 -i file.txt -c copy " + outputFolder + "/3.mp3";
+                    temp2 = tem.toLocal8Bit();
+                    t2 = temp2.data();
+                    system(t2);
+                    QFileInfo nameTemp(video);
+                    name = nameTemp.fileName();
+                    tem = "ffmpeg -i " + video + " -i 3.mp3 -map 0:0 -map 1:0 -c:v copy -preset ultrafast -async 1 " + outputFolder + "/Add_or_remove_audio_" + name;
+                    temp2 = tem.toLocal8Bit();
+                    t2 = temp2.data();
+                    system(t2);
+                    tem = "rm " + outputFolder + "/1.mp3 " + outputFolder + "/2.mp3 " + outputFolder + "/3.mp3 " + outputFolder + "/file.txt";
+                    temp2 = tem.toLocal8Bit();
+                    t2 = temp2.data();
+                    system(t2);
+                }
             }
         }
+        else
+        {
+
+        }
     }
+
 }
