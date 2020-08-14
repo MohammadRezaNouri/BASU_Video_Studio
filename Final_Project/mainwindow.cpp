@@ -380,10 +380,12 @@ void MainWindow::on_addRemoveAudio_clicked()
         strVE = eTime.toStdString();
         try
         {
-            intVE = stoi(strVS.substr(0, 2)) * 3600 + stoi(strVS.substr(3, 2)) * 60 + stoi(strVS.substr(6, 2));
+            cout << "HI" << endl;
+            intVE = stoi(strVE.substr(0, 2)) * 3600 + stoi(strVE.substr(3, 2)) * 60 + stoi(strVE.substr(6, 2));
         }
         catch(...)
         {
+            cout << "HI" << endl;
             temp->setText("You entered the end date incorrectly.");
             temp->exec();
             delete addAudio;
