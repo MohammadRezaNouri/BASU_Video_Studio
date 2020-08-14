@@ -2,15 +2,10 @@
 #define CONNECTVIDEOS_H
 
 
-class connectVideos : public QObject
+class connectVideos
 {
-    Q_OBJECT
 public:
-    explicit connectVideos(QObject *parent = nullptr);
-
-signals:
-
-public slots:
+    connectVideos();
 };
 
 #endif // CONNECTVIDEOS_H
