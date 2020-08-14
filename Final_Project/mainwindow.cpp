@@ -552,7 +552,7 @@ void MainWindow::on_addRemoveAudio_clicked()
                 }
                 if (strVS != "00:00:00")
                 {
-                    tem = "ffmpeg -itsoffset 00:00:00 -t " + sTime + " -i " + video + " -vn " + outputFolder + "/1.mp3";
+                    tem = "ffmpeg -y -itsoffset 00:00:00 -t " + sTime + " -i " + video + " -vn " + outputFolder + "/1.mp3";
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
@@ -562,11 +562,11 @@ void MainWindow::on_addRemoveAudio_clicked()
                     int rETimeH = stoi(strVE.substr(0, 2)); // Reduce end time hour
                     int rETimeM = stoi(strVE.substr(3, 2)); // Reduce end time minute
                     int rETimeS = stoi(strVE.substr(6, 2)); // Reduce end time Seconds
-                    tem = "ffmpeg -ss 00:00:00 -t " + QString::number(rETimeH - rSTimeH) + ":" + QString::number(rETimeM - rSTimeM) + ":" +QString::number(rETimeS - rSTimeS) + " -i " + audio + outputFolder + "/2.mp3";
+                    tem = "ffmpeg -y -ss 00:00:00 -t " + QString::number(rETimeH - rSTimeH) + ":" + QString::number(rETimeM - rSTimeM) + ":" +QString::number(rETimeS - rSTimeS) + " -i " + audio + outputFolder + "/2.mp3";
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
-                    tem = "ffmpeg -ss " + eTime + " -i " + video + " -vn " + outputFolder + "/3.mp3";
+                    tem = "ffmpeg -y -ss " + eTime + " -i " + video + " -vn " + outputFolder + "/3.mp3";
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
@@ -582,13 +582,13 @@ void MainWindow::on_addRemoveAudio_clicked()
                     }
                     file << "file '1.mp3'\nfile '2.mp3'\nfile '3.mp3'";
                     file.close();
-                    tem = "ffmpeg -f concat -safe 0 -i file.txt -c copy " + outputFolder + "/4.mp3";
+                    tem = "ffmpeg -y -f concat -safe 0 -i file.txt -c copy " + outputFolder + "/4.mp3";
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
                     QFileInfo nameTemp(video);
                     name = nameTemp.fileName();
-                    tem = "ffmpeg -i " + video + " -i 4.mp3 -map 0:0 -map 1:0 -c:v copy -preset ultrafast -async 1 " + outputFolder + "/Add_audio_" + name;
+                    tem = "ffmpeg -y -i " + video + " -i 4.mp3 -map 0:0 -map 1:0 -c:v copy -preset ultrafast -async 1 " + outputFolder + "/Add_audio_" + name;
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
@@ -608,12 +608,12 @@ void MainWindow::on_addRemoveAudio_clicked()
                 }
                 else
                 {
-                    tem = "ffmpeg -ss 00:00:00 -t " + eTime + " -i " + audio + outputFolder + "/1.mp3";
+                    tem = "ffmpeg -y -ss 00:00:00 -t " + eTime + " -i " + audio + outputFolder + "/1.mp3";
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
 
-                    tem = "ffmpeg -ss " + eTime + " -i " + video + " -vn " + outputFolder + "/2.mp3";
+                    tem = "ffmpeg -y -ss " + eTime + " -i " + video + " -vn " + outputFolder + "/2.mp3";
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
@@ -629,13 +629,13 @@ void MainWindow::on_addRemoveAudio_clicked()
                     }
                     file << "file '1.mp3'\nfile '2.mp3'";
                     file.close();
-                    tem = "ffmpeg -f concat -safe 0 -i file.txt -c copy " + outputFolder + "/3.mp3";
+                    tem = "ffmpeg -y -f concat -safe 0 -i file.txt -c copy " + outputFolder + "/3.mp3";
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
                     QFileInfo nameTemp(video);
                     name = nameTemp.fileName();
-                    tem = "ffmpeg -i " + video + " -i 3.mp3 -map 0:0 -map 1:0 -c:v copy -preset ultrafast -async 1 " + outputFolder + "/Add_audio_" + name;
+                    tem = "ffmpeg -y -i " + video + " -i 3.mp3 -map 0:0 -map 1:0 -c:v copy -preset ultrafast -async 1 " + outputFolder + "/Add_audio_" + name;
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
