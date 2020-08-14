@@ -5,6 +5,7 @@
 #include <QInputDialog>
 #include <iostream>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -576,6 +577,13 @@ void MainWindow::on_addRemoveAudio_clicked()
                 temp2 = tem.toLocal8Bit();
                 t2 = temp2.data();
                 system(t2);
+                ofstream file("temp.txt", ios::out);
+                if(!file)
+                {
+                    temp->setText("There was a problem executing this and we were unable to generate the file needed to do so.");
+                }
+                file << "file '1.mp3'\nfile '2.mp3'\nfile '3.mp3'";
+                file.close();
                 tem = "ffmpeg -f concat -safe 0 -i file.txt -c copy " + outputFolder + "/4.mp3";
                 temp2 = tem.toLocal8Bit();
                 t2 = temp2.data();
