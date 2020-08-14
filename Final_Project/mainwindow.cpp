@@ -598,6 +598,15 @@ void MainWindow::on_addRemoveAudio_clicked()
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
+                    delete temp;
+                    delete addAudio;
+                    delete rmAudio;
+                    delete ok;
+                    delete Cancel;
+                    delete inputV;
+                    delete output;
+                    delete inputA;
+                    return;
                 }
                 else
                 {
@@ -636,12 +645,29 @@ void MainWindow::on_addRemoveAudio_clicked()
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
+                    delete temp;
+                    delete addAudio;
+                    delete rmAudio;
+                    delete ok;
+                    delete Cancel;
+                    delete inputV;
+                    delete output;
+                    delete inputA;
+                    return;
                 }
             }
         }
         else
         {
-
+            delete temp;
+            delete addAudio;
+            delete rmAudio;
+            delete ok;
+            delete Cancel;
+            delete inputV;
+            delete output;
+            delete inputA;
+            return;
         }
     }
 
