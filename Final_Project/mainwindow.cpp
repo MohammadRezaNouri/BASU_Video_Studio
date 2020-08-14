@@ -556,13 +556,13 @@ void MainWindow::on_addRemoveAudio_clicked()
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
-                    int rSTimeH = stoi(strVS.substr(0, 2)); // Reduce start time hour
+                    /*int rSTimeH = stoi(strVS.substr(0, 2)); // Reduce start time hour
                     int rSTimeM = stoi(strVS.substr(3, 2)); // Reduce start time minute
                     int rSTimeS = stoi(strVS.substr(6, 2)); // Reduce start time Seconds
                     int rETimeH = stoi(strVE.substr(0, 2)); // Reduce end time hour
                     int rETimeM = stoi(strVE.substr(3, 2)); // Reduce end time minute
-                    int rETimeS = stoi(strVE.substr(6, 2)); // Reduce end time Seconds
-                    tem = "ffmpeg -y -ss 00:00:00 -t " + QString::number(rETimeH - rSTimeH) + ":" + QString::number(rETimeM - rSTimeM) + ":" +QString::number(rETimeS - rSTimeS) + " -i " + audio + outputFolder + "/2.mp3";
+                    int rETimeS = stoi(strVE.substr(6, 2)); // Reduce end time Seconds*/
+                    tem = "ffmpeg -y -ss 00:00:00 -t " + QString::number((intVE - intVS) / 3600) + ":" + QString::number(((intVE - intVS) % 3600) / 60) + ":" +QString::number(((intVE - intVS) % 3600) % 60) + " -i \"" + audio + "\" " + outputFolder + "/2.mp3";
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
@@ -574,7 +574,8 @@ void MainWindow::on_addRemoveAudio_clicked()
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
-                    ofstream file("file.txt", ios::out);
+                    tem = outputFolder + "/file.txt";
+                    ofstream file(tem.toStdString(), ios::out);
                     if(!file)
                     {
                         temp->setText("There was a problem executing this and we were unable to generate the file needed to do so.");
@@ -582,13 +583,13 @@ void MainWindow::on_addRemoveAudio_clicked()
                     }
                     file << "file '1.mp3'\nfile '2.mp3'\nfile '3.mp3'";
                     file.close();
-                    tem = "ffmpeg -y -f concat -safe 0 -i file.txt -c copy " + outputFolder + "/4.mp3";
+                    tem = "ffmpeg -y -f concat -safe 0 -i " + outputFolder + "/file.txt -c copy " + outputFolder + "/4.mp3";
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
                     QFileInfo nameTemp(video);
                     name = nameTemp.fileName();
-                    tem = "ffmpeg -y -i " + video + " -i 4.mp3 -map 0:0 -map 1:0 -c:v copy -preset ultrafast -async 1 " + outputFolder + "/Add_audio_" + name;
+                    tem = "ffmpeg -y -i " + video + " -i " + outputFolder + "/4.mp3 -map 0:0 -map 1:0 -c:v copy -preset ultrafast -async 1 " + outputFolder + "/Add_audio_" + name;
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
@@ -608,11 +609,10 @@ void MainWindow::on_addRemoveAudio_clicked()
                 }
                 else
                 {
-                    tem = "ffmpeg -y -ss 00:00:00 -t " + eTime + " -i " + audio + outputFolder + "/1.mp3";
+                    tem = "ffmpeg -y -ss 00:00:00 -t " + eTime + " -i \"" + audio + "\" " + outputFolder + "/1.mp3";
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
-
                     tem = "ffmpeg -y -ss " + eTime + " -i " + video + " -vn " + outputFolder + "/2.mp3";
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
@@ -621,7 +621,8 @@ void MainWindow::on_addRemoveAudio_clicked()
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
-                    ofstream file("file.txt", ios::out);
+                    tem = outputFolder + "/file.txt";
+                    ofstream file(tem.toStdString(), ios::out);
                     if(!file)
                     {
                         temp->setText("There was a problem executing this and we were unable to generate the file needed to do so.");
@@ -629,13 +630,13 @@ void MainWindow::on_addRemoveAudio_clicked()
                     }
                     file << "file '1.mp3'\nfile '2.mp3'";
                     file.close();
-                    tem = "ffmpeg -y -f concat -safe 0 -i file.txt -c copy " + outputFolder + "/3.mp3";
+                    tem = "ffmpeg -y -f concat -safe 0 -i " + outputFolder + "/file.txt -c copy " + outputFolder + "/3.mp3";
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
                     QFileInfo nameTemp(video);
                     name = nameTemp.fileName();
-                    tem = "ffmpeg -y -i " + video + " -i 3.mp3 -map 0:0 -map 1:0 -c:v copy -preset ultrafast -async 1 " + outputFolder + "/Add_audio_" + name;
+                    tem = "ffmpeg -y -i " + video + " -i " + outputFolder + "/3.mp3 -map 0:0 -map 1:0 -c:v copy -preset ultrafast -async 1 " + outputFolder + "/Add_audio_" + name;
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
@@ -766,7 +767,7 @@ void MainWindow::on_addRemoveAudio_clicked()
         strVE = eTime.toStdString();
         try
         {
-            intVE = stoi(strVS.substr(0, 2)) * 3600 + stoi(strVS.substr(3, 2)) * 60 + stoi(strVS.substr(6, 2));
+            intVE = stoi(strVE.substr(0, 2)) * 3600 + stoi(strVE.substr(3, 2)) * 60 + stoi(strVE.substr(6, 2));
         }
         catch(...)
         {
@@ -800,7 +801,7 @@ void MainWindow::on_addRemoveAudio_clicked()
         }
         if (intVS > intVE)
         {
-            temp->setText("The end time must be greater than the end time.");
+            temp->setText("The end time must be greater than the start time.");
             temp->exec();
             delete addAudio;
             delete rmAudio;
@@ -907,7 +908,7 @@ void MainWindow::on_addRemoveAudio_clicked()
                     delete output;
                     return;
                 }
-                tem = "ffmpeg -i " + video + " -af ""volume=enable='between(t," + QString::number(intVS) + "," + QString::number(intVE) + ")':volume=0"" -c:v copy " + outputFolder;
+                tem = "ffmpeg -y -i " + video + " -af \"volume=enable='between(t," + QString::number(intVS) + "," + QString::number(intVE) + ")':volume=0\" -c:v copy " + outputFolder;
                 nameTemp = video;
                 name = nameTemp.fileName();
                 tem += "/remove_audio_" + name;
