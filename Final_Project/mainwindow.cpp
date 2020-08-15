@@ -7,6 +7,7 @@
 #include <string>
 #include <fstream>
 #include "connectVideos.h"
+#include "deletePartVideo.h"
 
 using namespace std;
 
@@ -957,5 +958,5 @@ void MainWindow::on_connectVideos_clicked()
 
 void MainWindow::on_deletePartVideo_clicked()
 {
-
+    deletePartVideo start;
 }

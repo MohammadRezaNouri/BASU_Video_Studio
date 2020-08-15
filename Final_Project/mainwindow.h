@@ -25,6 +25,8 @@ private slots:
 
     void on_connectVideos_clicked();
 
+    void on_deletePartVideo_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
