@@ -154,7 +154,6 @@ deletePartVideo::deletePartVideo()
         {
             temp->setText("Files and path not selected.");
             temp->exec();
-            delete msg;
             delete temp;
             delete ok;
             delete cancel;
@@ -166,7 +165,6 @@ deletePartVideo::deletePartVideo()
         {
             temp->setText("No route selected.");
             temp->exec();
-            delete msg;
             delete temp;
             delete ok;
             delete cancel;
@@ -178,7 +176,6 @@ deletePartVideo::deletePartVideo()
         {
             temp->setText("No video selected.");
             temp->exec();
-            delete msg;
             delete temp;
             delete ok;
             delete cancel;
@@ -206,7 +203,6 @@ deletePartVideo::deletePartVideo()
         {
             temp->setText("The initial time is longer than the total time.");
             temp->exec();
-            delete msg;
             delete temp;
             delete ok;
             delete cancel;
@@ -218,7 +214,6 @@ deletePartVideo::deletePartVideo()
         {
             temp->setText("The end time is longer than the total time.");
             temp->exec();
-            delete msg;
             delete temp;
             delete ok;
             delete cancel;
@@ -227,11 +222,10 @@ deletePartVideo::deletePartVideo()
             return;
         }
         QFileInfo nameTemp(video);
-        t1 = "ffmpeg -y -i " + video + " -filter_complex \"[0:v]trim=start=0:end=" + QString::number(intVS) + ",setpts=PTS-STARTPTS[a]; [0:v]trim=start=" + QString::number(intVE) + ":end=" + QString::number(stoi(data)) + ",setpts=PTS-STARTPTS[b]; [0:a]atrim=start=0:end=" + QString::number(intVS) + ",asetpts=PTS-STARTPTS[c]; [0:a]atrim=start=" + QString::number(intVE) + ":end=" + QString::number(stoi(data)) + ",asetpts=PTS-STARTPTS[d]; [a][c][b][d]concat=n=2:v=1:a=1[e][f]\" -map '[e]' -map '[f]' -strict -2 " +outputFolder + "/Deletr_part_video_" + nameTemp.fileName();
+        t1 = "ffmpeg -y -i " + video + " -filter_complex \"[0:v]trim=start=0:end=" + QString::number(intVS) + ",setpts=PTS-STARTPTS[a]; [0:v]trim=start=" + QString::number(intVE) + ":end=" + QString::number(stoi(data)) + ",setpts=PTS-STARTPTS[b]; [0:a]atrim=start=0:end=" + QString::number(intVS) + ",asetpts=PTS-STARTPTS[c]; [0:a]atrim=start=" + QString::number(intVE) + ":end=" + QString::number(stoi(data)) + ",asetpts=PTS-STARTPTS[d]; [a][c][b][d]concat=n=2:v=1:a=1[e][f]\" -map '[e]' -map '[f]' -strict -2 " + outputFolder + "/Delete_part_video_" + nameTemp.fileName();
         t2 = t1.toLocal8Bit();
         t3 = t2.data();
         system(t3);
-        delete msg;
         delete temp;
         delete ok;
         delete cancel;

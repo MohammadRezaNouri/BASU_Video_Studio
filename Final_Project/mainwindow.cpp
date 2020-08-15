@@ -960,3 +960,8 @@ void MainWindow::on_deletePartVideo_clicked()
 {
     deletePartVideo start;
 }
+
+void MainWindow::on_reduceVolume_clicked()
+{
+
+}

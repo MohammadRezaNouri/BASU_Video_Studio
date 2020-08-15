@@ -111,14 +111,12 @@ connectVideos::connectVideos()
             t1 = "cp " + ls[i] + " " + outputFolder + "/\"cp_" + nameTemp.fileName() + "\"";
             t2 = t1.toLocal8Bit();
             t3 = t2.data();
-            cout << "1" << t3 << endl;
             system(t3);
         }
         file.close();
         t1 = "ffmpeg -y -f concat -i " + outputFolder + "/file.txt " + outputFolder + "/Connect_videos.mp4";
         t2 = t1.toLocal8Bit();
         t3 = t2.data();
-        cout << "2" << t3 << endl;
         system(t3);
         for (int i = 0; i < ls.size(); i++)
         {
@@ -126,13 +124,11 @@ connectVideos::connectVideos()
             t1 = "rm " + outputFolder + "/cp_" + nameTemp.fileName();
             t2 = t1.toLocal8Bit();
             t3 = t2.data();
-            cout << "3" << t3 << endl;
             system(t3);
         }
         t1 = "rm " + outputFolder + "/file.txt";
         t2 = t1.toLocal8Bit();
         t3 = t2.data();
-        cout << "4" << t3 << endl;
         system(t3);
         delete ok;
         delete inputV;
