@@ -26,11 +26,13 @@ CONFIG += c++11
 
 SOURCES += \
         connectVideos.cpp \
+        deletePartVideo.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
         connectVideos.h \
+        deletePartVideo.h \
         mainwindow.h
 
 FORMS += \
