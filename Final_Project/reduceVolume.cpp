@@ -3,6 +3,10 @@
 #include <QInputDialog>
 #include "qmessagebox.h"
 #include <QFileDialog>
+#include <iostream>
+
+using namespace std;
+
 reduceVolume::reduceVolume()
 {
     QFont font;
@@ -23,6 +27,9 @@ reduceVolume::reduceVolume()
     temp->setFont(font);
     temp->setIcon(QMessageBox::Icon::Critical);
     QPushButton * input = new QPushButton(), * output = new QPushButton(), * ok = new QPushButton(), * Cancel = new QPushButton();
+    ok = temp->addButton("Ok", QMessageBox::ActionRole);
+    ok->setShortcut(Qt::CTRL + Qt::Key_K);
+    ok->setToolTip("Ctrl+K");
     input = msg->addButton("Input video", QMessageBox::ActionRole);
     input->setShortcut(Qt::CTRL + Qt::Key_O);
     input->setToolTip("Ctrl+O");
@@ -35,9 +42,6 @@ reduceVolume::reduceVolume()
     Cancel = msg->addButton("Cancel", QMessageBox::ActionRole);
     Cancel->setShortcut(Qt::CTRL + Qt::Key_Q);
     Cancel->setToolTip("Ctrl+Q");
-    ok = temp->addButton("Ok", QMessageBox::ActionRole);
-    ok->setShortcut(Qt::CTRL + Qt::Key_K);
-    ok->setToolTip("Ctrl+K");
     QString fileName, outputFolder;
     click:
     msg->exec();
@@ -46,7 +50,7 @@ reduceVolume::reduceVolume()
         fileName = QFileDialog::getOpenFileName(nullptr, "Open Video", "", "Video Files(*.mp4 *.m4a *.f4v *.f4a *.m4b *.m4r *.f4b *.mov *.3gp *.3gp2 *.3g2 *.3gpp *.3gpp2 *.ogg *.oga *.ogv *.ogx *.wmv *.wma *.asf *.webm *.flv *.mkv *.vob *.drc *.gif *.gifv *.mng *.avi *.MTS *.M2TS *.TS *.qt *.yuv *.tm *.rmvb *.viv *.amv *.m4p *.m4v *.mpg *.mpeg *.mp2 *.mpe *.mpv *.m2v *.svi *.mxf *.roq *.nsv *.f4p)");
         goto click;
     }
-    else if(msg->clickedButton() == output)
+    if(msg->clickedButton() == output)
     {
         outputFolder = QFileDialog::getExistingDirectory(nullptr, "Select Output Folder", QDir::currentPath());
         goto click;
@@ -57,7 +61,6 @@ reduceVolume::reduceVolume()
         {
             temp->setText("Video and path not selected.");
             temp->exec();
-            delete msg;
             delete temp;
             delete input;
             delete output;
@@ -65,11 +68,10 @@ reduceVolume::reduceVolume()
             delete Cancel;
             return;
         }
-        if(outputFolder.size() == 0)
+        else if(outputFolder.size() == 0)
         {
             temp->setText("No route selected.");
             temp->exec();
-            delete msg;
             delete temp;
             delete input;
             delete output;
@@ -77,11 +79,10 @@ reduceVolume::reduceVolume()
             delete Cancel;
             return;
         }
-        if(fileName.size() == 0)
+        else if(fileName.size() == 0)
         {
-            temp->setText("No file selected.");
+            temp->setText("No video selected.");
             temp->exec();
-            delete msg;
             delete temp;
             delete input;
             delete output;
