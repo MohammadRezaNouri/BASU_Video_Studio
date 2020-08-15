@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include "qmessagebox.h"
 #include <QInputDialog>
-//#include <iostream>
+#include <QFileDialog>
 #include <string>
 
 using namespace std;
@@ -122,17 +122,29 @@ deletePartVideo::deletePartVideo()
     msg->setFont(font);
     msg->setWindowTitle("Delete parts of the video");
     msg->setText("Please select : ");
-    QPushButton * video = new QPushButton(), * outFolder = new QPushButton(), * ok = new QPushButton(), * cancel = new QPushButton();
-    video = msg->addButton("Input Video", QMessageBox::ActionRole);
-    video->setShortcut(Qt::CTRL + Qt::Key_V);
-    video->setToolTip("Ctrl+V");
-    outFolder = msg->addButton("Output folder", QMessageBox::ActionRole);
-    outFolder->setShortcut(Qt::CTRL + Qt::Key_F);
-    outFolder->setToolTip("Ctrl+F");
+    QPushButton * inputV = new QPushButton(), * output = new QPushButton(), * ok = new QPushButton(), * cancel = new QPushButton();
+    inputV = msg->addButton("Input Video", QMessageBox::ActionRole);
+    inputV->setShortcut(Qt::CTRL + Qt::Key_V);
+    inputV->setToolTip("Ctrl+V");
+    output = msg->addButton("Output folder", QMessageBox::ActionRole);
+    output->setShortcut(Qt::CTRL + Qt::Key_F);
+    output->setToolTip("Ctrl+F");
     cancel = msg->addButton("Cancel", QMessageBox::ActionRole);
     cancel->setShortcut(Qt::CTRL + Qt::Key_Q);
     cancel->setToolTip("Ctrl+Q");
     ok = msg->addButton("Ok", QMessageBox::ActionRole);
     ok->setShortcut(Qt::CTRL + Qt::Key_K);
     ok->setToolTip("Ctrl+K");
+    click:
+    msg->exec();
+    if(msg->clickedButton() == inputV)
+    {
+        QString video = QFileDialog::getOpenFileName(nullptr, "Open Video", "", "Video Files(*.mp4 *.m4a *.f4v *.f4a *.m4b *.m4r *.f4b *.mov *.3gp *.3gp2 *.3g2 *.3gpp *.3gpp2 *.ogg *.oga *.ogv *.ogx *.wmv *.wma *.asf *.webm *.flv *.mkv *.vob *.drc *.gif *.gifv *.mng *.avi *.MTS *.M2TS *.TS *.qt *.yuv *.tm *.rmvb *.viv *.amv *.m4p *.m4v *.mpg *.mpeg *.mp2 *.mpe *.mpv *.m2v *.svi *.mxf *.roq *.nsv *.f4p)");
+        goto click;
+    }
+    if(msg->clickedButton() == output)
+    {
+        QString outputFolder = QFileDialog::getExistingDirectory(nullptr, "Select Output Folder", QDir::currentPath());
+        goto click;
+    }
 }
