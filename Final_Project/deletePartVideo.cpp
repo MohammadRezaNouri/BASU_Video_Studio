@@ -37,9 +37,10 @@ deletePartVideo::deletePartVideo()
         return;
     }
     string strVS = sTime.toStdString();
+    int intVS;
     try
     {
-        int intVS = stoi(strVS.substr(0, 2)) * 3600 + stoi(strVS.substr(3, 2)) * 60 + stoi(strVS.substr(6, 2));
+        intVS = stoi(strVS.substr(0, 2)) * 3600 + stoi(strVS.substr(3, 2)) * 60 + stoi(strVS.substr(6, 2));
     }
     catch(...)
     {
@@ -83,9 +84,10 @@ deletePartVideo::deletePartVideo()
         return;
     }
     string strVE = eTime.toStdString();
+    int intVE;
     try
     {
-        int intVE = stoi(strVE.substr(0, 2)) * 3600 + stoi(strVE.substr(3, 2)) * 60 + stoi(strVE.substr(6, 2));
+        intVE = stoi(strVE.substr(0, 2)) * 3600 + stoi(strVE.substr(3, 2)) * 60 + stoi(strVE.substr(6, 2));
     }
     catch(...)
     {
@@ -104,6 +106,13 @@ deletePartVideo::deletePartVideo()
     if (stoi(strVE.substr(6, 2)) > 59)
     {
         temp->setText("Wrong input format. (seconds > 59)");
+        temp->exec();
+        delete temp;
+        return;
+    }
+    if (intVS > intVE)
+    {
+        temp->setText("The end time must be greater than the start time.");
         temp->exec();
         delete temp;
         return;
