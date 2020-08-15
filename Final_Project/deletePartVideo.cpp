@@ -186,9 +186,7 @@ deletePartVideo::deletePartVideo()
             delete output;
             return;
         }
-        QString t1 = "ffprobe -i ", name;
-        QFileInfo nameTemp(video);
-        name = nameTemp.fileName();
+        QString t1 = "ffprobe -i ";
         t1 += video + " -show_entries format=duration -v quiet -of csv=p=0 2>&1";
         QByteArray t2 = t1.toLocal8Bit();
         const char * t3 = t2.data();
@@ -228,5 +226,17 @@ deletePartVideo::deletePartVideo()
             delete output;
             return;
         }
+        QFileInfo nameTemp(video);
+        t1 = "ffmpeg -y -i " + video + " -filter_complex \"[0:v]trim=start=0:end=" + QString::number(intVS) + ",setpts=PTS-STARTPTS[a]; [0:v]trim=start=" + QString::number(intVE) + ":end=" + QString::number(stoi(data)) + ",setpts=PTS-STARTPTS[b]; [0:a]atrim=start=0:end=" + QString::number(intVS) + ",asetpts=PTS-STARTPTS[c]; [0:a]atrim=start=" + QString::number(intVE) + ":end=" + QString::number(stoi(data)) + ",asetpts=PTS-STARTPTS[d]; [a][c][b][d]concat=n=2:v=1:a=1[e][f]\" -map '[e]' -map '[f]' -strict -2 " +outputFolder + "/Deletr_part_video_" + nameTemp.fileName();
+        t2 = t1.toLocal8Bit();
+        t3 = t2.data();
+        system(t3);
+        delete msg;
+        delete temp;
+        delete ok;
+        delete cancel;
+        delete inputV;
+        delete output;
+        return;
     }
 }
