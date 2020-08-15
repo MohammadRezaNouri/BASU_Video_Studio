@@ -8,7 +8,7 @@ reduceVolume::reduceVolume()
     font.setBold(true);
     font.setPointSize(15);
     bool fOk;
-    int crf = QInputDialog::getInt(nullptr, "Change the volume", "Number : ", QLineEdit::Normal, 0, 51, 5, &fOk);
+    int crf = QInputDialog::getInt(nullptr, "Change the volume", "Number close to 51 = less volume\nNumber close to 0 = more volume", QLineEdit::Normal, 0, 51, 5, &fOk);
     if (!fOk)
     {
         return;
