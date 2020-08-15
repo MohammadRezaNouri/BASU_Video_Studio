@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <QFileDialog>
+#include <fstream>
 
 using namespace std;
 
@@ -87,5 +88,55 @@ connectVideos::connectVideos()
             delete output;
             return;
         }
+
+        QString t1 = outputFolder + "/file.txt";
+        ofstream file(t1.toStdString(), ios::out);
+        if(!file)
+        {
+            temp->setText("There was a problem executing this and we were unable to generate the file needed to do so.");
+            temp->exec();
+            delete ok;
+            delete inputV;
+            delete output;
+            return;
+        }
+        QFileInfo nameTemp;
+        QByteArray t2;
+        const char * t3;
+        for (int i = 0; i < ls.size(); i++)
+        {
+            nameTemp = ls[i];
+            t1 = "file 'cp_" + nameTemp.fileName() + "'\n";
+            file << t1.toStdString();
+            t1 = "cp " + ls[i] + " " + outputFolder + "/\"cp_" + nameTemp.fileName() + "\"";
+            t2 = t1.toLocal8Bit();
+            t3 = t2.data();
+            cout << "1" << t3 << endl;
+            system(t3);
+        }
+        file.close();
+        t1 = "ffmpeg -y -f concat -i " + outputFolder + "/file.txt " + outputFolder + "/Connect_videos.mp4";
+        t2 = t1.toLocal8Bit();
+        t3 = t2.data();
+        cout << "2" << t3 << endl;
+        system(t3);
+        for (int i = 0; i < ls.size(); i++)
+        {
+            nameTemp = ls[i];
+            t1 = "rm " + outputFolder + "/cp_" + nameTemp.fileName();
+            t2 = t1.toLocal8Bit();
+            t3 = t2.data();
+            cout << "3" << t3 << endl;
+            system(t3);
+        }
+        t1 = "rm " + outputFolder + "/file.txt";
+        t2 = t1.toLocal8Bit();
+        t3 = t2.data();
+        cout << "4" << t3 << endl;
+        system(t3);
+        delete ok;
+        delete inputV;
+        delete output;
+        return;
     }
 }

@@ -115,8 +115,6 @@ void MainWindow::on_convertFormat_clicked()
                     QByteArray temp2 = temp.toLocal8Bit();
                     const char * t2 = temp2.data();
                     system(t2);
-                    tempB->setText("Done.");
-                    tempB->exec();
                 }
                 else
                 {
@@ -557,12 +555,6 @@ void MainWindow::on_addRemoveAudio_clicked()
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
                     system(t2);
-                    /*int rSTimeH = stoi(strVS.substr(0, 2)); // Reduce start time hour
-                    int rSTimeM = stoi(strVS.substr(3, 2)); // Reduce start time minute
-                    int rSTimeS = stoi(strVS.substr(6, 2)); // Reduce start time Seconds
-                    int rETimeH = stoi(strVE.substr(0, 2)); // Reduce end time hour
-                    int rETimeM = stoi(strVE.substr(3, 2)); // Reduce end time minute
-                    int rETimeS = stoi(strVE.substr(6, 2)); // Reduce end time Seconds*/
                     tem = "ffmpeg -y -ss 00:00:00 -t " + QString::number((intVE - intVS) / 3600) + ":" + QString::number(((intVE - intVS) % 3600) / 60) + ":" +QString::number(((intVE - intVS) % 3600) % 60) + " -i \"" + audio + "\" " + outputFolder + "/2.mp3";
                     temp2 = tem.toLocal8Bit();
                     t2 = temp2.data();
@@ -581,6 +573,15 @@ void MainWindow::on_addRemoveAudio_clicked()
                     {
                         temp->setText("There was a problem executing this and we were unable to generate the file needed to do so.");
                         temp->exec();
+                        delete temp;
+                        delete addAudio;
+                        delete rmAudio;
+                        delete ok;
+                        delete Cancel;
+                        delete inputV;
+                        delete output;
+                        delete inputA;
+                        return;
                     }
                     file << "file '1.mp3'\nfile '2.mp3'\nfile '3.mp3'";
                     file.close();
@@ -628,6 +629,15 @@ void MainWindow::on_addRemoveAudio_clicked()
                     {
                         temp->setText("There was a problem executing this and we were unable to generate the file needed to do so.");
                         temp->exec();
+                        delete temp;
+                        delete addAudio;
+                        delete rmAudio;
+                        delete ok;
+                        delete Cancel;
+                        delete inputV;
+                        delete output;
+                        delete inputA;
+                        return;
                     }
                     file << "file '1.mp3'\nfile '2.mp3'";
                     file.close();
