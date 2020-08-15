@@ -66,6 +66,7 @@ reduceVolume::reduceVolume()
             delete output;
             delete ok;
             delete Cancel;
+            delete msg;
             return;
         }
         else if(outputFolder.size() == 0)
@@ -77,6 +78,7 @@ reduceVolume::reduceVolume()
             delete output;
             delete ok;
             delete Cancel;
+            delete msg;
             return;
         }
         else if(fileName.size() == 0)
@@ -88,6 +90,7 @@ reduceVolume::reduceVolume()
             delete output;
             delete ok;
             delete Cancel;
+            delete msg;
             return;
         }
         QString t1 = "ffmpeg -y -i ";
@@ -96,22 +99,22 @@ reduceVolume::reduceVolume()
         QByteArray t2 = t1.toLocal8Bit();
         const char * t3 = t2.data();
         system(t3);
-        delete msg;
         delete temp;
         delete input;
         delete output;
         delete ok;
         delete Cancel;
+        delete msg;
         return;
     }
     else
     {
-        delete msg;
         delete temp;
         delete input;
         delete output;
         delete ok;
         delete Cancel;
+        delete msg;
         return;
     }
 }
