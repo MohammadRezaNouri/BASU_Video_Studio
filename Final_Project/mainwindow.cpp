@@ -8,6 +8,7 @@
 #include <fstream>
 #include "connectVideos.h"
 #include "deletePartVideo.h"
+#include "reduceVolume.h"
 
 using namespace std;
 
@@ -963,5 +964,5 @@ void MainWindow::on_deletePartVideo_clicked()
 
 void MainWindow::on_reduceVolume_clicked()
 {
-
+    reduceVolume start;
 }
