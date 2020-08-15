@@ -117,4 +117,22 @@ deletePartVideo::deletePartVideo()
         delete temp;
         return;
     }
+    QMessageBox * msg = new QMessageBox();
+    msg->setIcon(QMessageBox::Icon::Information);
+    msg->setFont(font);
+    msg->setWindowTitle("Delete parts of the video");
+    msg->setText("Please select : ");
+    QPushButton * video = new QPushButton(), * outFolder = new QPushButton(), * ok = new QPushButton(), * cancel = new QPushButton();
+    video = msg->addButton("Input Video", QMessageBox::ActionRole);
+    video->setShortcut(Qt::CTRL + Qt::Key_V);
+    video->setToolTip("Ctrl+V");
+    outFolder = msg->addButton("Output folder", QMessageBox::ActionRole);
+    outFolder->setShortcut(Qt::CTRL + Qt::Key_F);
+    outFolder->setToolTip("Ctrl+F");
+    cancel = msg->addButton("Cancel", QMessageBox::ActionRole);
+    cancel->setShortcut(Qt::CTRL + Qt::Key_Q);
+    cancel->setToolTip("Ctrl+Q");
+    ok = msg->addButton("Ok", QMessageBox::ActionRole);
+    ok->setShortcut(Qt::CTRL + Qt::Key_K);
+    ok->setToolTip("Ctrl+K");
 }
