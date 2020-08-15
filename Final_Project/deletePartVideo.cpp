@@ -186,5 +186,47 @@ deletePartVideo::deletePartVideo()
             delete output;
             return;
         }
+        QString t1 = "ffprobe -i ", name;
+        QFileInfo nameTemp(video);
+        name = nameTemp.fileName();
+        t1 += video + " -show_entries format=duration -v quiet -of csv=p=0 2>&1";
+        QByteArray t2 = t1.toLocal8Bit();
+        const char * t3 = t2.data();
+        string data;
+        FILE * stream;
+        const int max_buffer = 256;
+        char buffer[max_buffer];
+        stream = popen(t3, "r");
+        if (stream)
+        {
+            while (!feof(stream))
+                if (fgets(buffer, max_buffer, stream) != nullptr) data.append(buffer);
+            pclose(stream);
+        }
+
+        if (intVS > stoi(data))
+        {
+            temp->setText("The initial time is longer than the total time.");
+            temp->exec();
+            delete msg;
+            delete temp;
+            delete ok;
+            delete cancel;
+            delete inputV;
+            delete output;
+            return;
+        }
+        if (intVE > stoi(data))
+        {
+            temp->setText("The end time is longer than the total time.");
+            temp->exec();
+            delete msg;
+            delete temp;
+            delete ok;
+            delete cancel;
+            delete inputV;
+            delete output;
+            return;
+        }
     }
 }
