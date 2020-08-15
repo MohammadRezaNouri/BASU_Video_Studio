@@ -13,7 +13,7 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    ~MainWindow() override;
 protected:
     void resizeEvent(QResizeEvent* evt) override;
 private slots:
@@ -26,6 +26,8 @@ private slots:
     void on_connectVideos_clicked();
 
     void on_deletePartVideo_clicked();
+
+    void on_reduceVolume_clicked();
 
 private:
     Ui::MainWindow *ui;
