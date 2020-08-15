@@ -954,3 +954,8 @@ void MainWindow::on_connectVideos_clicked()
 {
     connectVideos start;
 }
+
+void MainWindow::on_deletePartVideo_clicked()
+{
+
+}
