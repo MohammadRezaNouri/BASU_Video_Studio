@@ -29,12 +29,14 @@ SOURCES += \
         deletePartVideo.cpp \
         main.cpp \
         mainwindow.cpp \
+        play.cpp \
         reduceVolume.cpp
 
 HEADERS += \
         connectVideos.h \
         deletePartVideo.h \
         mainwindow.h \
+        play.h \
         reduceVolume.h
 
 FORMS += \
