@@ -9,6 +9,7 @@
 #include "connectVideos.h"
 #include "deletePartVideo.h"
 #include "reduceVolume.h"
+#include "play.h"
 
 using namespace std;
 
@@ -969,5 +970,5 @@ void MainWindow::on_reduceVolume_clicked()
 
 void MainWindow::on_play_clicked()
 {
-
+    play start;
 }
