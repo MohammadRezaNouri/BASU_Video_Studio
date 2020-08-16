@@ -44,7 +44,7 @@ public:
         icon.addFile(QString::fromUtf8("../70-704221_png-file-svg-video-edit-icon-png-clipart.jpeg"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
         MainWindow->setToolTipDuration(-1);
-        MainWindow->setToolButtonStyle(Qt::ToolButtonIconOnly);
+        MainWindow->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         convertFormat = new QPushButton(centralWidget);
@@ -146,7 +146,6 @@ public:
         changeResolution = new QPushButton(centralWidget);
         changeResolution->setObjectName(QString::fromUtf8("changeResolution"));
         changeResolution->setGeometry(QRect(40, 100, 321, 61));
-        changeResolution->setMinimumSize(QSize(321, 0));
         QPalette palette1;
         palette1.setBrush(QPalette::Active, QPalette::WindowText, brush);
         palette1.setBrush(QPalette::Active, QPalette::Button, brush1);
@@ -518,13 +517,12 @@ public:
         deletePartVideo->setFont(font2);
         deletePartVideo->setCursor(QCursor(Qt::PointingHandCursor));
         MainWindow->setCentralWidget(centralWidget);
-        changeResolution->raise();
-        addRemoveAudio->raise();
-        connectVideos->raise();
-        play->raise();
-        reduceVolume->raise();
-        deletePartVideo->raise();
-        convertFormat->raise();
+        QWidget::setTabOrder(deletePartVideo, addRemoveAudio);
+        QWidget::setTabOrder(addRemoveAudio, changeResolution);
+        QWidget::setTabOrder(changeResolution, connectVideos);
+        QWidget::setTabOrder(connectVideos, convertFormat);
+        QWidget::setTabOrder(convertFormat, play);
+        QWidget::setTabOrder(play, reduceVolume);
 
         retranslateUi(MainWindow);
 

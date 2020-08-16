@@ -1509,7 +1509,12 @@ reduceVolume.o: ../Final_Project/reduceVolume.cpp ../Final_Project/reduceVolume.
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qtextformat.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qpen.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qtextoption.h \
-		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qdialog.h
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qdialog.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qmessagebox.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QFileDialog \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qfiledialog.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtCore/qdir.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtCore/qfileinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o reduceVolume.o ../Final_Project/reduceVolume.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 

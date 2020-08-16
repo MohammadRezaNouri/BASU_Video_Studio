@@ -29,6 +29,8 @@ private slots:
 
     void on_reduceVolume_clicked();
 
+    void on_play_clicked();
+
 private:
     Ui::MainWindow *ui;
 };

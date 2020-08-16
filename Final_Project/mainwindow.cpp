@@ -966,3 +966,8 @@ void MainWindow::on_reduceVolume_clicked()
 {
     reduceVolume start;
 }
+
+void MainWindow::on_play_clicked()
+{
+
+}

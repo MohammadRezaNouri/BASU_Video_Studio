@@ -39,7 +39,7 @@
    <string/>
   </property>
   <property name="toolButtonStyle">
-   <enum>Qt::ToolButtonIconOnly</enum>
+   <enum>Qt::ToolButtonTextUnderIcon</enum>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="convertFormat">
@@ -570,12 +570,6 @@
       <width>321</width>
       <height>61</height>
      </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>321</width>
-      <height>0</height>
-     </size>
     </property>
     <property name="palette">
      <palette>
@@ -3409,16 +3403,18 @@
      <string>Ctrl+5</string>
     </property>
    </widget>
-   <zorder>changeResolution</zorder>
-   <zorder>addRemoveAudio</zorder>
-   <zorder>connectVideos</zorder>
-   <zorder>play</zorder>
-   <zorder>reduceVolume</zorder>
-   <zorder>deletePartVideo</zorder>
-   <zorder>convertFormat</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>deletePartVideo</tabstop>
+  <tabstop>addRemoveAudio</tabstop>
+  <tabstop>changeResolution</tabstop>
+  <tabstop>connectVideos</tabstop>
+  <tabstop>convertFormat</tabstop>
+  <tabstop>play</tabstop>
+  <tabstop>reduceVolume</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
