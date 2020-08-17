@@ -48,25 +48,7 @@ convertFormat::convertFormat()
             }
             else
             {
-                QString temp = "ffmpeg -i ", name;
-                if(format == "gif")
-                {
-                    QFileInfo nameTemp(fileName);
-                    name = nameTemp.fileName();
-                    temp += fileName + " -y -vf scale=500:-1 -t 10 -r 10 " + outputFolder + "/" + name +"_Convert_format_is_Basu_Video_Studio." + format;
-                    QByteArray temp2 = temp.toLocal8Bit();
-                    const char * t2 = temp2.data();
-                    system(t2);
-                }
-                else
-                {
-                    QFileInfo nameTemp(fileName);
-                    name = nameTemp.fileName();
-                    temp += fileName + " -y -c:v libx264 -preset ultrafast " + outputFolder + "/" + name +"_Convert_format_is_Basu_Video_Studio." + format;
-                    QByteArray temp2 = temp.toLocal8Bit();
-                    const char * t2 = temp2.data();
-                    system(t2);
-                }
+                ffmpeg();
             }
         }
     }
@@ -137,4 +119,27 @@ void convertFormat::setToolTip()
     output->setToolTip("Ctrl+F");
     ok->setToolTip("Ctrl+K");
     Cancel->setToolTip("Ctrl+Q");
+}
+
+void convertFormat::ffmpeg()
+{
+    QString temp = "ffmpeg -i ", name;
+    if(format == "gif")
+    {
+        QFileInfo nameTemp(fileName);
+        name = nameTemp.fileName();
+        temp += fileName + " -y -vf scale=500:-1 -t 10 -r 10 " + outputFolder + "/" + name +"_Convert_format_is_Basu_Video_Studio." + format;
+        QByteArray temp2 = temp.toLocal8Bit();
+        const char * t2 = temp2.data();
+        system(t2);
+    }
+    else
+    {
+        QFileInfo nameTemp(fileName);
+        name = nameTemp.fileName();
+        temp += fileName + " -y -c:v libx264 -preset ultrafast " + outputFolder + "/" + name +"_Convert_format_is_Basu_Video_Studio." + format;
+        QByteArray temp2 = temp.toLocal8Bit();
+        const char * t2 = temp2.data();
+        system(t2);
+    }
 }

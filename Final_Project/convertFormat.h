@@ -12,6 +12,7 @@ public:
     void setMsgButtons();
     void setShortcut();
     void setToolTip();
+    void ffmpeg();
 private:
     QMessageBox * msg, * tempB;
     QPushButton * input, * output, * ok, * Cancel;
