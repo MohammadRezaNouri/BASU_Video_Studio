@@ -7,11 +7,11 @@ class convertFormat
 {
 public:
     convertFormat();
-    ~convertFormat();
+    void setWFIOk();//set window title & icon & ok button
 private:
     QMessageBox * msg, * tempB;
     QPushButton * input, * output, * ok, * Cancel;
-    QString format;
+    QString format, fileName, outputFolder;
 };
 
 #endif // CONVERTFORMAT_H
