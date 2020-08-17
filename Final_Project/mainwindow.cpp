@@ -1,11 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "QFileDialog"
-#include "qmessagebox.h"
-#include <QInputDialog>
-#include <iostream>
-#include <string>
-#include <fstream>
 #include "connectVideos.h"
 #include "deletePartVideo.h"
 #include "reduceVolume.h"
