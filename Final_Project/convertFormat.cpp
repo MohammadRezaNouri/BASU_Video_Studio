@@ -79,6 +79,11 @@ convertFormat::convertFormat()
         msg->setIcon(QMessageBox::Icon::Critical);
         msg->exec();
     }
+}
+
+convertFormat::~convertFormat()
+{
+    delete msg;
     delete tempB;
     delete input;
     delete output;

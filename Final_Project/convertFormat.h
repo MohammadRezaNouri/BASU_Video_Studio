@@ -7,6 +7,7 @@ class convertFormat
 {
 public:
     convertFormat();
+    ~convertFormat();
     void setWFIOk();//set window title & icon & ok button
     void setMsgButtons();
     void setShortcut();
