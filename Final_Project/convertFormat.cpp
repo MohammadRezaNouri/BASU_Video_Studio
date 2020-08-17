@@ -1,36 +1,36 @@
 #include "convertFormat.h"
 #include "ui_mainwindow.h"
 #include "QFileDialog"
-#include "qmessagebox.h"
 #include <QInputDialog>
 
 convertFormat::convertFormat()
 {
+    bool fOk;
+    format = QInputDialog::getText(nullptr, "Output format", "Format : ", QLineEdit::Normal, "Example: mp3", &fOk);
+    if (!fOk)
+    {
+        return;
+    }
     QFont font;
     font.setBold(true);
     font.setPointSize(15);
     QString formats = "*.mp4 *.m4a *.f4v *.f4a *.m4b *.m4r *.f4b *.mov *.3gp *.3gp2 *.3g2 *.3gpp *.3gpp2 *.ogg *.oga *.ogv *.ogx *.wmv *.wma *.asf *.webm *.flv *.mkv *.vob *.drc *.gif *.gifv *.mng *.avi *.MTS *.M2TS *.TS *.qt *.yuv *.tm *.rmvb *.viv *.amv *.m4p *.m4v *.mpg *.mpeg *.mp2 *.mpe *.mpv *.m2v *.svi *.mxf *.roq *.nsv *.f4p *.flac *.mp3 *.wav *.aac *.aa *.aax *.act *.aiff *.alac *.amr *.ape *.au *.awb *.dct *.dss *.dvf *.gsm *.iklax *.ivs *.mmf *.mpc *.msv *.nmf *.mogg *.opus *.ra *.rm *.raw *.rf64 *.sln *.tta *.voc *.vox *.wv *.8svx *.cda)";
-    QMessageBox * msg = new QMessageBox();
+    msg = new QMessageBox();
     msg->setWindowTitle("Convert video and audio formats");
-    QMessageBox * tempB = new QMessageBox();
+    tempB = new QMessageBox();
     tempB->setWindowTitle("Convert video and audio formats");
     msg->setFont(font);
     tempB->setIcon(QMessageBox::Icon::Critical);
     tempB->setFont(font);
-    bool fOk;
-    QString format = QInputDialog::getText(nullptr, "Output format", "Format : ", QLineEdit::Normal, "Example: mp3", &fOk);
-    if (!fOk)
-    {
-        delete msg;
-        delete tempB;
-        return;
-    }
-    QPushButton * input = new QPushButton(), * output = new QPushButton(), * ok = new QPushButton(), * Cancel = new QPushButton();
+    input = new QPushButton();
+    output = new QPushButton();
+    ok = new QPushButton();
+    Cancel = new QPushButton();
     ok = tempB->addButton(("Ok"), QMessageBox::ActionRole);
     ok->setShortcut(Qt::CTRL + Qt::Key_K);
     ok->setToolTip("Ctrl+K");
     QString fileName, outputFolder;
-    if (formats.contains(format) == true)
+    if (formats.contains(format) == true) // Search input format to all formats
     {
         msg->setIcon(QMessageBox::Icon::Information);
         input = msg->addButton(("Input file"), QMessageBox::ActionRole);
