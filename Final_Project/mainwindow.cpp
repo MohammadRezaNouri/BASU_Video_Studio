@@ -10,13 +10,7 @@
 #include "deletePartVideo.h"
 #include "reduceVolume.h"
 #include "play.h"
-
- #include <QMediaPlayer>
-#include <QVideoWidget>
-#include <QDebug>
-#include <QHBoxLayout>
-#include <QBuffer>
-#include <QAbstractVideoSurface>
+#include "convertFormat.h"
 
 using namespace std;
 
@@ -45,113 +39,7 @@ void MainWindow::resizeEvent(QResizeEvent* evt)
 
 void MainWindow::on_convertFormat_clicked()
 {
-    QFont font;
-    font.setBold(true);
-    font.setPointSize(15);
-    QString formats = "*.mp4 *.m4a *.f4v *.f4a *.m4b *.m4r *.f4b *.mov *.3gp *.3gp2 *.3g2 *.3gpp *.3gpp2 *.ogg *.oga *.ogv *.ogx *.wmv *.wma *.asf *.webm *.flv *.mkv *.vob *.drc *.gif *.gifv *.mng *.avi *.MTS *.M2TS *.TS *.qt *.yuv *.tm *.rmvb *.viv *.amv *.m4p *.m4v *.mpg *.mpeg *.mp2 *.mpe *.mpv *.m2v *.svi *.mxf *.roq *.nsv *.f4p *.flac *.mp3 *.wav *.aac *.aa *.aax *.act *.aiff *.alac *.amr *.ape *.au *.awb *.dct *.dss *.dvf *.gsm *.iklax *.ivs *.mmf *.mpc *.msv *.nmf *.mogg *.opus *.ra *.rm *.raw *.rf64 *.sln *.tta *.voc *.vox *.wv *.8svx *.cda)";
-    QMessageBox * msg = new QMessageBox();
-    msg->setWindowTitle("Convert video and audio formats");
-    QMessageBox * tempB = new QMessageBox();
-    tempB->setWindowTitle("Convert video and audio formats");
-    msg->setFont(font);
-    tempB->setIcon(QMessageBox::Icon::Critical);
-    tempB->setFont(font);
-    bool fOk;
-    QString format = QInputDialog::getText(this, tr("Output format"), tr("Format : "), QLineEdit::Normal, "Example: mp3", &fOk);
-    if (!fOk)
-    {
-        delete msg;
-        delete tempB;
-        return;
-    }
-    QPushButton * input = new QPushButton(), * output = new QPushButton(), * ok = new QPushButton(), * Cancel = new QPushButton();
-    ok = tempB->addButton((tr("Ok")), QMessageBox::ActionRole);
-    ok->setShortcut(Qt::CTRL + Qt::Key_K);
-    ok->setToolTip("Ctrl+K");
-    QString fileName, outputFolder;
-    if (formats.contains(format) == true)
-    {
-        msg->setIcon(QMessageBox::Icon::Information);
-        input = msg->addButton((tr("Input file")), QMessageBox::ActionRole);
-        input->setShortcut(Qt::CTRL + Qt::Key_O);
-        input->setToolTip("Ctrl+O");
-        output = msg->addButton((tr("Output folder")), QMessageBox::ActionRole);
-        output->setShortcut(Qt::CTRL + Qt::Key_F);
-        output->setToolTip("Ctrl+F");
-        ok = msg->addButton((tr("Ok")), QMessageBox::ActionRole);
-        ok->setShortcut(Qt::CTRL + Qt::Key_K);
-        ok->setToolTip("Ctrl+K");
-        Cancel = msg->addButton((tr("Cancel")), QMessageBox::ActionRole);
-        Cancel->setShortcut(Qt::CTRL + Qt::Key_Q);
-        Cancel->setToolTip("Ctrl+Q");
-        msg->setText("Please select the file and its storage location.");
-        click:
-        msg->exec();
-        if(msg->clickedButton() == input)
-        {
-            fileName = QFileDialog::getOpenFileName(this, tr("Open Video | Open Music"), "", tr("Video Files | Music Files(*.mp4 *.m4a *.f4v *.f4a *.m4b *.m4r *.f4b *.mov *.3gp *.3gp2 *.3g2 *.3gpp *.3gpp2 *.ogg *.oga *.ogv *.ogx *.wmv *.wma *.asf *.webm *.flv *.mkv *.vob *.drc *.gif *.gifv *.mng *.avi *.MTS *.M2TS *.TS *.qt *.yuv *.tm *.rmvb *.viv *.amv *.m4p *.m4v *.mpg *.mpeg *.mp2 *.mpe *.mpv *.m2v *.svi *.mxf *.roq *.nsv *.f4p *.flac *.mp3 *.wav *.aac *.aa *.aax *.act *.aiff *.alac *.amr *.ape *.au *.awb *.dct *.dss *.dvf *.gsm *.iklax *.ivs *.mmf *.mpc *.msv *.nmf *.mogg *.opus *.ra *.rm *.raw *.rf64 *.sln *.tta *.voc *.vox *.wv *.8svx *.cda)"));
-            goto click;
-        }
-        else if(msg->clickedButton() == output)
-        {
-            outputFolder = QFileDialog::getExistingDirectory(this, ("Select Output Folder"), QDir::currentPath());
-            goto click;
-        }
-        else if(msg->clickedButton() == ok)
-        {
-            if(fileName.size() == 0 && outputFolder.size() == 0)
-            {
-                tempB->setText("File and path not selected.");
-                tempB->exec();
-            }
-            else if(outputFolder.size() == 0)
-            {
-                tempB->setText("No route selected.");
-                tempB->exec();
-            }
-            else if(fileName.size() == 0)
-            {
-                tempB->setText("No file selected.");
-                tempB->exec();
-            }
-            else
-            {
-                QString temp = "ffmpeg -i ", name;
-                if(format == "gif")
-                {
-                    QFileInfo nameTemp(fileName);
-                    name = nameTemp.fileName();
-                    temp += fileName + " -y -vf scale=500:-1 -t 10 -r 10 " + outputFolder + "/" + name +"_Convert_format_is_Basu_Video_Studio." + format;
-                    QByteArray temp2 = temp.toLocal8Bit();
-                    const char * t2 = temp2.data();
-                    system(t2);
-                }
-                else
-                {
-                    QFileInfo nameTemp(fileName);
-                    name = nameTemp.fileName();
-                    temp += fileName + " -y -c:v libx264 -preset ultrafast " + outputFolder + "/" + name +"_Convert_format_is_Basu_Video_Studio." + format;
-                    QByteArray temp2 = temp.toLocal8Bit();
-                    const char * t2 = temp2.data();
-                    system(t2);
-                }
-            }
-        }
-    }
-    else
-    {
-        ok = msg->addButton((tr("Ok")), QMessageBox::ActionRole);
-        ok->setShortcut(Qt::CTRL + Qt::Key_K);
-        ok->setToolTip("Ctrl+K");
-        msg->setText("The format entered is incorrect.");
-        msg->setIcon(QMessageBox::Icon::Critical);
-        msg->exec();
-    }
-    delete tempB;
-    delete input;
-    delete output;
-    delete ok;
-    delete Cancel;
+    convertFormat start;
 }
 
 void MainWindow::on_changeResolution_clicked()
@@ -975,62 +863,7 @@ void MainWindow::on_reduceVolume_clicked()
     reduceVolume start;
 }
 
-class Surface : public QAbstractVideoSurface
-{
-public:
-    Surface(QObject *p) : QAbstractVideoSurface(p) { }
-    QList<QVideoFrame::PixelFormat> supportedPixelFormats(QAbstractVideoBuffer::HandleType) const override
-    {
-        // Make sure that the driver supports this pixel format.
-        return QList<QVideoFrame::PixelFormat>() << QVideoFrame::Format_YUYV;
-    }
-
-    // Video frames are handled here.
-    bool present(const QVideoFrame &) override { return true; }
-};
-
 void MainWindow::on_play_clicked()
 {
-    QMediaPlayer *player = new QMediaPlayer;
-    QVideoWidget *videoWidget = new QVideoWidget;
-
-
-
-    player = new QMediaPlayer;
-    player->setVideoOutput(new Surface(player));
-    player->setMedia(QUrl("/home/mohammad/Desktop/test/inVn.mp4"));
-    player->play();
-
-    /*player = new QMediaPlayer;
-    player->setMedia(QUrl("gst-pipeline: videotestsrc ! autovideosink"));
-    player->play();*/
-
-    /*videoWidget->show();
-    player->setVideoOutput(videoWidget);
-    player->setMedia(QUrl("gst-pipeline: videotestsrc ! xvimagesink name=/home/mohammad/Desktop/test/inV.mp4"));
-    player->play();*/
-
-    /*QImage img("../background.jpg");
-    img = img.convertToFormat(QImage::Format_ARGB32);
-    QByteArray ba(reinterpret_cast<const char *>(img.bits()), img.sizeInBytes());
-    QBuffer buffer(&ba);
-    buffer.open(QIODevice::ReadOnly);
-    QMediaPlayer *player = new QMediaPlayer;
-    player->setMedia(QUrl("gst-pipeline: appsrc blocksize=4294967295 ! \
-        video/x-raw,format=BGRx,framerate=30/1,width=200,height=147 ! \
-        coloreffects preset=heat ! videoconvert ! video/x-raw,format=I420 ! jpegenc ! rtpjpegpay ! \
-        udpsink host=127.0.0.1 port=5000"), &buffer);
-    player->play();
-
-    QMediaPlayer *receiver = new QMediaPlayer;
-    QVideoWidget *videoWidget = new QVideoWidget;
-    receiver->setVideoOutput(videoWidget);
-    receiver->setMedia(QUrl("gst-pipeline: udpsrc port=5000 ! \
-        application/x-rtp,encoding-name=JPEG,payload=26 ! rtpjpegdepay ! jpegdec ! \
-        xvimagesink name=/home/mohammad/Desktop/test/inV.mp4"));
-    receiver->play();
-    // Content will be shown in this widget.
-    videoWidget->show();*/
-
-    //play start;
+    play start;
 }
