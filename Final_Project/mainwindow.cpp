@@ -11,6 +11,13 @@
 #include "reduceVolume.h"
 #include "play.h"
 
+ #include <QMediaPlayer>
+#include <QVideoWidget>
+#include <QDebug>
+#include <QHBoxLayout>
+#include <QBuffer>
+#include <QAbstractVideoSurface>
+
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
@@ -968,7 +975,62 @@ void MainWindow::on_reduceVolume_clicked()
     reduceVolume start;
 }
 
+class Surface : public QAbstractVideoSurface
+{
+public:
+    Surface(QObject *p) : QAbstractVideoSurface(p) { }
+    QList<QVideoFrame::PixelFormat> supportedPixelFormats(QAbstractVideoBuffer::HandleType) const override
+    {
+        // Make sure that the driver supports this pixel format.
+        return QList<QVideoFrame::PixelFormat>() << QVideoFrame::Format_YUYV;
+    }
+
+    // Video frames are handled here.
+    bool present(const QVideoFrame &) override { return true; }
+};
+
 void MainWindow::on_play_clicked()
 {
-    play start;
+    QMediaPlayer *player = new QMediaPlayer;
+    QVideoWidget *videoWidget = new QVideoWidget;
+
+
+
+    player = new QMediaPlayer;
+    player->setVideoOutput(new Surface(player));
+    player->setMedia(QUrl("/home/mohammad/Desktop/test/inVn.mp4"));
+    player->play();
+
+    /*player = new QMediaPlayer;
+    player->setMedia(QUrl("gst-pipeline: videotestsrc ! autovideosink"));
+    player->play();*/
+
+    /*videoWidget->show();
+    player->setVideoOutput(videoWidget);
+    player->setMedia(QUrl("gst-pipeline: videotestsrc ! xvimagesink name=/home/mohammad/Desktop/test/inV.mp4"));
+    player->play();*/
+
+    /*QImage img("../background.jpg");
+    img = img.convertToFormat(QImage::Format_ARGB32);
+    QByteArray ba(reinterpret_cast<const char *>(img.bits()), img.sizeInBytes());
+    QBuffer buffer(&ba);
+    buffer.open(QIODevice::ReadOnly);
+    QMediaPlayer *player = new QMediaPlayer;
+    player->setMedia(QUrl("gst-pipeline: appsrc blocksize=4294967295 ! \
+        video/x-raw,format=BGRx,framerate=30/1,width=200,height=147 ! \
+        coloreffects preset=heat ! videoconvert ! video/x-raw,format=I420 ! jpegenc ! rtpjpegpay ! \
+        udpsink host=127.0.0.1 port=5000"), &buffer);
+    player->play();
+
+    QMediaPlayer *receiver = new QMediaPlayer;
+    QVideoWidget *videoWidget = new QVideoWidget;
+    receiver->setVideoOutput(videoWidget);
+    receiver->setMedia(QUrl("gst-pipeline: udpsrc port=5000 ! \
+        application/x-rtp,encoding-name=JPEG,payload=26 ! rtpjpegdepay ! jpegdec ! \
+        xvimagesink name=/home/mohammad/Desktop/test/inV.mp4"));
+    receiver->play();
+    // Content will be shown in this widget.
+    videoWidget->show();*/
+
+    //play start;
 }

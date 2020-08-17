@@ -1,5 +1,6 @@
 #include "play.h"
 #include "ui_mainwindow.h"
+#include "qmessagebox.h"
 
 play::play()
 {

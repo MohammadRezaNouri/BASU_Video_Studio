@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-
+ QT += multimedia multimediawidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -26,6 +26,7 @@ CONFIG += c++11
 
 SOURCES += \
         connectVideos.cpp \
+        convertFormat.cpp \
         deletePartVideo.cpp \
         main.cpp \
         mainwindow.cpp \
@@ -34,6 +35,7 @@ SOURCES += \
 
 HEADERS += \
         connectVideos.h \
+        convertFormat.h \
         deletePartVideo.h \
         mainwindow.h \
         play.h \
