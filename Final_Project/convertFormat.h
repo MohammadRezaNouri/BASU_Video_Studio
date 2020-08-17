@@ -14,8 +14,8 @@ public:
     void setToolTip();
     void ffmpeg();
 private:
-    QMessageBox * msg, * tempB;
-    QPushButton * input, * output, * ok, * Cancel;
+    QMessageBox * msg = nullptr, * temp = nullptr;
+    QPushButton * input = nullptr, * output = nullptr, * ok = nullptr, * Cancel = nullptr;
     QString format, fileName, outputFolder;
 };
 

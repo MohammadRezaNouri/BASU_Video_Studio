@@ -33,18 +33,18 @@ convertFormat::convertFormat()
         {
             if(fileName.size() == 0 && outputFolder.size() == 0)
             {
-                tempB->setText("File and path not selected.");
-                tempB->exec();
+                temp->setText("File and path not selected.");
+                temp->exec();
             }
             else if(outputFolder.size() == 0)
             {
-                tempB->setText("No route selected.");
-                tempB->exec();
+                temp->setText("No route selected.");
+                temp->exec();
             }
             else if(fileName.size() == 0)
             {
-                tempB->setText("No file selected.");
-                tempB->exec();
+                temp->setText("No file selected.");
+                temp->exec();
             }
             else
             {
@@ -65,12 +65,30 @@ convertFormat::convertFormat()
 
 convertFormat::~convertFormat()
 {
-    delete msg;
-    delete tempB;
-    delete input;
-    delete output;
-    delete ok;
-    delete Cancel;
+    if(msg != nullptr)
+    {
+        delete msg;
+    }
+    if(temp != nullptr)
+    {
+        delete temp;
+    }
+    if(input == nullptr)
+    {
+        delete input;
+    }
+    if(output != nullptr)
+    {
+        delete output;
+    }
+    if(ok != nullptr)
+    {
+        delete ok;
+    }
+    if(Cancel != nullptr)
+    {
+        delete Cancel;
+    }
 }
 
 void convertFormat::setWFIOk()
@@ -81,12 +99,12 @@ void convertFormat::setWFIOk()
     msg = new QMessageBox();
     msg->setWindowTitle("Convert video and audio formats");
     msg->setFont(font);
-    tempB = new QMessageBox();
-    tempB->setWindowTitle("Convert video and audio formats");
-    tempB->setIcon(QMessageBox::Icon::Critical);
-    tempB->setFont(font);
+    temp = new QMessageBox();
+    temp->setWindowTitle("Convert video and audio formats");
+    temp->setIcon(QMessageBox::Icon::Critical);
+    temp->setFont(font);
     ok = new QPushButton();
-    ok = tempB->addButton(("Ok"), QMessageBox::ActionRole);
+    ok = temp->addButton(("Ok"), QMessageBox::ActionRole);
     ok->setShortcut(Qt::CTRL + Qt::Key_K);
     ok->setToolTip("Ctrl+K");
 }
