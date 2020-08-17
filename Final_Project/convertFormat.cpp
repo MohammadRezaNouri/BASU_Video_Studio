@@ -114,6 +114,8 @@ void convertFormat::setMsgButtons()
     output = msg->addButton("Output folder", QMessageBox::ActionRole);
     ok = msg->addButton("Ok", QMessageBox::ActionRole);
     Cancel = msg->addButton("Cancel", QMessageBox::ActionRole);
+    setShortcut();
+    setToolTip();
 }
 
 void convertFormat::setShortcut()
