@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        changeResolution.cpp \
         connectVideos.cpp \
         convertFormat.cpp \
         deletePartVideo.cpp \
@@ -34,6 +35,7 @@ SOURCES += \
         reduceVolume.cpp
 
 HEADERS += \
+        changeResolution.h \
         connectVideos.h \
         convertFormat.h \
         deletePartVideo.h \
