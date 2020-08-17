@@ -10,6 +10,7 @@ public:
     void setWFIOk();//set window title & icon & ok button
     void setMsgButtons();
     void setShortcut();
+    void setToolTip();
 private:
     QMessageBox * msg, * tempB;
     QPushButton * input, * output, * ok, * Cancel;

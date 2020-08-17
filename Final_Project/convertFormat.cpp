@@ -111,13 +111,9 @@ void convertFormat::setMsgButtons()
     Cancel = new QPushButton();
     msg->setIcon(QMessageBox::Icon::Information);
     input = msg->addButton(("Input file"), QMessageBox::ActionRole);
-    input->setToolTip("Ctrl+O");
     output = msg->addButton("Output folder", QMessageBox::ActionRole);
-    output->setToolTip("Ctrl+F");
     ok = msg->addButton("Ok", QMessageBox::ActionRole);
-    ok->setToolTip("Ctrl+K");
     Cancel = msg->addButton("Cancel", QMessageBox::ActionRole);
-    Cancel->setToolTip("Ctrl+Q");
 }
 
 void convertFormat::setShortcut()
@@ -126,4 +122,12 @@ void convertFormat::setShortcut()
     output->setShortcut(Qt::CTRL + Qt::Key_F);
     ok->setShortcut(Qt::CTRL + Qt::Key_K);
     Cancel->setShortcut(Qt::CTRL + Qt::Key_Q);
+}
+
+void convertFormat::setToolTip()
+{
+    input->setToolTip("Ctrl+O");
+    output->setToolTip("Ctrl+F");
+    ok->setToolTip("Ctrl+K");
+    Cancel->setToolTip("Ctrl+Q");
 }
