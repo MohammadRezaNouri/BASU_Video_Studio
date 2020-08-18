@@ -7,7 +7,6 @@
 #include "convertFormat.h"
 #include "changeResolution.h"
 #include "addRemoveAudio.h"
-#include "videoEditor.h"
 
 using namespace std;
 
@@ -36,12 +35,7 @@ void MainWindow::resizeEvent(QResizeEvent* evt)
 
 void MainWindow::on_convertFormat_clicked()
 {
-    videoEditor * start[2];
-    start[0] = new videoEditor;
-    start[1] = new convertFormat;
-    convertFormat * w;
-    w = dynamic_cast<convertFormat*>(start[1]);
-    //convertFormat start;
+    convertFormat start;
 }
 
 void MainWindow::on_changeResolution_clicked()
