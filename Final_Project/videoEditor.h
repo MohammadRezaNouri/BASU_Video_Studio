@@ -3,25 +3,33 @@
 
 #include "qmessagebox.h"
 
+using namespace std;
+
 class videoEditor
 {
 public:
     virtual ~videoEditor();
-    void setWFIOk(QString);//set window title & icon & ok button
+    virtual void setWFIOk(QString);//set window title & icon & ok button
     void setMsgButtons();
-    void setShortcut();
-    void setToolTip();
-    void msgNotFilePath();
-    void msgNotPath();
-    void msgNotFile();
+    virtual void setShortcut();
+    virtual void setToolTip();
+    void msgTemp(QString);
     virtual void ffmpeg();
-    void command(QString);
+    bool command(QString);
     QString getName();
+    bool ffprobe();
+    bool checkTime(QString, int);
+    bool checkSecTime();
+    virtual bool fullInput();
 protected:
     QMessageBox * msg = nullptr, * temp = nullptr;
     QPushButton * input = nullptr, * output = nullptr, * ok = nullptr, * Cancel = nullptr;
     QString fileName, outputFolder;
     bool fOk;
+    int intVS,intVE; // int video start & end (Seconds)
+    string data; //data = get command data
+
+
 };
 
 #endif // VIDEOEDITOR_H

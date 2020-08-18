@@ -3,7 +3,7 @@
 #include "QFileDialog"
 #include "qmessagebox.h"
 #include <QInputDialog>
-
+#include <iostream>
 changeResolution::changeResolution()
 {
     width = QInputDialog::getInt(nullptr, "Output width", "Width : ", QLineEdit::Normal, 1, 2147483647, 50, &fOk);
@@ -33,19 +33,7 @@ changeResolution::changeResolution()
     }
     else if(msg->clickedButton() == ok)
     {
-        if(fileName.size() == 0 && outputFolder.size() == 0)
-        {
-            msgNotFilePath();
-        }
-        else if(outputFolder.size() == 0)
-        {
-            msgNotPath();
-        }
-        else if(fileName.size() == 0)
-        {
-            msgNotFile();
-        }
-        else
+        if(fullInput())
         {
             ffmpeg();
         }
@@ -56,5 +44,14 @@ void changeResolution::ffmpeg()
 {
     QString temp = "ffmpeg -i ";
     temp += fileName + " -y -s " + QString::number(width) + "x" + QString::number(height) + " -c:a copy " + outputFolder + "/Change_resolution_is_Basu_Video_Studio_" + getName();
-    command(temp);
+    msgTemp("Please click the OK button and wait for the result page to appear.");
+    if(command(temp))
+    {
+        msgTemp("Done");
+    }
+    else
+    {
+        command("rm " + outputFolder + "/Change_resolution_is_Basu_Video_Studio_" + getName());
+        msgTemp("This is not possible!");
+    }
 }

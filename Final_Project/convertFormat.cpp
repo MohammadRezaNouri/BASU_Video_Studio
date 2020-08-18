@@ -30,19 +30,7 @@ convertFormat::convertFormat()
         }
         else if(msg->clickedButton() == ok)
         {
-            if(fileName.size() == 0 && outputFolder.size() == 0)
-            {
-                msgNotFilePath();
-            }
-            else if(outputFolder.size() == 0)
-            {
-                msgNotPath();
-            }
-            else if(fileName.size() == 0)
-            {
-                msgNotFile();
-            }
-            else
+            if(fullInput())
             {
                 ffmpeg();
             }
@@ -50,12 +38,7 @@ convertFormat::convertFormat()
     }
     else
     {
-        ok = msg->addButton("Ok", QMessageBox::ActionRole);
-        ok->setShortcut(Qt::CTRL + Qt::Key_K);
-        ok->setToolTip("Ctrl+K");
-        msg->setText("The format entered is incorrect.");
-        msg->setIcon(QMessageBox::Icon::Critical);
-        msg->exec();
+        msgTemp("The format entered is incorrect.");
     }
 }
 
@@ -65,11 +48,27 @@ void convertFormat::ffmpeg()
     if(format == "gif")
     {
         temp += fileName + " -y -vf scale=500:-1 -t 10 -r 10 " + outputFolder + "/" + getName() +"_Convert_format_is_Basu_Video_Studio." + format;
-        command(temp);
+        msgTemp("Please click the OK button and wait for the result page to appear.");
+        if(command(temp))
+        {
+            msgTemp("Done");
+        }
+        else
+        {
+            msgTemp("This is not possible!");
+        }
     }
     else
     {
         temp += fileName + " -y -c:v libx264 -preset ultrafast " + outputFolder + "/" + getName() +"_Convert_format_is_Basu_Video_Studio." + format;
-        command(temp);
+        msgTemp("Please click the OK button and wait for the result page to appear.");
+        if(command(temp))
+        {
+            msgTemp("Done");
+        }
+        else
+        {
+            msgTemp("This is not possible!");
+        }
     }
 }

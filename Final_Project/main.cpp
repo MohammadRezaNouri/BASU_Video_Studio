@@ -1,8 +1,8 @@
 #include "mainwindow.h"
 #include <QApplication>
 
-#include <QMediaPlayer>
-#include <QVideoWidget>
+/*#include <QMediaPlayer>
+#include <QVideoWidget>*/
 
 int main(int argc, char *argv[])
 {
