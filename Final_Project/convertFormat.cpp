@@ -33,18 +33,15 @@ convertFormat::convertFormat()
         {
             if(fileName.size() == 0 && outputFolder.size() == 0)
             {
-                temp->setText("File and path not selected.");
-                temp->exec();
+                msgNotFilePath();
             }
             else if(outputFolder.size() == 0)
             {
-                temp->setText("No route selected.");
-                temp->exec();
+                msgNotPath();
             }
             else if(fileName.size() == 0)
             {
-                temp->setText("No file selected.");
-                temp->exec();
+                msgNotFile();
             }
             else
             {

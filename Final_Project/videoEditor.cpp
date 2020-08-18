@@ -77,3 +77,20 @@ videoEditor::~videoEditor()
         delete Cancel;
     }
 }
+
+void videoEditor::msgNotFilePath()
+{
+    temp->setText("File and path not selected.");
+    temp->exec();
+}
+
+void videoEditor::msgNotPath()
+{
+    temp->setText("No route selected.");
+    temp->exec();
+}
+void videoEditor::msgNotFile()
+{
+    temp->setText("No file selected.");
+    temp->exec();
+}

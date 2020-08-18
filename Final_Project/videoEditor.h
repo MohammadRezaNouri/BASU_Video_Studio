@@ -11,6 +11,9 @@ public:
     void setMsgButtons();
     void setShortcut();
     void setToolTip();
+    void msgNotFilePath();
+    void msgNotPath();
+    void msgNotFile();
     virtual void ffmpeg(){};
 protected:
     QMessageBox * msg = nullptr, * temp = nullptr;
