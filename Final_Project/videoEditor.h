@@ -14,7 +14,7 @@ public:
     void msgNotFilePath();
     void msgNotPath();
     void msgNotFile();
-    virtual void ffmpeg(){};
+    virtual void ffmpeg();
 protected:
     QMessageBox * msg = nullptr, * temp = nullptr;
     QPushButton * input = nullptr, * output = nullptr, * ok = nullptr, * Cancel = nullptr;

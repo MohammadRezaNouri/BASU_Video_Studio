@@ -52,10 +52,6 @@ void videoEditor::setToolTip()
 
 videoEditor::~videoEditor()
 {
-    if(msg != nullptr)
-    {
-        delete msg;
-    }
     if(temp != nullptr)
     {
         delete temp;
@@ -76,6 +72,10 @@ videoEditor::~videoEditor()
     {
         delete Cancel;
     }
+    if(msg != nullptr)
+    {
+        delete msg;
+    }
 }
 
 void videoEditor::msgNotFilePath()
@@ -93,4 +93,9 @@ void videoEditor::msgNotFile()
 {
     temp->setText("No file selected.");
     temp->exec();
+}
+
+void videoEditor::ffmpeg()
+{
+
 }
