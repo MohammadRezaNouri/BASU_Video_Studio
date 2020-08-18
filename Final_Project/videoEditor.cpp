@@ -1,6 +1,79 @@
 #include "videoEditor.h"
+#include "ui_mainwindow.h"
+#include "QFileDialog"
 
-videoEditor::videoEditor()
+void videoEditor::setWFIOk()
 {
+    QFont font;
+    font.setBold(true);
+    font.setPointSize(15);
+    msg = new QMessageBox();
+    msg->setWindowTitle("Convert video and audio formats");
+    msg->setFont(font);
+    temp = new QMessageBox();
+    temp->setWindowTitle("Convert video and audio formats");
+    temp->setIcon(QMessageBox::Icon::Critical);
+    temp->setFont(font);
+    ok = new QPushButton();
+    ok = temp->addButton(("Ok"), QMessageBox::ActionRole);
+    ok->setShortcut(Qt::CTRL + Qt::Key_K);
+    ok->setToolTip("Ctrl+K");
+}
 
+void videoEditor::setMsgButtons()
+{
+    input = new QPushButton();
+    output = new QPushButton();
+    Cancel = new QPushButton();
+    msg->setIcon(QMessageBox::Icon::Information);
+    input = msg->addButton(("Input file"), QMessageBox::ActionRole);
+    output = msg->addButton("Output folder", QMessageBox::ActionRole);
+    ok = msg->addButton("Ok", QMessageBox::ActionRole);
+    Cancel = msg->addButton("Cancel", QMessageBox::ActionRole);
+    setShortcut();
+    setToolTip();
+}
+
+void videoEditor::setShortcut()
+{
+    input->setShortcut(Qt::CTRL + Qt::Key_O);
+    output->setShortcut(Qt::CTRL + Qt::Key_F);
+    ok->setShortcut(Qt::CTRL + Qt::Key_K);
+    Cancel->setShortcut(Qt::CTRL + Qt::Key_Q);
+}
+
+void videoEditor::setToolTip()
+{
+    input->setToolTip("Ctrl+O");
+    output->setToolTip("Ctrl+F");
+    ok->setToolTip("Ctrl+K");
+    Cancel->setToolTip("Ctrl+Q");
+}
+
+videoEditor::~videoEditor()
+{
+    if(msg != nullptr)
+    {
+        delete msg;
+    }
+    if(temp != nullptr)
+    {
+        delete temp;
+    }
+    if(input == nullptr)
+    {
+        delete input;
+    }
+    if(output != nullptr)
+    {
+        delete output;
+    }
+    if(ok != nullptr)
+    {
+        delete ok;
+    }
+    if(Cancel != nullptr)
+    {
+        delete Cancel;
+    }
 }

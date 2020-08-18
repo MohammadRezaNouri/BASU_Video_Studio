@@ -2,16 +2,15 @@
 #define CONVERTFORMAT_H
 
 #include "qmessagebox.h"
+#include "videoEditor.h"
 
-class convertFormat
+class convertFormat : public videoEditor
 {
 public:
     convertFormat();
-    ~convertFormat();
+    virtual void ffmpeg();
 private:
-    QMessageBox * msg = nullptr, * temp = nullptr;
-    QPushButton * input = nullptr, * output = nullptr, * ok = nullptr, * Cancel = nullptr;
-    QString format, fileName, outputFolder;
+    QString format;
 };
 
 #endif // CONVERTFORMAT_H

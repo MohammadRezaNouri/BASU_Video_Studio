@@ -7,8 +7,7 @@
 #include "convertFormat.h"
 #include "changeResolution.h"
 #include "addRemoveAudio.h"
-
-using namespace std;
+#include "videoEditor.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {

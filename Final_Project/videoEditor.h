@@ -6,13 +6,12 @@
 class videoEditor
 {
 public:
-    videoEditor();
-    ~videoEditor();
+    virtual ~videoEditor();
     void setWFIOk();//set window title & icon & ok button
     void setMsgButtons();
     void setShortcut();
     void setToolTip();
-    void ffmpeg();
+    virtual void ffmpeg(){};
 protected:
     QMessageBox * msg = nullptr, * temp = nullptr;
     QPushButton * input = nullptr, * output = nullptr, * ok = nullptr, * Cancel = nullptr;
