@@ -181,18 +181,24 @@ void addRemoveAudio::addFfmpeg()
         if(!command(t1))
         {
             msgTemp("This is not possible!");
+            t1 = "rm " + outputFolder + "/1.mp3";
+            command(t1);
             return;
         }
         t1 = "ffmpeg -y -ss 00:00:00 -t " + QString::number((intVE - intVS) / 3600) + ":" + QString::number(((intVE - intVS) % 3600) / 60) + ":" +QString::number(((intVE - intVS) % 3600) % 60) + " -i \"" + audio + "\" " + outputFolder + "/2.mp3";
         if(!command(t1))
         {
             msgTemp("This is not possible!");
+            t1 = "rm " + outputFolder + "/1.mp3 " + outputFolder + "/2.mp3";
+            command(t1);
             return;
         }
         t1 = "ffmpeg -y -ss " + eTime + " -i " + fileName + " -vn " + outputFolder + "/3.mp3";
         if(!command(t1))
         {
             msgTemp("This is not possible!");
+            t1 = "rm " + outputFolder + "/1.mp3 " + outputFolder + "/2.mp3 " + outputFolder + "/3.mp3";
+            command(t1);
             return;
         }
         t1 = "touch " + outputFolder + "/file.txt";
@@ -206,6 +212,8 @@ void addRemoveAudio::addFfmpeg()
         if(!file)
         {
             msgTemp("There was a problem executing this and we were unable to generate the file needed to do so.");
+            t1 = "rm " + outputFolder + "/1.mp3 " + outputFolder + "/2.mp3 " + outputFolder + "/3.mp3 " + outputFolder + "/file.txt";
+            command(t1);
             return;
         }
         file << "file '1.mp3'\nfile '2.mp3'\nfile '3.mp3'";
@@ -214,20 +222,20 @@ void addRemoveAudio::addFfmpeg()
         if(!command(t1))
         {
             msgTemp("This is not possible!");
+            t1 = "rm " + outputFolder + "/1.mp3 " + outputFolder + "/2.mp3 " + outputFolder + "/3.mp3 " + outputFolder + "/4.mp3 " + outputFolder + "/file.txt";
+            command(t1);
             return;
         }
         t1 = "ffmpeg -y -i " + fileName + " -i " + outputFolder + "/4.mp3 -map 0:0 -map 1:0 -c:v copy -preset ultrafast -async 1 " + outputFolder + "/Add_audio_" + getName();
         if(!command(t1))
         {
             msgTemp("This is not possible!");
+            t1 = "rm " + outputFolder + "/1.mp3 " + outputFolder + "/2.mp3 " + outputFolder + "/3.mp3 " + outputFolder + "/4.mp3 " + outputFolder + "/file.txt";
+            command(t1);
             return;
         }
         t1 = "rm " + outputFolder + "/1.mp3 " + outputFolder + "/2.mp3 " + outputFolder + "/3.mp3 " + outputFolder + "/4.mp3 " + outputFolder + "/file.txt";
-        if(!command(t1))
-        {
-            msgTemp("This is not possible!");
-            return;
-        }
+        command(t1);
     }
     else
     {
@@ -235,18 +243,24 @@ void addRemoveAudio::addFfmpeg()
         if(!command(t1))
         {
             msgTemp("This is not possible!");
+            t1 = "rm " + outputFolder + "/1.mp3";
+            command(t1);
             return;
         }
         t1 = "ffmpeg -y -ss " + eTime + " -i " + fileName + " -vn " + outputFolder + "/2.mp3";
         if(!command(t1))
         {
             msgTemp("This is not possible!");
+            t1 = "rm " + outputFolder + "/1.mp3 " + outputFolder + "/2.mp3";
+            command(t1);
             return;
         }
         t1 = "touch " + outputFolder + "/file.txt";
         if(!command(t1))
         {
             msgTemp("This is not possible!");
+            t1 = "rm " + outputFolder + "/1.mp3 " + outputFolder + "/2.mp3 " + outputFolder + "/file.txt";
+            command(t1);
             return;
         }
         t1 = outputFolder + "/file.txt";
@@ -254,6 +268,8 @@ void addRemoveAudio::addFfmpeg()
         if(!file)
         {
             msgTemp("There was a problem executing this and we were unable to generate the file needed to do so.");
+            t1 = "rm " + outputFolder + "/1.mp3 " + outputFolder + "/2.mp3 " + outputFolder + "/file.txt";
+            command(t1);
             return;
         }
         file << "file '1.mp3'\nfile '2.mp3'";
@@ -262,20 +278,20 @@ void addRemoveAudio::addFfmpeg()
         if(!command(t1))
         {
             msgTemp("This is not possible!");
+            t1 = "rm " + outputFolder + "/1.mp3 " + outputFolder + "/2.mp3 " + outputFolder + "/3.mp3 " + outputFolder + "/file.txt";
+            command(t1);
             return;
         }
         t1 = "ffmpeg -y -i " + fileName + " -i " + outputFolder + "/3.mp3 -map 0:0 -map 1:0 -c:v copy -preset ultrafast -async 1 " + outputFolder + "/Add_audio_" + getName();
         if(!command(t1))
         {
             msgTemp("This is not possible!");
+            t1 = "rm " + outputFolder + "/1.mp3 " + outputFolder + "/2.mp3 " + outputFolder + "/3.mp3 " + outputFolder + "/file.txt";
+            command(t1);
             return;
         }
         t1 = "rm " + outputFolder + "/1.mp3 " + outputFolder + "/2.mp3 " + outputFolder + "/3.mp3 " + outputFolder + "/file.txt";
-        if(!command(t1))
-        {
-            msgTemp("This is not possible!");
-            return;
-        }
+        msgTemp("This is not possible!");
         msgTemp("Done");
     }
 }

@@ -10,6 +10,7 @@ void videoEditor::setWFIOk(QString title)
     msg = new QMessageBox();
     msg->setWindowTitle(title);
     msg->setFont(font);
+    msg->setIcon(QMessageBox::Icon::Information);
     temp = new QMessageBox();
     temp->setWindowTitle(title);
     temp->setIcon(QMessageBox::Icon::Critical);
@@ -25,7 +26,6 @@ void videoEditor::setMsgButtons()
     input = new QPushButton();
     output = new QPushButton();
     Cancel = new QPushButton();
-    msg->setIcon(QMessageBox::Icon::Information);
     input = msg->addButton(("Input file"), QMessageBox::ActionRole);
     output = msg->addButton("Output folder", QMessageBox::ActionRole);
     ok = msg->addButton("Ok", QMessageBox::ActionRole);
