@@ -6,45 +6,18 @@
 
 changeResolution::changeResolution()
 {
-    bool fOk;
-    int width = QInputDialog::getInt(nullptr, "Output width", "Width : ", QLineEdit::Normal, 1, 2147483647, 50, &fOk);
+    width = QInputDialog::getInt(nullptr, "Output width", "Width : ", QLineEdit::Normal, 1, 2147483647, 50, &fOk);
     if (!fOk)
     {
         return;
     }
-    int height = QInputDialog::getInt(nullptr, "Output height", "Height : ", QLineEdit::Normal, 1, 2147483647, 50, &fOk);
+    height = QInputDialog::getInt(nullptr, "Output height", "Height : ", QLineEdit::Normal, 1, 2147483647, 50, &fOk);
     if (!fOk)
     {
         return;
     }
-    QFont font;
-    font.setBold(true);
-    font.setPointSize(15);
-    QMessageBox * msg = new QMessageBox();
-    msg->setWindowTitle("Change video resolution");
-    QMessageBox * tempB = new QMessageBox();
-    tempB->setWindowTitle("Change video resolution");
-    msg->setFont(font);
-    tempB->setIcon(QMessageBox::Icon::Critical);
-    tempB->setFont(font);
-    QPushButton * input = new QPushButton(), * output = new QPushButton(), * ok = new QPushButton(), * Cancel = new QPushButton();
-    ok = tempB->addButton("Ok", QMessageBox::ActionRole);
-    ok->setShortcut(Qt::CTRL + Qt::Key_K);
-    ok->setToolTip("Ctrl+K");
-    QString fileName, outputFolder;
-    msg->setIcon(QMessageBox::Icon::Information);
-    input = msg->addButton("Input file", QMessageBox::ActionRole);
-    input->setShortcut(Qt::CTRL + Qt::Key_O);
-    input->setToolTip("Ctrl+O");
-    output = msg->addButton("Output folder", QMessageBox::ActionRole);
-    output->setShortcut(Qt::CTRL + Qt::Key_F);
-    output->setToolTip("Ctrl+F");
-    ok = msg->addButton("Ok", QMessageBox::ActionRole);
-    ok->setShortcut(Qt::CTRL + Qt::Key_K);
-    ok->setToolTip("Ctrl+K");
-    Cancel = msg->addButton("Cancel", QMessageBox::ActionRole);
-    Cancel->setShortcut(Qt::CTRL + Qt::Key_Q);
-    Cancel->setToolTip("Ctrl+Q");
+    setWFIOk();
+    setMsgButtons();
     msg->setText("Please select the file and its storage location.");
     click:
     msg->exec();
@@ -62,33 +35,26 @@ changeResolution::changeResolution()
     {
         if(fileName.size() == 0 && outputFolder.size() == 0)
         {
-            tempB->setText("File and path not selected.");
-            tempB->exec();
+            msgNotFilePath();
         }
         else if(outputFolder.size() == 0)
         {
-            tempB->setText("No route selected.");
-            tempB->exec();
+            msgNotPath();
         }
         else if(fileName.size() == 0)
         {
-            tempB->setText("No file selected.");
-            tempB->exec();
+            msgNotFile();
         }
         else
         {
-            QString temp = "ffmpeg -i ", name;
-            QFileInfo nameTemp(fileName);
-            name = nameTemp.fileName();
-            temp += fileName + " -y -s " + QString::number(width) + "x" + QString::number(height) + " -c:a copy " + outputFolder + "/Change_resolution_is_Basu_Video_Studio_" + name;
-            QByteArray temp2 = temp.toLocal8Bit();
-            const char * t2 = temp2.data();
-            system(t2);
+            ffmpeg();
         }
     }
-    delete tempB;
-    delete input;
-    delete output;
-    delete ok;
-    delete Cancel;
+}
+
+void changeResolution::ffmpeg()
+{
+    QString temp = "ffmpeg -i ";
+    temp += fileName + " -y -s " + QString::number(width) + "x" + QString::number(height) + " -c:a copy " + outputFolder + "/Change_resolution_is_Basu_Video_Studio_" + getName();
+    command(temp);
 }

@@ -99,3 +99,16 @@ void videoEditor::ffmpeg()
 {
 
 }
+
+void videoEditor::command(QString cmd)
+{
+    QByteArray t1 = cmd.toLocal8Bit();
+    const char * t2 = t1.data();
+    system(t2);
+}
+
+QString videoEditor::getName()
+{
+    QFileInfo nameTemp(fileName);
+    return nameTemp.fileName();
+}

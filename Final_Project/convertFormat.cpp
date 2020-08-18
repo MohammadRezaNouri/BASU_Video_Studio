@@ -5,7 +5,6 @@
 
 convertFormat::convertFormat()
 {
-    bool fOk;
     format = QInputDialog::getText(nullptr, "Output format", "Format : ", QLineEdit::Normal, "Example: mp3", &fOk);
     if (!fOk)
     {
@@ -62,23 +61,15 @@ convertFormat::convertFormat()
 
 void convertFormat::ffmpeg()
 {
-    QString temp = "ffmpeg -i ", name;
+    QString temp = "ffmpeg -i ";
     if(format == "gif")
     {
-        QFileInfo nameTemp(fileName);
-        name = nameTemp.fileName();
-        temp += fileName + " -y -vf scale=500:-1 -t 10 -r 10 " + outputFolder + "/" + name +"_Convert_format_is_Basu_Video_Studio." + format;
-        QByteArray temp2 = temp.toLocal8Bit();
-        const char * t2 = temp2.data();
-        system(t2);
+        temp += fileName + " -y -vf scale=500:-1 -t 10 -r 10 " + outputFolder + "/" + getName() +"_Convert_format_is_Basu_Video_Studio." + format;
+        command(temp);
     }
     else
     {
-        QFileInfo nameTemp(fileName);
-        name = nameTemp.fileName();
-        temp += fileName + " -y -c:v libx264 -preset ultrafast " + outputFolder + "/" + name +"_Convert_format_is_Basu_Video_Studio." + format;
-        QByteArray temp2 = temp.toLocal8Bit();
-        const char * t2 = temp2.data();
-        system(t2);
+        temp += fileName + " -y -c:v libx264 -preset ultrafast " + outputFolder + "/" + getName() +"_Convert_format_is_Basu_Video_Studio." + format;
+        command(temp);
     }
 }

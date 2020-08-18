@@ -15,10 +15,13 @@ public:
     void msgNotPath();
     void msgNotFile();
     virtual void ffmpeg();
+    void command(QString);
+    QString getName();
 protected:
     QMessageBox * msg = nullptr, * temp = nullptr;
     QPushButton * input = nullptr, * output = nullptr, * ok = nullptr, * Cancel = nullptr;
     QString fileName, outputFolder;
+    bool fOk;
 };
 
 #endif // VIDEOEDITOR_H
