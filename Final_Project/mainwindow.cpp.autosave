@@ -37,10 +37,9 @@ void MainWindow::resizeEvent(QResizeEvent* evt)
 void MainWindow::on_convertFormat_clicked()
 {
     videoEditor * start[2];
-    start[0] = new videoEditor;
-    start[1] = new convertFormat;
+    start[0] = new video;
     convertFormat * w;
-    w = dynamic_cast<convertFormat*>(start[1]);
+    w = dynamic_cast<convertFormat*>(start);
     //convertFormat start;
 }
 

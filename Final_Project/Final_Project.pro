@@ -33,7 +33,8 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         play.cpp \
-        reduceVolume.cpp
+        reduceVolume.cpp \
+        videoEditor.cpp
 
 HEADERS += \
         addRemoveAudio.h \
@@ -43,7 +44,8 @@ HEADERS += \
         deletePartVideo.h \
         mainwindow.h \
         play.h \
-        reduceVolume.h
+        reduceVolume.h \
+        videoEditor.h
 
 FORMS += \
         mainwindow.ui

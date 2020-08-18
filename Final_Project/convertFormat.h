@@ -2,8 +2,9 @@
 #define CONVERTFORMAT_H
 
 #include "qmessagebox.h"
+#include "videoEditor.h"
 
-class convertFormat
+class convertFormat : public videoEditor
 {
 public:
     convertFormat();
