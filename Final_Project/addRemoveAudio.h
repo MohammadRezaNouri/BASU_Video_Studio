@@ -17,7 +17,7 @@ public:
 private:
     QMessageBox * one = nullptr;
     QPushButton * addAudio = nullptr, * rmAudio = nullptr, * inputA = nullptr;
-    QString sTime, eTime, audio; // Start & end time and select video and input audio
+    QString audio; // Start & end time and select video and input audio
 };
 
 #endif // ADDREMOVEAUDIO_H

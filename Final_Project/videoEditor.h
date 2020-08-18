@@ -24,7 +24,7 @@ public:
 protected:
     QMessageBox * msg = nullptr, * temp = nullptr;
     QPushButton * input = nullptr, * output = nullptr, * ok = nullptr, * Cancel = nullptr;
-    QString fileName, outputFolder;
+    QString fileName, outputFolder, sTime, eTime;
     bool fOk;
     int intVS,intVE; // int video start & end (Seconds)
     string data; //data = get command data
