@@ -2,16 +2,16 @@
 #include "ui_mainwindow.h"
 #include "QFileDialog"
 
-void videoEditor::setWFIOk()
+void videoEditor::setWFIOk(QString title)
 {
     QFont font;
     font.setBold(true);
     font.setPointSize(15);
     msg = new QMessageBox();
-    msg->setWindowTitle("Convert video and audio formats");
+    msg->setWindowTitle(title);
     msg->setFont(font);
     temp = new QMessageBox();
-    temp->setWindowTitle("Convert video and audio formats");
+    temp->setWindowTitle(title);
     temp->setIcon(QMessageBox::Icon::Critical);
     temp->setFont(font);
     ok = new QPushButton();

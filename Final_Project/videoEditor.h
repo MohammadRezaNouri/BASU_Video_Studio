@@ -7,7 +7,7 @@ class videoEditor
 {
 public:
     virtual ~videoEditor();
-    void setWFIOk();//set window title & icon & ok button
+    void setWFIOk(QString);//set window title & icon & ok button
     void setMsgButtons();
     void setShortcut();
     void setToolTip();

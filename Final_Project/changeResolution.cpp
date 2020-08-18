@@ -16,7 +16,7 @@ changeResolution::changeResolution()
     {
         return;
     }
-    setWFIOk();
+    setWFIOk("Change video resolution");
     setMsgButtons();
     msg->setText("Please select the file and its storage location.");
     click:
