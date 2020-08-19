@@ -5,9 +5,8 @@
 #include "reduceVolume.h"
 #include "convertFormat.h"
 #include "changeResolution.h"
-#include "addRemoveAudio.h"
-#include <QDebug>
-#include <iostream>
+#include "addRemoveAudio.h" // Add audio to video or remove audio from it
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);

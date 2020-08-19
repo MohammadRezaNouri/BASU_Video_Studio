@@ -54,7 +54,7 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(1500, 1100);
-        MainWindow->setMinimumSize(QSize(1300, 600));
+        MainWindow->setMinimumSize(QSize(1300, 850));
         QFont font;
         font.setBold(false);
         font.setWeight(50);
