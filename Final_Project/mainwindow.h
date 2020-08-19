@@ -31,7 +31,7 @@ private slots://Main window buttons
 
     void on_deletePartVideo_clicked();
 
-    void on_reduceVolume_clicked();
+    void on_changeVolume_clicked();
 
     void on_exit_clicked();
 

@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include "connectVideos.h"
 #include "deletePartVideo.h"
-#include "reduceVolume.h"
+#include "changeVolume.h"
 #include "convertFormat.h"
 #include "changeResolution.h"
 #include "addRemoveAudio.h" // Add audio to video or remove audio from it
@@ -63,9 +63,9 @@ void MainWindow::on_deletePartVideo_clicked()
     start = new deletePartVideo();
 }
 
-void MainWindow::on_reduceVolume_clicked()
+void MainWindow::on_changeVolume_clicked()
 {
-    start = new reduceVolume();
+    start = new changeVolume();
 }
 
 void MainWindow::on_exit_clicked() // Bye Bye

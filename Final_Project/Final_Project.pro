@@ -27,22 +27,22 @@ CONFIG += c++11
 SOURCES += \
         addRemoveAudio.cpp \
         changeResolution.cpp \
+        changeVolume.cpp \
         connectVideos.cpp \
         convertFormat.cpp \
         deletePartVideo.cpp \
         main.cpp \
         mainwindow.cpp \
-        reduceVolume.cpp \
         videoEditor.cpp
 
 HEADERS += \
         addRemoveAudio.h \
         changeResolution.h \
+        changeVolume.h \
         connectVideos.h \
         convertFormat.h \
         deletePartVideo.h \
         mainwindow.h \
-        reduceVolume.h \
         videoEditor.h
 
 FORMS += \

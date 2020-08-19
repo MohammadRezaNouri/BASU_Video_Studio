@@ -39,7 +39,7 @@ QT_MOC_LITERAL(3, 37, 27), // "on_changeResolution_clicked"
 QT_MOC_LITERAL(4, 65, 25), // "on_addRemoveAudio_clicked"
 QT_MOC_LITERAL(5, 91, 24), // "on_connectVideos_clicked"
 QT_MOC_LITERAL(6, 116, 26), // "on_deletePartVideo_clicked"
-QT_MOC_LITERAL(7, 143, 23), // "on_reduceVolume_clicked"
+QT_MOC_LITERAL(7, 143, 23), // "on_changeVolume_clicked"
 QT_MOC_LITERAL(8, 167, 15), // "on_exit_clicked"
 QT_MOC_LITERAL(9, 183, 33), // "on_horizontalProgress_sliderM..."
 QT_MOC_LITERAL(10, 217, 8), // "position"
@@ -57,7 +57,7 @@ QT_MOC_LITERAL(17, 342, 18) // "on_durationChanged"
     "on_addRemoveAudio_clicked\0"
     "on_connectVideos_clicked\0"
     "on_deletePartVideo_clicked\0"
-    "on_reduceVolume_clicked\0on_exit_clicked\0"
+    "on_changeVolume_clicked\0on_exit_clicked\0"
     "on_horizontalProgress_sliderMoved\0"
     "position\0on_horizontalVolume_sliderMoved\0"
     "on_open_clicked\0on_play_clicked\0"
@@ -127,7 +127,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 2: _t->on_addRemoveAudio_clicked(); break;
         case 3: _t->on_connectVideos_clicked(); break;
         case 4: _t->on_deletePartVideo_clicked(); break;
-        case 5: _t->on_reduceVolume_clicked(); break;
+        case 5: _t->on_changeVolume_clicked(); break;
         case 6: _t->on_exit_clicked(); break;
         case 7: _t->on_horizontalProgress_sliderMoved((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 8: _t->on_horizontalVolume_sliderMoved((*reinterpret_cast< int(*)>(_a[1]))); break;

@@ -1981,7 +1981,7 @@
      <string>Ctrl+4</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="reduceVolume">
+   <widget class="QPushButton" name="changeVolume">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -2445,7 +2445,7 @@
      <string>Ctrl+6</string>
     </property>
     <property name="text">
-     <string>Reduce video volume</string>
+     <string>Change video volume</string>
     </property>
     <property name="shortcut">
      <string>Ctrl+6</string>
@@ -5392,7 +5392,7 @@
   <tabstop>changeResolution</tabstop>
   <tabstop>connectVideos</tabstop>
   <tabstop>convertFormat</tabstop>
-  <tabstop>reduceVolume</tabstop>
+  <tabstop>changeVolume</tabstop>
  </tabstops>
  <resources>
   <include location="icons.qrc"/>

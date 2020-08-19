@@ -1,4 +1,4 @@
-#include "reduceVolume.h"
+#include "changeVolume.h"
 #include "ui_mainwindow.h"
 #include <QInputDialog>
 #include "qmessagebox.h"
@@ -7,7 +7,7 @@
 
 using namespace std;
 
-reduceVolume::reduceVolume()
+changeVolume::changeVolume()
 {
     crf = QInputDialog::getInt(nullptr, "Change the volume", "Number close to 51 = less volume\nNumber close to 0 = more volume", QLineEdit::Normal, 0, 51, 5, &fOk);
     if (!fOk) // Cancel button
@@ -38,7 +38,7 @@ reduceVolume::reduceVolume()
     }
 }
 
-void reduceVolume::ffmpeg()
+void changeVolume::ffmpeg()
 {
     msgTemp("Please click the OK button and wait for the result page to appear.");
     QString t1 = "ffmpeg -y -i " + fileName + " -crf " + QString::number(crf) + " \"" + outputFolder + "/Reduce_volume_" + getName() + "\"";
