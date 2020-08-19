@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "videoEditor.h"
 
 namespace Ui {
 class MainWindow;
@@ -32,7 +33,8 @@ private slots:
     void on_play_clicked();
 
 private:
-    Ui::MainWindow *ui;
+    Ui::MainWindow * ui;
+    videoEditor * start = nullptr;
 };
 
 #endif // MAINWINDOW_H

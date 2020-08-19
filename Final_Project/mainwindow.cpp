@@ -3,11 +3,9 @@
 #include "connectVideos.h"
 #include "deletePartVideo.h"
 #include "reduceVolume.h"
-#include "play.h"
 #include "convertFormat.h"
 #include "changeResolution.h"
 #include "addRemoveAudio.h"
-#include "videoEditor.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -19,6 +17,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 MainWindow::~MainWindow()
 {
+    if(start != nullptr)
+    {
+        delete start;
+    }
     delete ui;
 }
 
@@ -34,35 +36,34 @@ void MainWindow::resizeEvent(QResizeEvent* evt)
 
 void MainWindow::on_convertFormat_clicked()
 {
-    convertFormat start;
+    start = new convertFormat();
 }
 
 void MainWindow::on_changeResolution_clicked()
 {
-    changeResolution start;
+    start = new changeResolution();
 }
 
 void MainWindow::on_addRemoveAudio_clicked()
 {
-    addRemoveAudio start;
+    start = new addRemoveAudio();
 }
 
 void MainWindow::on_connectVideos_clicked()
 {
-    connectVideos start;
+    start = new connectVideos();
 }
 
 void MainWindow::on_deletePartVideo_clicked()
 {
-    deletePartVideo start;
+    start = new deletePartVideo();
 }
 
 void MainWindow::on_reduceVolume_clicked()
 {
-    reduceVolume start;
+    start = new reduceVolume();
 }
 
 void MainWindow::on_play_clicked()
 {
-    play start;
 }

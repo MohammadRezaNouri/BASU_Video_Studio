@@ -32,7 +32,6 @@ SOURCES += \
         deletePartVideo.cpp \
         main.cpp \
         mainwindow.cpp \
-        play.cpp \
         reduceVolume.cpp \
         videoEditor.cpp
 
@@ -43,7 +42,6 @@ HEADERS += \
         convertFormat.h \
         deletePartVideo.h \
         mainwindow.h \
-        play.h \
         reduceVolume.h \
         videoEditor.h
 

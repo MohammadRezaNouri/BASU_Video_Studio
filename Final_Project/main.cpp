@@ -1,9 +1,6 @@
 #include "mainwindow.h"
 #include <QApplication>
 
-/*#include <QMediaPlayer>
-#include <QVideoWidget>*/
-
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
