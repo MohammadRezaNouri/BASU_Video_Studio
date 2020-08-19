@@ -7,7 +7,7 @@ class connectVideos : public videoEditor
 {
 public:
     connectVideos();
-    virtual bool fullInput();
+    virtual bool fullInput(); // Due to QStringList
     virtual void ffmpeg();
 private:
     QStringList ls;
