@@ -535,7 +535,7 @@ public:
         exit->setCursor(QCursor(Qt::PointingHandCursor));
         widget = new QWidget(centralWidget);
         widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(40, 580, 321, 231));
+        widget->setGeometry(QRect(40, 580, 321, 235));
         verticalLayout_3 = new QVBoxLayout(widget);
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setContentsMargins(11, 11, 11, 11);
@@ -595,6 +595,7 @@ public:
         horizontalVolume->setFont(font2);
         horizontalVolume->setCursor(QCursor(Qt::SizeHorCursor));
         horizontalVolume->setMaximum(100);
+        horizontalVolume->setPageStep(0);
         horizontalVolume->setValue(100);
         horizontalVolume->setOrientation(Qt::Horizontal);
 
@@ -950,9 +951,24 @@ public:
 #if QT_CONFIG(shortcut)
         exit->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+7", nullptr));
 #endif // QT_CONFIG(shortcut)
+#if QT_CONFIG(tooltip)
+        musicPlayer->setToolTip(QCoreApplication::translate("MainWindow", "Music Player", nullptr));
+#endif // QT_CONFIG(tooltip)
         musicPlayer->setText(QCoreApplication::translate("MainWindow", "                                Music Player", nullptr));
+#if QT_CONFIG(tooltip)
+        progress->setToolTip(QCoreApplication::translate("MainWindow", "Progress", nullptr));
+#endif // QT_CONFIG(tooltip)
         progress->setText(QCoreApplication::translate("MainWindow", "Progress", nullptr));
+#if QT_CONFIG(tooltip)
+        volume->setToolTip(QCoreApplication::translate("MainWindow", "Volume", nullptr));
+#endif // QT_CONFIG(tooltip)
         volume->setText(QCoreApplication::translate("MainWindow", "Volume", nullptr));
+#if QT_CONFIG(tooltip)
+        horizontalProgress->setToolTip(QCoreApplication::translate("MainWindow", "Progress", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        horizontalVolume->setToolTip(QCoreApplication::translate("MainWindow", "Volume", nullptr));
+#endif // QT_CONFIG(tooltip)
 #if QT_CONFIG(tooltip)
         open->setToolTip(QCoreApplication::translate("MainWindow", "Ctrl+M", nullptr));
 #endif // QT_CONFIG(tooltip)

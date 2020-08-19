@@ -3397,7 +3397,7 @@
       <x>40</x>
       <y>580</y>
       <width>321</width>
-      <height>231</height>
+      <height>235</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -3413,6 +3413,9 @@
          </property>
          <property name="cursor">
           <cursorShape>CrossCursor</cursorShape>
+         </property>
+         <property name="toolTip">
+          <string>Music Player</string>
          </property>
          <property name="text">
           <string>                                Music Player</string>
@@ -3436,6 +3439,9 @@
            <property name="cursor">
             <cursorShape>CrossCursor</cursorShape>
            </property>
+           <property name="toolTip">
+            <string>Progress</string>
+           </property>
            <property name="text">
             <string>Progress</string>
            </property>
@@ -3451,6 +3457,9 @@
            </property>
            <property name="cursor">
             <cursorShape>CrossCursor</cursorShape>
+           </property>
+           <property name="toolTip">
+            <string>Volume</string>
            </property>
            <property name="text">
             <string>Volume</string>
@@ -3471,6 +3480,9 @@
            </property>
            <property name="cursor">
             <cursorShape>SizeHorCursor</cursorShape>
+           </property>
+           <property name="toolTip">
+            <string>Progress</string>
            </property>
            <property name="maximum">
             <number>100</number>
@@ -3494,8 +3506,14 @@
            <property name="cursor">
             <cursorShape>SizeHorCursor</cursorShape>
            </property>
+           <property name="toolTip">
+            <string>Volume</string>
+           </property>
            <property name="maximum">
             <number>100</number>
+           </property>
+           <property name="pageStep">
+            <number>0</number>
            </property>
            <property name="value">
             <number>100</number>
