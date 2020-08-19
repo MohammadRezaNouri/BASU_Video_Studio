@@ -66,5 +66,5 @@ void MainWindow::on_reduceVolume_clicked()
 
 void MainWindow::on_exit_clicked()
 {
-
+    MainWindow::close();
 }

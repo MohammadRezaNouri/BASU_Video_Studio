@@ -26,7 +26,7 @@ void videoEditor::setMsgButtons()
     input = new QPushButton();
     output = new QPushButton();
     Cancel = new QPushButton();
-    input = msg->addButton(("Input file"), QMessageBox::ActionRole);
+    input = msg->addButton("Input file", QMessageBox::ActionRole);
     output = msg->addButton("Output folder", QMessageBox::ActionRole);
     ok = msg->addButton("Ok", QMessageBox::ActionRole);
     Cancel = msg->addButton("Cancel", QMessageBox::ActionRole);

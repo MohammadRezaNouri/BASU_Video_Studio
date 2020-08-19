@@ -34,6 +34,8 @@ private slots:
 
     void on_exit_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow * ui;
     videoEditor * start = nullptr;

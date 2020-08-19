@@ -26,9 +26,9 @@ public:
     QPushButton *changeResolution;
     QPushButton *addRemoveAudio;
     QPushButton *connectVideos;
-    QPushButton *play;
     QPushButton *reduceVolume;
     QPushButton *deletePartVideo;
+    QPushButton *exit;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -331,9 +331,9 @@ public:
         connectVideos->setPalette(palette3);
         connectVideos->setFont(font2);
         connectVideos->setCursor(QCursor(Qt::PointingHandCursor));
-        play = new QPushButton(centralWidget);
-        play->setObjectName(QString::fromUtf8("play"));
-        play->setGeometry(QRect(40, 500, 321, 61));
+        reduceVolume = new QPushButton(centralWidget);
+        reduceVolume->setObjectName(QString::fromUtf8("reduceVolume"));
+        reduceVolume->setGeometry(QRect(40, 420, 321, 61));
         QPalette palette4;
         palette4.setBrush(QPalette::Active, QPalette::WindowText, brush);
         palette4.setBrush(QPalette::Active, QPalette::Button, brush1);
@@ -389,14 +389,12 @@ public:
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette4.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush7);
 #endif
-        play->setPalette(palette4);
-        play->setFont(font2);
-        play->setCursor(QCursor(Qt::PointingHandCursor));
-        play->setToolTipDuration(-1);
-        play->setAutoDefault(false);
-        reduceVolume = new QPushButton(centralWidget);
-        reduceVolume->setObjectName(QString::fromUtf8("reduceVolume"));
-        reduceVolume->setGeometry(QRect(40, 420, 321, 61));
+        reduceVolume->setPalette(palette4);
+        reduceVolume->setFont(font2);
+        reduceVolume->setCursor(QCursor(Qt::PointingHandCursor));
+        deletePartVideo = new QPushButton(centralWidget);
+        deletePartVideo->setObjectName(QString::fromUtf8("deletePartVideo"));
+        deletePartVideo->setGeometry(QRect(40, 340, 321, 61));
         QPalette palette5;
         palette5.setBrush(QPalette::Active, QPalette::WindowText, brush);
         palette5.setBrush(QPalette::Active, QPalette::Button, brush1);
@@ -452,12 +450,12 @@ public:
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette5.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush7);
 #endif
-        reduceVolume->setPalette(palette5);
-        reduceVolume->setFont(font2);
-        reduceVolume->setCursor(QCursor(Qt::PointingHandCursor));
-        deletePartVideo = new QPushButton(centralWidget);
-        deletePartVideo->setObjectName(QString::fromUtf8("deletePartVideo"));
-        deletePartVideo->setGeometry(QRect(40, 340, 321, 61));
+        deletePartVideo->setPalette(palette5);
+        deletePartVideo->setFont(font2);
+        deletePartVideo->setCursor(QCursor(Qt::PointingHandCursor));
+        exit = new QPushButton(centralWidget);
+        exit->setObjectName(QString::fromUtf8("exit"));
+        exit->setGeometry(QRect(40, 500, 321, 61));
         QPalette palette6;
         palette6.setBrush(QPalette::Active, QPalette::WindowText, brush);
         palette6.setBrush(QPalette::Active, QPalette::Button, brush1);
@@ -513,22 +511,20 @@ public:
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette6.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush7);
 #endif
-        deletePartVideo->setPalette(palette6);
-        deletePartVideo->setFont(font2);
-        deletePartVideo->setCursor(QCursor(Qt::PointingHandCursor));
+        exit->setPalette(palette6);
+        exit->setFont(font2);
+        exit->setCursor(QCursor(Qt::PointingHandCursor));
         MainWindow->setCentralWidget(centralWidget);
         QWidget::setTabOrder(deletePartVideo, addRemoveAudio);
         QWidget::setTabOrder(addRemoveAudio, changeResolution);
         QWidget::setTabOrder(changeResolution, connectVideos);
         QWidget::setTabOrder(connectVideos, convertFormat);
-        QWidget::setTabOrder(convertFormat, play);
-        QWidget::setTabOrder(play, reduceVolume);
+        QWidget::setTabOrder(convertFormat, reduceVolume);
 
         retranslateUi(MainWindow);
 
         convertFormat->setDefault(false);
         changeResolution->setDefault(false);
-        play->setDefault(false);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -578,16 +574,6 @@ public:
         connectVideos->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+4", nullptr));
 #endif // QT_CONFIG(shortcut)
 #if QT_CONFIG(tooltip)
-        play->setToolTip(QCoreApplication::translate("MainWindow", "Ctrl+7", nullptr));
-#endif // QT_CONFIG(tooltip)
-#if QT_CONFIG(statustip)
-        play->setStatusTip(QString());
-#endif // QT_CONFIG(statustip)
-        play->setText(QCoreApplication::translate("MainWindow", "Play", nullptr));
-#if QT_CONFIG(shortcut)
-        play->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+7", nullptr));
-#endif // QT_CONFIG(shortcut)
-#if QT_CONFIG(tooltip)
         reduceVolume->setToolTip(QCoreApplication::translate("MainWindow", "Ctrl+6", nullptr));
 #endif // QT_CONFIG(tooltip)
         reduceVolume->setText(QCoreApplication::translate("MainWindow", "Reduce video volume", nullptr));
@@ -600,6 +586,13 @@ public:
         deletePartVideo->setText(QCoreApplication::translate("MainWindow", "Delete parts of the video", nullptr));
 #if QT_CONFIG(shortcut)
         deletePartVideo->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+5", nullptr));
+#endif // QT_CONFIG(shortcut)
+#if QT_CONFIG(tooltip)
+        exit->setToolTip(QCoreApplication::translate("MainWindow", "Ctrl+7", nullptr));
+#endif // QT_CONFIG(tooltip)
+        exit->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));
+#if QT_CONFIG(shortcut)
+        exit->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+7", nullptr));
 #endif // QT_CONFIG(shortcut)
     } // retranslateUi
 
