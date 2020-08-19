@@ -25,11 +25,10 @@ void videoEditor::setMsgButtons()
 {
     input = new QPushButton();
     output = new QPushButton();
-    Cancel = new QPushButton();
     input = msg->addButton("Input file", QMessageBox::ActionRole);
     output = msg->addButton("Output folder", QMessageBox::ActionRole);
     ok = msg->addButton("Ok", QMessageBox::ActionRole);
-    Cancel = msg->addButton("Cancel", QMessageBox::ActionRole);
+    msg->setStandardButtons(QMessageBox::Button::Cancel);
     setShortcut();
     setToolTip();
 }
@@ -39,7 +38,6 @@ void videoEditor::setShortcut()
     input->setShortcut(Qt::CTRL + Qt::Key_O);
     output->setShortcut(Qt::CTRL + Qt::Key_F);
     ok->setShortcut(Qt::CTRL + Qt::Key_K);
-    Cancel->setShortcut(Qt::CTRL + Qt::Key_Q);
 }
 
 void videoEditor::setToolTip()
@@ -47,7 +45,6 @@ void videoEditor::setToolTip()
     input->setToolTip("Ctrl+O");
     output->setToolTip("Ctrl+F");
     ok->setToolTip("Ctrl+K");
-    Cancel->setToolTip("Ctrl+Q");
 }
 
 videoEditor::~videoEditor()
@@ -64,10 +61,10 @@ videoEditor::~videoEditor()
     {
         delete ok;
     }
-    if(Cancel != nullptr)
+    /*if(Cancel != nullptr)
     {
         delete Cancel;
-    }
+    }*/
     if(msg != nullptr)
     {
         delete msg;

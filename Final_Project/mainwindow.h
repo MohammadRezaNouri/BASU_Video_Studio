@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "videoEditor.h"
+#include <QMediaPlayer>
 
 namespace Ui {
 class MainWindow;
@@ -30,15 +31,29 @@ private slots:
 
     void on_reduceVolume_clicked();
 
-    void on_play_clicked();
-
     void on_exit_clicked();
 
-    void on_pushButton_clicked();
+    void on_horizontalProgress_sliderMoved(int position);
+
+    void on_horizontalVolume_sliderMoved(int position);
+
+    void on_open_clicked();
+
+    void on_play_clicked();
+
+    void on_pause_clicked();
+
+    void on_stop_clicked();
+
+    void on_positionChanged(int);
+
+    void on_durationChanged(int);
 
 private:
     Ui::MainWindow * ui;
     videoEditor * start = nullptr;
+    QMediaPlayer * player = nullptr;
+    QString fileName;
 };
 
 #endif // MAINWINDOW_H

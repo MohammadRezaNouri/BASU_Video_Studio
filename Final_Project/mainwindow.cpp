@@ -6,7 +6,8 @@
 #include "convertFormat.h"
 #include "changeResolution.h"
 #include "addRemoveAudio.h"
-
+#include <QDebug>
+#include <iostream>
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
@@ -20,6 +21,10 @@ MainWindow::~MainWindow()
     if(start != nullptr)
     {
         delete start;
+    }
+    if(player != nullptr)
+    {
+        delete player;
     }
     delete ui;
 }
@@ -67,4 +72,72 @@ void MainWindow::on_reduceVolume_clicked()
 void MainWindow::on_exit_clicked()
 {
     MainWindow::close();
+}
+
+void MainWindow::on_horizontalProgress_sliderMoved(int position)
+{
+    if(player != nullptr)
+    {
+        player->setPosition(position);
+    }
+}
+
+void MainWindow::on_horizontalVolume_sliderMoved(int position)
+{
+    if(player != nullptr)
+    {
+        player->setVolume(position);
+    }
+}
+
+void MainWindow::on_open_clicked()
+{
+    if(player != nullptr)
+    {
+        player->stop();
+    }
+    player = new QMediaPlayer(this);
+    connect(player, &QMediaPlayer::positionChanged, this, &MainWindow::on_positionChanged);
+    connect(player, &QMediaPlayer::durationChanged, this, &MainWindow::on_durationChanged);
+    fileName = QFileDialog::getOpenFileName(nullptr, "Open Music", "", "Music Files(*.m4a *.flac *.mp3 *.wav *.aac *.aa *.aax *.act *.aiff *.alac *.amr *.ape *.au *.awb *.dct *.dss *.dvf *.gsm *.iklax *.ivs *.m4b *.m4p *.ogg *.oga *.mmf *.mpc *.msv *.nmf *.mogg *.opus *.ra *.rm *.raw *.rf64 *.sln *.tta *.voc *.vox *.wav *.wma *.webm *.wv *.8svx *.cda)");
+    if (fileName.size() == 0)
+    {
+        return;
+    }
+    player->setMedia(QUrl::fromLocalFile(fileName));
+    player->play();
+}
+
+void MainWindow::on_play_clicked()
+{
+    if(player != nullptr)
+    {
+        player->play();
+    }
+}
+
+void MainWindow::on_pause_clicked()
+{
+    if(player != nullptr)
+    {
+        player->pause();
+    }
+}
+
+void MainWindow::on_stop_clicked()
+{
+    if(player != nullptr)
+    {
+        player->stop();
+    }
+}
+
+void MainWindow::on_positionChanged(int position)
+{
+    ui->horizontalProgress->setValue(position);
+}
+
+void MainWindow::on_durationChanged(int position)
+{
+    ui->horizontalProgress->setMaximum(position);
 }

@@ -23,7 +23,7 @@ public:
     virtual bool fullInput();
 protected:
     QMessageBox * msg = nullptr, * temp = nullptr;
-    QPushButton * input = nullptr, * output = nullptr, * ok = nullptr, * Cancel = nullptr;
+    QPushButton * input = nullptr, * output = nullptr, * ok = nullptr;
     QString fileName, outputFolder, sTime, eTime;
     bool fOk;
     int intVS,intVE; // int video start & end (Seconds)

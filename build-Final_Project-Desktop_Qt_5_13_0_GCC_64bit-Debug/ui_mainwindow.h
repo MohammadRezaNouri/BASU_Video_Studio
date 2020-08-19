@@ -12,8 +12,12 @@
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSlider>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -29,6 +33,21 @@ public:
     QPushButton *reduceVolume;
     QPushButton *deletePartVideo;
     QPushButton *exit;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout_3;
+    QVBoxLayout *verticalLayout;
+    QLabel *musicPlayer;
+    QHBoxLayout *horizontalLayout;
+    QVBoxLayout *verticalLayout_4;
+    QLabel *progress;
+    QLabel *volume;
+    QVBoxLayout *verticalLayout_2;
+    QSlider *horizontalProgress;
+    QSlider *horizontalVolume;
+    QPushButton *open;
+    QPushButton *play;
+    QPushButton *pause;
+    QPushButton *stop;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -514,6 +533,343 @@ public:
         exit->setPalette(palette6);
         exit->setFont(font2);
         exit->setCursor(QCursor(Qt::PointingHandCursor));
+        widget = new QWidget(centralWidget);
+        widget->setObjectName(QString::fromUtf8("widget"));
+        widget->setGeometry(QRect(40, 580, 321, 231));
+        verticalLayout_3 = new QVBoxLayout(widget);
+        verticalLayout_3->setSpacing(6);
+        verticalLayout_3->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        verticalLayout_3->setContentsMargins(0, 0, 0, 0);
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setSpacing(6);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        musicPlayer = new QLabel(widget);
+        musicPlayer->setObjectName(QString::fromUtf8("musicPlayer"));
+        musicPlayer->setFont(font2);
+        musicPlayer->setCursor(QCursor(Qt::CrossCursor));
+
+        verticalLayout->addWidget(musicPlayer);
+
+
+        verticalLayout_3->addLayout(verticalLayout);
+
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        verticalLayout_4 = new QVBoxLayout();
+        verticalLayout_4->setSpacing(6);
+        verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
+        progress = new QLabel(widget);
+        progress->setObjectName(QString::fromUtf8("progress"));
+        progress->setFont(font2);
+        progress->setCursor(QCursor(Qt::CrossCursor));
+
+        verticalLayout_4->addWidget(progress);
+
+        volume = new QLabel(widget);
+        volume->setObjectName(QString::fromUtf8("volume"));
+        volume->setFont(font2);
+        volume->setCursor(QCursor(Qt::CrossCursor));
+
+        verticalLayout_4->addWidget(volume);
+
+
+        horizontalLayout->addLayout(verticalLayout_4);
+
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        horizontalProgress = new QSlider(widget);
+        horizontalProgress->setObjectName(QString::fromUtf8("horizontalProgress"));
+        horizontalProgress->setFont(font2);
+        horizontalProgress->setCursor(QCursor(Qt::SizeHorCursor));
+        horizontalProgress->setMaximum(100);
+        horizontalProgress->setPageStep(10);
+        horizontalProgress->setOrientation(Qt::Horizontal);
+
+        verticalLayout_2->addWidget(horizontalProgress);
+
+        horizontalVolume = new QSlider(widget);
+        horizontalVolume->setObjectName(QString::fromUtf8("horizontalVolume"));
+        horizontalVolume->setFont(font2);
+        horizontalVolume->setCursor(QCursor(Qt::SizeHorCursor));
+        horizontalVolume->setMaximum(100);
+        horizontalVolume->setValue(100);
+        horizontalVolume->setOrientation(Qt::Horizontal);
+
+        verticalLayout_2->addWidget(horizontalVolume);
+
+
+        horizontalLayout->addLayout(verticalLayout_2);
+
+
+        verticalLayout_3->addLayout(horizontalLayout);
+
+        open = new QPushButton(widget);
+        open->setObjectName(QString::fromUtf8("open"));
+        QPalette palette7;
+        palette7.setBrush(QPalette::Active, QPalette::WindowText, brush);
+        palette7.setBrush(QPalette::Active, QPalette::Button, brush1);
+        palette7.setBrush(QPalette::Active, QPalette::Light, brush2);
+        palette7.setBrush(QPalette::Active, QPalette::Midlight, brush3);
+        palette7.setBrush(QPalette::Active, QPalette::Dark, brush4);
+        palette7.setBrush(QPalette::Active, QPalette::Mid, brush5);
+        palette7.setBrush(QPalette::Active, QPalette::Text, brush);
+        palette7.setBrush(QPalette::Active, QPalette::BrightText, brush2);
+        palette7.setBrush(QPalette::Active, QPalette::ButtonText, brush);
+        palette7.setBrush(QPalette::Active, QPalette::Base, brush2);
+        palette7.setBrush(QPalette::Active, QPalette::Window, brush1);
+        palette7.setBrush(QPalette::Active, QPalette::Shadow, brush);
+        palette7.setBrush(QPalette::Active, QPalette::AlternateBase, brush3);
+        palette7.setBrush(QPalette::Active, QPalette::ToolTipBase, brush6);
+        palette7.setBrush(QPalette::Active, QPalette::ToolTipText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette7.setBrush(QPalette::Active, QPalette::PlaceholderText, brush7);
+#endif
+        palette7.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
+        palette7.setBrush(QPalette::Inactive, QPalette::Button, brush1);
+        palette7.setBrush(QPalette::Inactive, QPalette::Light, brush2);
+        palette7.setBrush(QPalette::Inactive, QPalette::Midlight, brush3);
+        palette7.setBrush(QPalette::Inactive, QPalette::Dark, brush4);
+        palette7.setBrush(QPalette::Inactive, QPalette::Mid, brush5);
+        palette7.setBrush(QPalette::Inactive, QPalette::Text, brush);
+        palette7.setBrush(QPalette::Inactive, QPalette::BrightText, brush2);
+        palette7.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
+        palette7.setBrush(QPalette::Inactive, QPalette::Base, brush2);
+        palette7.setBrush(QPalette::Inactive, QPalette::Window, brush1);
+        palette7.setBrush(QPalette::Inactive, QPalette::Shadow, brush);
+        palette7.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush3);
+        palette7.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush6);
+        palette7.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette7.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush7);
+#endif
+        palette7.setBrush(QPalette::Disabled, QPalette::WindowText, brush4);
+        palette7.setBrush(QPalette::Disabled, QPalette::Button, brush1);
+        palette7.setBrush(QPalette::Disabled, QPalette::Light, brush2);
+        palette7.setBrush(QPalette::Disabled, QPalette::Midlight, brush3);
+        palette7.setBrush(QPalette::Disabled, QPalette::Dark, brush4);
+        palette7.setBrush(QPalette::Disabled, QPalette::Mid, brush5);
+        palette7.setBrush(QPalette::Disabled, QPalette::Text, brush4);
+        palette7.setBrush(QPalette::Disabled, QPalette::BrightText, brush2);
+        palette7.setBrush(QPalette::Disabled, QPalette::ButtonText, brush4);
+        palette7.setBrush(QPalette::Disabled, QPalette::Base, brush1);
+        palette7.setBrush(QPalette::Disabled, QPalette::Window, brush1);
+        palette7.setBrush(QPalette::Disabled, QPalette::Shadow, brush);
+        palette7.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush1);
+        palette7.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush6);
+        palette7.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette7.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush7);
+#endif
+        open->setPalette(palette7);
+        open->setFont(font2);
+        open->setCursor(QCursor(Qt::PointingHandCursor));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/images/icons/music_48x48.png"), QSize(), QIcon::Normal, QIcon::Off);
+        open->setIcon(icon1);
+
+        verticalLayout_3->addWidget(open);
+
+        play = new QPushButton(widget);
+        play->setObjectName(QString::fromUtf8("play"));
+        QPalette palette8;
+        palette8.setBrush(QPalette::Active, QPalette::WindowText, brush);
+        palette8.setBrush(QPalette::Active, QPalette::Button, brush1);
+        palette8.setBrush(QPalette::Active, QPalette::Light, brush2);
+        palette8.setBrush(QPalette::Active, QPalette::Midlight, brush3);
+        palette8.setBrush(QPalette::Active, QPalette::Dark, brush4);
+        palette8.setBrush(QPalette::Active, QPalette::Mid, brush5);
+        palette8.setBrush(QPalette::Active, QPalette::Text, brush);
+        palette8.setBrush(QPalette::Active, QPalette::BrightText, brush2);
+        palette8.setBrush(QPalette::Active, QPalette::ButtonText, brush);
+        palette8.setBrush(QPalette::Active, QPalette::Base, brush2);
+        palette8.setBrush(QPalette::Active, QPalette::Window, brush1);
+        palette8.setBrush(QPalette::Active, QPalette::Shadow, brush);
+        palette8.setBrush(QPalette::Active, QPalette::AlternateBase, brush3);
+        palette8.setBrush(QPalette::Active, QPalette::ToolTipBase, brush6);
+        palette8.setBrush(QPalette::Active, QPalette::ToolTipText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette8.setBrush(QPalette::Active, QPalette::PlaceholderText, brush7);
+#endif
+        palette8.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
+        palette8.setBrush(QPalette::Inactive, QPalette::Button, brush1);
+        palette8.setBrush(QPalette::Inactive, QPalette::Light, brush2);
+        palette8.setBrush(QPalette::Inactive, QPalette::Midlight, brush3);
+        palette8.setBrush(QPalette::Inactive, QPalette::Dark, brush4);
+        palette8.setBrush(QPalette::Inactive, QPalette::Mid, brush5);
+        palette8.setBrush(QPalette::Inactive, QPalette::Text, brush);
+        palette8.setBrush(QPalette::Inactive, QPalette::BrightText, brush2);
+        palette8.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
+        palette8.setBrush(QPalette::Inactive, QPalette::Base, brush2);
+        palette8.setBrush(QPalette::Inactive, QPalette::Window, brush1);
+        palette8.setBrush(QPalette::Inactive, QPalette::Shadow, brush);
+        palette8.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush3);
+        palette8.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush6);
+        palette8.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette8.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush7);
+#endif
+        palette8.setBrush(QPalette::Disabled, QPalette::WindowText, brush4);
+        palette8.setBrush(QPalette::Disabled, QPalette::Button, brush1);
+        palette8.setBrush(QPalette::Disabled, QPalette::Light, brush2);
+        palette8.setBrush(QPalette::Disabled, QPalette::Midlight, brush3);
+        palette8.setBrush(QPalette::Disabled, QPalette::Dark, brush4);
+        palette8.setBrush(QPalette::Disabled, QPalette::Mid, brush5);
+        palette8.setBrush(QPalette::Disabled, QPalette::Text, brush4);
+        palette8.setBrush(QPalette::Disabled, QPalette::BrightText, brush2);
+        palette8.setBrush(QPalette::Disabled, QPalette::ButtonText, brush4);
+        palette8.setBrush(QPalette::Disabled, QPalette::Base, brush1);
+        palette8.setBrush(QPalette::Disabled, QPalette::Window, brush1);
+        palette8.setBrush(QPalette::Disabled, QPalette::Shadow, brush);
+        palette8.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush1);
+        palette8.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush6);
+        palette8.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette8.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush7);
+#endif
+        play->setPalette(palette8);
+        play->setFont(font2);
+        play->setCursor(QCursor(Qt::PointingHandCursor));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/images/icons/play_48x48.png"), QSize(), QIcon::Normal, QIcon::Off);
+        play->setIcon(icon2);
+
+        verticalLayout_3->addWidget(play);
+
+        pause = new QPushButton(widget);
+        pause->setObjectName(QString::fromUtf8("pause"));
+        QPalette palette9;
+        palette9.setBrush(QPalette::Active, QPalette::WindowText, brush);
+        palette9.setBrush(QPalette::Active, QPalette::Button, brush1);
+        palette9.setBrush(QPalette::Active, QPalette::Light, brush2);
+        palette9.setBrush(QPalette::Active, QPalette::Midlight, brush3);
+        palette9.setBrush(QPalette::Active, QPalette::Dark, brush4);
+        palette9.setBrush(QPalette::Active, QPalette::Mid, brush5);
+        palette9.setBrush(QPalette::Active, QPalette::Text, brush);
+        palette9.setBrush(QPalette::Active, QPalette::BrightText, brush2);
+        palette9.setBrush(QPalette::Active, QPalette::ButtonText, brush);
+        palette9.setBrush(QPalette::Active, QPalette::Base, brush2);
+        palette9.setBrush(QPalette::Active, QPalette::Window, brush1);
+        palette9.setBrush(QPalette::Active, QPalette::Shadow, brush);
+        palette9.setBrush(QPalette::Active, QPalette::AlternateBase, brush3);
+        palette9.setBrush(QPalette::Active, QPalette::ToolTipBase, brush6);
+        palette9.setBrush(QPalette::Active, QPalette::ToolTipText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette9.setBrush(QPalette::Active, QPalette::PlaceholderText, brush7);
+#endif
+        palette9.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
+        palette9.setBrush(QPalette::Inactive, QPalette::Button, brush1);
+        palette9.setBrush(QPalette::Inactive, QPalette::Light, brush2);
+        palette9.setBrush(QPalette::Inactive, QPalette::Midlight, brush3);
+        palette9.setBrush(QPalette::Inactive, QPalette::Dark, brush4);
+        palette9.setBrush(QPalette::Inactive, QPalette::Mid, brush5);
+        palette9.setBrush(QPalette::Inactive, QPalette::Text, brush);
+        palette9.setBrush(QPalette::Inactive, QPalette::BrightText, brush2);
+        palette9.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
+        palette9.setBrush(QPalette::Inactive, QPalette::Base, brush2);
+        palette9.setBrush(QPalette::Inactive, QPalette::Window, brush1);
+        palette9.setBrush(QPalette::Inactive, QPalette::Shadow, brush);
+        palette9.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush3);
+        palette9.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush6);
+        palette9.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette9.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush7);
+#endif
+        palette9.setBrush(QPalette::Disabled, QPalette::WindowText, brush4);
+        palette9.setBrush(QPalette::Disabled, QPalette::Button, brush1);
+        palette9.setBrush(QPalette::Disabled, QPalette::Light, brush2);
+        palette9.setBrush(QPalette::Disabled, QPalette::Midlight, brush3);
+        palette9.setBrush(QPalette::Disabled, QPalette::Dark, brush4);
+        palette9.setBrush(QPalette::Disabled, QPalette::Mid, brush5);
+        palette9.setBrush(QPalette::Disabled, QPalette::Text, brush4);
+        palette9.setBrush(QPalette::Disabled, QPalette::BrightText, brush2);
+        palette9.setBrush(QPalette::Disabled, QPalette::ButtonText, brush4);
+        palette9.setBrush(QPalette::Disabled, QPalette::Base, brush1);
+        palette9.setBrush(QPalette::Disabled, QPalette::Window, brush1);
+        palette9.setBrush(QPalette::Disabled, QPalette::Shadow, brush);
+        palette9.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush1);
+        palette9.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush6);
+        palette9.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette9.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush7);
+#endif
+        pause->setPalette(palette9);
+        pause->setFont(font2);
+        pause->setCursor(QCursor(Qt::PointingHandCursor));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/images/icons/pause_48x48.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pause->setIcon(icon3);
+
+        verticalLayout_3->addWidget(pause);
+
+        stop = new QPushButton(widget);
+        stop->setObjectName(QString::fromUtf8("stop"));
+        QPalette palette10;
+        palette10.setBrush(QPalette::Active, QPalette::WindowText, brush);
+        palette10.setBrush(QPalette::Active, QPalette::Button, brush1);
+        palette10.setBrush(QPalette::Active, QPalette::Light, brush2);
+        palette10.setBrush(QPalette::Active, QPalette::Midlight, brush3);
+        palette10.setBrush(QPalette::Active, QPalette::Dark, brush4);
+        palette10.setBrush(QPalette::Active, QPalette::Mid, brush5);
+        palette10.setBrush(QPalette::Active, QPalette::Text, brush);
+        palette10.setBrush(QPalette::Active, QPalette::BrightText, brush2);
+        palette10.setBrush(QPalette::Active, QPalette::ButtonText, brush);
+        palette10.setBrush(QPalette::Active, QPalette::Base, brush2);
+        palette10.setBrush(QPalette::Active, QPalette::Window, brush1);
+        palette10.setBrush(QPalette::Active, QPalette::Shadow, brush);
+        palette10.setBrush(QPalette::Active, QPalette::AlternateBase, brush3);
+        palette10.setBrush(QPalette::Active, QPalette::ToolTipBase, brush6);
+        palette10.setBrush(QPalette::Active, QPalette::ToolTipText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette10.setBrush(QPalette::Active, QPalette::PlaceholderText, brush7);
+#endif
+        palette10.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
+        palette10.setBrush(QPalette::Inactive, QPalette::Button, brush1);
+        palette10.setBrush(QPalette::Inactive, QPalette::Light, brush2);
+        palette10.setBrush(QPalette::Inactive, QPalette::Midlight, brush3);
+        palette10.setBrush(QPalette::Inactive, QPalette::Dark, brush4);
+        palette10.setBrush(QPalette::Inactive, QPalette::Mid, brush5);
+        palette10.setBrush(QPalette::Inactive, QPalette::Text, brush);
+        palette10.setBrush(QPalette::Inactive, QPalette::BrightText, brush2);
+        palette10.setBrush(QPalette::Inactive, QPalette::ButtonText, brush);
+        palette10.setBrush(QPalette::Inactive, QPalette::Base, brush2);
+        palette10.setBrush(QPalette::Inactive, QPalette::Window, brush1);
+        palette10.setBrush(QPalette::Inactive, QPalette::Shadow, brush);
+        palette10.setBrush(QPalette::Inactive, QPalette::AlternateBase, brush3);
+        palette10.setBrush(QPalette::Inactive, QPalette::ToolTipBase, brush6);
+        palette10.setBrush(QPalette::Inactive, QPalette::ToolTipText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette10.setBrush(QPalette::Inactive, QPalette::PlaceholderText, brush7);
+#endif
+        palette10.setBrush(QPalette::Disabled, QPalette::WindowText, brush4);
+        palette10.setBrush(QPalette::Disabled, QPalette::Button, brush1);
+        palette10.setBrush(QPalette::Disabled, QPalette::Light, brush2);
+        palette10.setBrush(QPalette::Disabled, QPalette::Midlight, brush3);
+        palette10.setBrush(QPalette::Disabled, QPalette::Dark, brush4);
+        palette10.setBrush(QPalette::Disabled, QPalette::Mid, brush5);
+        palette10.setBrush(QPalette::Disabled, QPalette::Text, brush4);
+        palette10.setBrush(QPalette::Disabled, QPalette::BrightText, brush2);
+        palette10.setBrush(QPalette::Disabled, QPalette::ButtonText, brush4);
+        palette10.setBrush(QPalette::Disabled, QPalette::Base, brush1);
+        palette10.setBrush(QPalette::Disabled, QPalette::Window, brush1);
+        palette10.setBrush(QPalette::Disabled, QPalette::Shadow, brush);
+        palette10.setBrush(QPalette::Disabled, QPalette::AlternateBase, brush1);
+        palette10.setBrush(QPalette::Disabled, QPalette::ToolTipBase, brush6);
+        palette10.setBrush(QPalette::Disabled, QPalette::ToolTipText, brush);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+        palette10.setBrush(QPalette::Disabled, QPalette::PlaceholderText, brush7);
+#endif
+        stop->setPalette(palette10);
+        stop->setFont(font2);
+        stop->setCursor(QCursor(Qt::PointingHandCursor));
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/images/icons/stop_48x48.png"), QSize(), QIcon::Normal, QIcon::Off);
+        stop->setIcon(icon4);
+
+        verticalLayout_3->addWidget(stop);
+
         MainWindow->setCentralWidget(centralWidget);
         QWidget::setTabOrder(deletePartVideo, addRemoveAudio);
         QWidget::setTabOrder(addRemoveAudio, changeResolution);
@@ -593,6 +949,37 @@ public:
         exit->setText(QCoreApplication::translate("MainWindow", "Exit", nullptr));
 #if QT_CONFIG(shortcut)
         exit->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+7", nullptr));
+#endif // QT_CONFIG(shortcut)
+        musicPlayer->setText(QCoreApplication::translate("MainWindow", "                                Music Player", nullptr));
+        progress->setText(QCoreApplication::translate("MainWindow", "Progress", nullptr));
+        volume->setText(QCoreApplication::translate("MainWindow", "Volume", nullptr));
+#if QT_CONFIG(tooltip)
+        open->setToolTip(QCoreApplication::translate("MainWindow", "Ctrl+M", nullptr));
+#endif // QT_CONFIG(tooltip)
+        open->setText(QString());
+#if QT_CONFIG(shortcut)
+        open->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+M", nullptr));
+#endif // QT_CONFIG(shortcut)
+#if QT_CONFIG(tooltip)
+        play->setToolTip(QCoreApplication::translate("MainWindow", "Ctrl+P", nullptr));
+#endif // QT_CONFIG(tooltip)
+        play->setText(QString());
+#if QT_CONFIG(shortcut)
+        play->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+P", nullptr));
+#endif // QT_CONFIG(shortcut)
+#if QT_CONFIG(tooltip)
+        pause->setToolTip(QCoreApplication::translate("MainWindow", "Ctrl+U", nullptr));
+#endif // QT_CONFIG(tooltip)
+        pause->setText(QString());
+#if QT_CONFIG(shortcut)
+        pause->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+U", nullptr));
+#endif // QT_CONFIG(shortcut)
+#if QT_CONFIG(tooltip)
+        stop->setToolTip(QCoreApplication::translate("MainWindow", "Ctrl+S", nullptr));
+#endif // QT_CONFIG(tooltip)
+        stop->setText(QString());
+#if QT_CONFIG(shortcut)
+        stop->setShortcut(QCoreApplication::translate("MainWindow", "Ctrl+S", nullptr));
 #endif // QT_CONFIG(shortcut)
     } // retranslateUi
 

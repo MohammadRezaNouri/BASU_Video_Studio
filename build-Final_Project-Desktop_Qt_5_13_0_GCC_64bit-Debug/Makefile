@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_MULTIMEDIAWIDGETS_LIB -DQT_MULTIMEDIA_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../Final_Project -I. -I../../../Qt5.13.0/5.13.0/gcc_64/include -I../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets -I../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui -I../../../Qt5.13.0/5.13.0/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I../../../Qt5.13.0/5.13.0/gcc_64/mkspecs/linux-g++
+INCPATH       = -I../Final_Project -I. -I../../../Qt5.13.0/5.13.0/gcc_64/include -I../../../Qt5.13.0/5.13.0/gcc_64/include/QtMultimediaWidgets -I../../../Qt5.13.0/5.13.0/gcc_64/include/QtMultimedia -I../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets -I../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui -I../../../Qt5.13.0/5.13.0/gcc_64/include/QtNetwork -I../../../Qt5.13.0/5.13.0/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I../../../Qt5.13.0/5.13.0/gcc_64/mkspecs/linux-g++
 QMAKE         = /home/mohammad/Qt5.13.0/5.13.0/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -39,8 +39,8 @@ COMPRESS      = gzip -9f
 DISTNAME      = Final_Project1.0.0
 DISTDIR = /home/mohammad/Desktop/FP/build-Final_Project-Desktop_Qt_5_13_0_GCC_64bit-Debug/.tmp/Final_Project1.0.0
 LINK          = g++
-LFLAGS        = -Wl,-rpath,/home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib
-LIBS          = $(SUBLIBS) /home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib/libQt5Widgets.so /home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib/libQt5Gui.so /home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib/libQt5Core.so -lGL -lpthread   
+LFLAGS        = -Wl,-rpath,/home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib -Wl,-rpath-link,/home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib
+LIBS          = $(SUBLIBS) /home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib/libQt5MultimediaWidgets.so /home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib/libQt5Multimedia.so /home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib/libQt5Widgets.so /home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib/libQt5Gui.so /home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib/libQt5Network.so /home/mohammad/Qt5.13.0/5.13.0/gcc_64/lib/libQt5Core.so -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -60,7 +60,8 @@ SOURCES       = ../Final_Project/addRemoveAudio.cpp \
 		../Final_Project/main.cpp \
 		../Final_Project/mainwindow.cpp \
 		../Final_Project/reduceVolume.cpp \
-		../Final_Project/videoEditor.cpp moc_mainwindow.cpp
+		../Final_Project/videoEditor.cpp qrc_icons.cpp \
+		moc_mainwindow.cpp
 OBJECTS       = addRemoveAudio.o \
 		changeResolution.o \
 		connectVideos.o \
@@ -70,6 +71,7 @@ OBJECTS       = addRemoveAudio.o \
 		mainwindow.o \
 		reduceVolume.o \
 		videoEditor.o \
+		qrc_icons.o \
 		moc_mainwindow.o
 DIST          = ../../../Qt5.13.0/5.13.0/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt5.13.0/5.13.0/gcc_64/mkspecs/common/unix.conf \
@@ -490,7 +492,8 @@ Makefile: ../Final_Project/Final_Project.pro ../../../Qt5.13.0/5.13.0/gcc_64/mks
 		../../../Qt5.13.0/5.13.0/gcc_64/mkspecs/features/exceptions.prf \
 		../../../Qt5.13.0/5.13.0/gcc_64/mkspecs/features/yacc.prf \
 		../../../Qt5.13.0/5.13.0/gcc_64/mkspecs/features/lex.prf \
-		../Final_Project/Final_Project.pro
+		../Final_Project/Final_Project.pro \
+		../Final_Project/icons.qrc
 	$(QMAKE) -o Makefile ../Final_Project/Final_Project.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 ../../../Qt5.13.0/5.13.0/gcc_64/mkspecs/features/spec_pre.prf:
 ../../../Qt5.13.0/5.13.0/gcc_64/mkspecs/common/unix.conf:
@@ -689,6 +692,7 @@ Makefile: ../Final_Project/Final_Project.pro ../../../Qt5.13.0/5.13.0/gcc_64/mks
 ../../../Qt5.13.0/5.13.0/gcc_64/mkspecs/features/yacc.prf:
 ../../../Qt5.13.0/5.13.0/gcc_64/mkspecs/features/lex.prf:
 ../Final_Project/Final_Project.pro:
+../Final_Project/icons.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../Final_Project/Final_Project.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 
@@ -703,6 +707,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents ../Final_Project/icons.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qt5.13.0/5.13.0/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../Final_Project/addRemoveAudio.h ../Final_Project/changeResolution.h ../Final_Project/connectVideos.h ../Final_Project/convertFormat.h ../Final_Project/deletePartVideo.h ../Final_Project/mainwindow.h ../Final_Project/reduceVolume.h ../Final_Project/videoEditor.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../Final_Project/addRemoveAudio.cpp ../Final_Project/changeResolution.cpp ../Final_Project/connectVideos.cpp ../Final_Project/convertFormat.cpp ../Final_Project/deletePartVideo.cpp ../Final_Project/main.cpp ../Final_Project/mainwindow.cpp ../Final_Project/reduceVolume.cpp ../Final_Project/videoEditor.cpp $(DISTDIR)/
@@ -730,8 +735,17 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_icons.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_icons.cpp
+qrc_icons.cpp: ../Final_Project/icons.qrc \
+		../../../Qt5.13.0/5.13.0/gcc_64/bin/rcc \
+		../Final_Project/icons/music_48x48.png \
+		../Final_Project/icons/play_48x48.png \
+		../Final_Project/icons/stop_48x48.png \
+		../Final_Project/icons/pause_48x48.png
+	/home/mohammad/Qt5.13.0/5.13.0/gcc_64/bin/rcc -name icons ../Final_Project/icons.qrc -o qrc_icons.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
@@ -853,7 +867,7 @@ moc_mainwindow.cpp: ../Final_Project/mainwindow.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qdialog.h \
 		moc_predefs.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/bin/moc
-	/home/mohammad/Qt5.13.0/5.13.0/gcc_64/bin/moc $(DEFINES) --include /home/mohammad/Desktop/FP/build-Final_Project-Desktop_Qt_5_13_0_GCC_64bit-Debug/moc_predefs.h -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/mkspecs/linux-g++ -I/home/mohammad/Desktop/FP/Final_Project -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include/QtWidgets -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include/QtGui -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Final_Project/mainwindow.h -o moc_mainwindow.cpp
+	/home/mohammad/Qt5.13.0/5.13.0/gcc_64/bin/moc $(DEFINES) --include /home/mohammad/Desktop/FP/build-Final_Project-Desktop_Qt_5_13_0_GCC_64bit-Debug/moc_predefs.h -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/mkspecs/linux-g++ -I/home/mohammad/Desktop/FP/Final_Project -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include/QtMultimediaWidgets -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include/QtMultimedia -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include/QtWidgets -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include/QtGui -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include/QtNetwork -I/home/mohammad/Qt5.13.0/5.13.0/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../Final_Project/mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -872,7 +886,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -982,6 +996,10 @@ addRemoveAudio.o: ../Final_Project/addRemoveAudio.cpp ../Final_Project/addRemove
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtCore/qfiledevice.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qtouchdevice.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QFileDialog \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qfiledialog.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtCore/qdir.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtCore/qfileinfo.h \
 		ui_mainwindow.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtCore/QVariant \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/QIcon \
@@ -993,21 +1011,28 @@ addRemoveAudio.o: ../Final_Project/addRemoveAudio.cpp ../Final_Project/addRemove
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qguiapplication.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlabel.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QPushButton \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QSlider \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QWidget \
-		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QFileDialog \
-		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qfiledialog.h \
-		../../../Qt5.13.0/5.13.0/gcc_64/include/QtCore/qdir.h \
-		../../../Qt5.13.0/5.13.0/gcc_64/include/QtCore/qfileinfo.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QInputDialog \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qinputdialog.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qtextcursor.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qtextformat.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qpen.h \
@@ -1131,12 +1156,24 @@ changeResolution.o: ../Final_Project/changeResolution.cpp ../Final_Project/chang
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qguiapplication.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlabel.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QPushButton \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QSlider \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QWidget \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QFileDialog \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qfiledialog.h \
@@ -1145,7 +1182,6 @@ changeResolution.o: ../Final_Project/changeResolution.cpp ../Final_Project/chang
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QInputDialog \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qinputdialog.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qtextcursor.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qtextformat.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qpen.h \
@@ -1273,9 +1309,21 @@ connectVideos.o: ../Final_Project/connectVideos.cpp ../Final_Project/connectVide
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qguiapplication.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlabel.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QPushButton \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QSlider \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QWidget \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QFileDialog \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qfiledialog.h \
@@ -1400,12 +1448,24 @@ convertFormat.o: ../Final_Project/convertFormat.cpp ../Final_Project/convertForm
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qguiapplication.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlabel.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QPushButton \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QSlider \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QWidget \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QFileDialog \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qfiledialog.h \
@@ -1414,7 +1474,6 @@ convertFormat.o: ../Final_Project/convertFormat.cpp ../Final_Project/convertForm
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QInputDialog \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qinputdialog.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qtextcursor.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qtextformat.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qpen.h \
@@ -1538,17 +1597,28 @@ deletePartVideo.o: ../Final_Project/deletePartVideo.cpp ../Final_Project/deleteP
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qguiapplication.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlabel.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QPushButton \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QSlider \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QWidget \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QInputDialog \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qinputdialog.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qtextcursor.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qtextformat.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qpen.h \
@@ -1798,16 +1868,32 @@ mainwindow.o: ../Final_Project/mainwindow.cpp ../Final_Project/mainwindow.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qguiapplication.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlabel.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QPushButton \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QSlider \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QWidget \
 		../Final_Project/connectVideos.h \
 		../Final_Project/deletePartVideo.h \
 		../Final_Project/reduceVolume.h \
 		../Final_Project/convertFormat.h \
 		../Final_Project/changeResolution.h \
-		../Final_Project/addRemoveAudio.h
+		../Final_Project/addRemoveAudio.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QFileDialog \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qfiledialog.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtCore/qdir.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtCore/qfileinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../Final_Project/mainwindow.cpp
 
 reduceVolume.o: ../Final_Project/reduceVolume.cpp ../Final_Project/reduceVolume.h \
@@ -1927,17 +2013,28 @@ reduceVolume.o: ../Final_Project/reduceVolume.cpp ../Final_Project/reduceVolume.
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qguiapplication.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlabel.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QPushButton \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QSlider \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QWidget \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QInputDialog \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qinputdialog.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlineedit.h \
-		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qtextcursor.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qtextformat.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qpen.h \
@@ -2064,18 +2161,33 @@ videoEditor.o: ../Final_Project/videoEditor.cpp ../Final_Project/videoEditor.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qdesktopwidget.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qguiapplication.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtGui/qinputmethod.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QLabel \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qlabel.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qframe.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QMainWindow \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qmainwindow.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QPushButton \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qpushbutton.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QSlider \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qslider.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QWidget \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/QFileDialog \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtWidgets/qfiledialog.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtCore/qdir.h \
 		../../../Qt5.13.0/5.13.0/gcc_64/include/QtCore/qfileinfo.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o videoEditor.o ../Final_Project/videoEditor.cpp
+
+qrc_icons.o: qrc_icons.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_icons.o qrc_icons.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

@@ -1,6 +1,5 @@
 #include "addRemoveAudio.h"
 #include "ui_mainwindow.h"
-#include "QFileDialog"
 #include "qmessagebox.h"
 #include <QInputDialog>
 #include <fstream>
@@ -68,7 +67,7 @@ addRemoveAudio::addRemoveAudio()
             }
         }
     }
-    else if (msg->clickedButton() == rmAudio)
+    else if (one->clickedButton() == rmAudio)
     {
         sTime = QInputDialog::getText(nullptr, "Start time to remove", "Start time : ", QLineEdit::Normal, "Example : 00:00:00",  &fOk);
         if (!fOk)
@@ -92,6 +91,7 @@ addRemoveAudio::addRemoveAudio()
         {
             return;
         }
+        msg->setText("Please select the file and its storage location.");
         click2:
         msg->exec();
         if(msg->clickedButton() == input)
@@ -130,9 +130,9 @@ void addRemoveAudio::setWFIOk(QString title)
     addAudio = one->addButton("Add audio in video", QMessageBox::ActionRole);
     rmAudio = new QPushButton();
     rmAudio = one->addButton("Remove audio in video", QMessageBox::ActionRole);
+    one->setStandardButtons(QMessageBox::Cancel);
     videoEditor::setWFIOk(title);
     videoEditor::setMsgButtons();
-    Cancel = one->addButton("Cancel", QMessageBox::ActionRole);
     setShortcut();
     setToolTip();
 }
@@ -141,14 +141,12 @@ void addRemoveAudio::setShortcut()
 {
     addAudio->setShortcut(Qt::CTRL + Qt::Key_A);
     rmAudio->setShortcut(Qt::CTRL + Qt::Key_R);
-    Cancel->setShortcut(Qt::CTRL + Qt::Key_Q);
 }
 
 void addRemoveAudio::setToolTip()
 {
     addAudio->setToolTip("Ctrl+A");
     rmAudio->setToolTip("Ctrl+R");
-    Cancel->setToolTip("Ctrl+Q");
 }
 
 addRemoveAudio::~addRemoveAudio()

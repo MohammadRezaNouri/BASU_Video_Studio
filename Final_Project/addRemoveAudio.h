@@ -2,6 +2,7 @@
 #define ADDREMOVEAUDIO_H
 
 #include "videoEditor.h"
+#include "QFileDialog"
 
 class addRemoveAudio : public videoEditor
 {
