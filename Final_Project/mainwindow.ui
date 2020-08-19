@@ -1981,7 +1981,7 @@
      <string>Ctrl+4</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="play">
+   <widget class="QPushButton" name="exit">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -2451,7 +2451,7 @@
      <string/>
     </property>
     <property name="text">
-     <string>Play</string>
+     <string>Exit</string>
     </property>
     <property name="shortcut">
      <string>Ctrl+7</string>
@@ -3412,7 +3412,7 @@
   <tabstop>changeResolution</tabstop>
   <tabstop>connectVideos</tabstop>
   <tabstop>convertFormat</tabstop>
-  <tabstop>play</tabstop>
+  <tabstop>exit</tabstop>
   <tabstop>reduceVolume</tabstop>
  </tabstops>
  <resources/>

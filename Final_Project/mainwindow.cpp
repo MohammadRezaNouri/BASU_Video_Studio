@@ -64,6 +64,7 @@ void MainWindow::on_reduceVolume_clicked()
     start = new reduceVolume();
 }
 
-void MainWindow::on_play_clicked()
+void MainWindow::on_exit_clicked()
 {
+
 }
