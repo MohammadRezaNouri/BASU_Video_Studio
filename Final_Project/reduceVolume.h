@@ -9,7 +9,7 @@ public:
     reduceVolume();
     virtual void ffmpeg();
 private:
-    int crf;
+    int crf; // for Change resulation
 };
 
 #endif // REDUCEVOLUME_H

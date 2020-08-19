@@ -48,7 +48,7 @@ deletePartVideo::deletePartVideo()
     }
     else if(msg->clickedButton() == ok)
     {
-        if(!fullInput()) // check input audio is not empty
+        if(!fullInput()) // check inputs is not empty
         {
             return;
         }
