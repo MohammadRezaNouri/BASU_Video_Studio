@@ -16,9 +16,11 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
+
 protected:
-    void resizeEvent(QResizeEvent* evt) override;
-private slots:
+    void resizeEvent(QResizeEvent* evt) override;// Resize main window function
+
+private slots://Main window buttons
     void on_convertFormat_clicked();
 
     void on_changeResolution_clicked();
@@ -53,7 +55,7 @@ private:
     Ui::MainWindow * ui;
     videoEditor * start = nullptr;
     QMediaPlayer * player = nullptr;
-    QString fileName;
+    QString fileName;//music file for music player
 };
 
 #endif // MAINWINDOW_H

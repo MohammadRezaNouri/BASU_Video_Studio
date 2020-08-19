@@ -2,11 +2,11 @@
 #include "ui_mainwindow.h"
 #include "QFileDialog"
 
-void videoEditor::setWFIOk(QString title)
+void videoEditor::setWFIOk(QString title)//set window title & icon & ok button
 {
     QFont font;
     font.setBold(true);
-    font.setPointSize(15);
+    font.setPointSize(15); // Message size
     msg = new QMessageBox();
     msg->setWindowTitle(title);
     msg->setFont(font);
@@ -21,7 +21,7 @@ void videoEditor::setWFIOk(QString title)
     ok->setToolTip("Ctrl+K");
 }
 
-void videoEditor::setMsgButtons()
+void videoEditor::setMsgButtons() // Set Message buttond (input video & outpu Folder & ok)
 {
     input = new QPushButton();
     output = new QPushButton();
@@ -33,14 +33,14 @@ void videoEditor::setMsgButtons()
     setToolTip();
 }
 
-void videoEditor::setShortcut()
+void videoEditor::setShortcut() // set buttons shortcut
 {
     input->setShortcut(Qt::CTRL + Qt::Key_O);
     output->setShortcut(Qt::CTRL + Qt::Key_F);
     ok->setShortcut(Qt::CTRL + Qt::Key_K);
 }
 
-void videoEditor::setToolTip()
+void videoEditor::setToolTip() // set buttons Tool  Tip
 {
     input->setToolTip("Ctrl+O");
     output->setToolTip("Ctrl+F");
@@ -75,31 +75,31 @@ videoEditor::~videoEditor()
     }
 }
 
-void videoEditor::msgTemp(QString msg)
+void videoEditor::msgTemp(QString msg) // Show errors
 {
     temp->setText(msg);
     temp->exec();
 }
 
-void videoEditor::ffmpeg()
+void videoEditor::ffmpeg() // Blank written here due to a compiler error
 {
 
 }
 
 bool videoEditor::command(QString cmd)
 {
-    cmd += " && echo OK || echo Failed";
+    cmd += " && echo OK || echo Failed"; // Result comman == OK or Failed
     QByteArray t1 = cmd.toLocal8Bit();
-    const char * t2 = t1.data();
+    const char * t2 = t1.data(); // Convert QString to const char * t2
     string data;
     FILE * stream;
     const int max_buffer = 256;
     char buffer[max_buffer];
-    stream = popen(t2, "r");
+    stream = popen(t2, "r"); // Start command
     if (stream)
     {
         while (!feof(stream))
-            if (fgets(buffer, max_buffer, stream) != nullptr) data.append(buffer);
+            if (fgets(buffer, max_buffer, stream) != nullptr) data.append(buffer); // Pour in data
         pclose(stream);
     }
     if(data == "OK\n")
@@ -109,13 +109,13 @@ bool videoEditor::command(QString cmd)
     return false;
 }
 
-QString videoEditor::getName()
+QString videoEditor::getName() // Get video name
 {
     QFileInfo nameTemp(fileName);
     return nameTemp.fileName();
 }
 
-bool videoEditor::ffprobe()
+bool videoEditor::ffprobe() // Get Video total time & check Check with inputs
 {
     QString t1 = "ffprobe -i ";
     t1 += fileName + " -show_entries format=duration -v quiet -of csv=""p=0""" + " 2>&1";
@@ -144,7 +144,7 @@ bool videoEditor::ffprobe()
     return true;
 }
 
-bool videoEditor::checkTime(QString check, int time)
+bool videoEditor::checkTime(QString check, int time) // Check Input incorrect
 {
     if (check[0] == '-')
     {
@@ -186,7 +186,7 @@ bool videoEditor::checkTime(QString check, int time)
     return true;
 }
 
-bool videoEditor::checkSecTime()
+bool videoEditor::checkSecTime() // Check start time < end time
 {
     if (intVS > intVE)
     {
@@ -195,7 +195,7 @@ bool videoEditor::checkSecTime()
     }
     return true;
 }
-bool videoEditor::fullInput()
+bool videoEditor::fullInput() // Error for empty inputs
 {
     if(fileName.size() == 0 && outputFolder.size() == 0)
     {
