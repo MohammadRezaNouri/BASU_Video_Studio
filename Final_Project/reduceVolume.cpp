@@ -9,40 +9,14 @@ using namespace std;
 
 reduceVolume::reduceVolume()
 {
-    QFont font;
-    font.setBold(true);
-    font.setPointSize(15);
-    bool fOk;
-    int crf = QInputDialog::getInt(nullptr, "Change the volume", "Number close to 51 = less volume\nNumber close to 0 = more volume", QLineEdit::Normal, 0, 51, 5, &fOk);
+    crf = QInputDialog::getInt(nullptr, "Change the volume", "Number close to 51 = less volume\nNumber close to 0 = more volume", QLineEdit::Normal, 0, 51, 5, &fOk);
     if (!fOk)
     {
         return;
     }
-    QMessageBox * msg = new QMessageBox(), * temp = new QMessageBox();
-    msg->setWindowTitle("Reduce video volume");
-    msg->setFont(font);
-    msg->setIcon(QMessageBox::Icon::Information);
+    setWFIOk("Reduce video volume");
+    setMsgButtons();
     msg->setText("Please select the video and its storage location.");
-    temp->setWindowTitle("Reduce video volume");
-    temp->setFont(font);
-    temp->setIcon(QMessageBox::Icon::Critical);
-    QPushButton * input = new QPushButton(), * output = new QPushButton(), * ok = new QPushButton(), * Cancel = new QPushButton();
-    ok = temp->addButton("Ok", QMessageBox::ActionRole);
-    ok->setShortcut(Qt::CTRL + Qt::Key_K);
-    ok->setToolTip("Ctrl+K");
-    input = msg->addButton("Input video", QMessageBox::ActionRole);
-    input->setShortcut(Qt::CTRL + Qt::Key_O);
-    input->setToolTip("Ctrl+O");
-    output = msg->addButton("Output folder", QMessageBox::ActionRole);
-    output->setShortcut(Qt::CTRL + Qt::Key_F);
-    output->setToolTip("Ctrl+F");
-    ok = msg->addButton("Ok", QMessageBox::ActionRole);
-    ok->setShortcut(Qt::CTRL + Qt::Key_K);
-    ok->setToolTip("Ctrl+K");
-    Cancel = msg->addButton("Cancel", QMessageBox::ActionRole);
-    Cancel->setShortcut(Qt::CTRL + Qt::Key_Q);
-    Cancel->setToolTip("Ctrl+Q");
-    QString fileName, outputFolder;
     click:
     msg->exec();
     if(msg->clickedButton() == input)
@@ -57,64 +31,21 @@ reduceVolume::reduceVolume()
     }
     else if(msg->clickedButton() == ok)
     {
-        if(fileName.size() == 0 && outputFolder.size() == 0)
+        if(fullInput())
         {
-            temp->setText("Video and path not selected.");
-            temp->exec();
-            delete temp;
-            delete input;
-            delete output;
-            delete ok;
-            delete Cancel;
-            delete msg;
-            return;
+            ffmpeg();
         }
-        else if(outputFolder.size() == 0)
-        {
-            temp->setText("No route selected.");
-            temp->exec();
-            delete temp;
-            delete input;
-            delete output;
-            delete ok;
-            delete Cancel;
-            delete msg;
-            return;
-        }
-        else if(fileName.size() == 0)
-        {
-            temp->setText("No video selected.");
-            temp->exec();
-            delete temp;
-            delete input;
-            delete output;
-            delete ok;
-            delete Cancel;
-            delete msg;
-            return;
-        }
-        QString t1 = "ffmpeg -y -i ";
-        QFileInfo nameTemp(fileName);
-        t1 += fileName + " -crf " + QString::number(crf) + " " + outputFolder + "/Reduce_volume_" + nameTemp.fileName();
-        QByteArray t2 = t1.toLocal8Bit();
-        const char * t3 = t2.data();
-        system(t3);
-        delete temp;
-        delete input;
-        delete output;
-        delete ok;
-        delete Cancel;
-        delete msg;
-        return;
     }
-    else
+}
+
+void reduceVolume::ffmpeg()
+{
+    msgTemp("Please click the OK button and wait for the result page to appear.");
+    QString t1 = "ffmpeg -y -i " + fileName + " -crf " + QString::number(crf) + " \"" + outputFolder + "/Reduce_volume_" + getName() + "\"";
+    if(command(t1))
     {
-        delete temp;
-        delete input;
-        delete output;
-        delete ok;
-        delete Cancel;
-        delete msg;
+        msgTemp("Done");
         return;
     }
+    msgTemp("This is not possible!");
 }
