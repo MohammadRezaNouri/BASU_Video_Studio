@@ -10,33 +10,33 @@ using namespace std;
 deletePartVideo::deletePartVideo()
 {
     sTime = QInputDialog::getText(nullptr, "Start time to remove", "Start time : ", QLineEdit::Normal, "Example : 00:00:00",  &fOk);
-    if (!fOk)
+    if (!fOk) // Cancel button
     {
         return;
     }
-    setWFIOk("Delete parts of the video");
-    if(!checkTime(sTime, 0))
+    setWFIOk("Delete parts of the video"); // Call dad function
+    if(!checkTime(sTime, 0)) // Check true start inputs
     {
         return;
     }
     eTime = QInputDialog::getText(nullptr, "End time to remove", "End time : ", QLineEdit::Normal, "Example : 00:00:00", &fOk);
-    if (!fOk)
+    if (!fOk) // Cancel button
     {
         return;
     }
-    if(!checkTime(eTime, 1))
+    if(!checkTime(eTime, 1)) // Check true end inputs
     {
         return;
     }
-    if (!checkSecTime())
+    if (!checkSecTime()) // Check start time < end time
     {
         return;
     }
-    setMsgButtons();
+    setMsgButtons(); // Call dad function
     msg->setText("Please select : ");
     click:
     msg->exec();
-    if(msg->clickedButton() == input)
+    if(msg->clickedButton() == input) // input Video
     {
         fileName = QFileDialog::getOpenFileName(nullptr, "Open Video", "", "Video Files(*.mp4 *.m4a *.f4v *.f4a *.m4b *.m4r *.f4b *.mov *.3gp *.3gp2 *.3g2 *.3gpp *.3gpp2 *.ogg *.oga *.ogv *.ogx *.wmv *.wma *.asf *.webm *.flv *.mkv *.vob *.drc *.gif *.gifv *.mng *.avi *.MTS *.M2TS *.TS *.qt *.yuv *.tm *.rmvb *.viv *.amv *.m4p *.m4v *.mpg *.mpeg *.mp2 *.mpe *.mpv *.m2v *.svi *.mxf *.roq *.nsv *.f4p)");
         goto click;
@@ -48,7 +48,7 @@ deletePartVideo::deletePartVideo()
     }
     else if(msg->clickedButton() == ok)
     {
-        if(!fullInput())
+        if(!fullInput()) // check input audio is not empty
         {
             return;
         }
